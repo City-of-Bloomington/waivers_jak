@@ -12,6 +12,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger; 
 import annex.model.*;
@@ -39,17 +40,20 @@ public class ReportStatsAction extends TopAction{
 	    }
 	}
 	return ret;
-    }			 
+    }
+    @StrutsParameter(depth=1)
     public ReportStats getReport(){
 	if(report == null){
 	    report = new ReportStats();
 	}
 	return report;
     }
+    @StrutsParameter(depth=1)
     public void setReport(ReportStats val){
 	if(val != null)
 	    report = val;
     }
+    @StrutsParameter(depth=1)
     public List<String> getYears(){
 	if(years == null){
 	    logger.debug(" report stats get years ");

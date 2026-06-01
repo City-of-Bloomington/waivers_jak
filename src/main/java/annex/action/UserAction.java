@@ -10,6 +10,7 @@ import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -100,6 +101,7 @@ public class UserAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=1)
     public User getUser(){ 
 	if(user == null){
 	    if(!id.equals("")){
@@ -111,7 +113,7 @@ public class UserAction extends TopAction{
 	}		
 	return user;
     }
-
+    @StrutsParameter(depth=1)
     public void setUser(User val){
 	if(val != null){
 	    user = val;
@@ -123,11 +125,13 @@ public class UserAction extends TopAction{
 
     public String getUsersTitle(){
 	return usersTitle;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
+    @StrutsParameter(depth=1)
     public void setYear(String val){
 	if(val != null && !val.equals(""))		
 	    id = val; // id also
@@ -145,6 +149,7 @@ public class UserAction extends TopAction{
 	return id;
     }		
     // most recent
+    @StrutsParameter(depth=1)
     public List<User> getUsers(){
 	logger.debug("get users");
 	if(users == null){

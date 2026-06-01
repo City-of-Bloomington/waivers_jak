@@ -10,6 +10,7 @@ import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -156,6 +157,7 @@ public class WaiverAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=2)
     public Waiver getWaiver(){ 
 	if(waiver == null){
 	    if(!id.isEmpty() || !waiver_num.isEmpty()){
@@ -171,7 +173,7 @@ public class WaiverAction extends TopAction{
 	}		
 	return waiver;
     }
-
+    @StrutsParameter(depth=1)
     public void setWaiver(Waiver val){
 	if(val != null)
 	    waiver = val;
@@ -179,7 +181,8 @@ public class WaiverAction extends TopAction{
 
     public String getWaiversTitle(){
 	return waiversTitle;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
@@ -196,19 +199,23 @@ public class WaiverAction extends TopAction{
 	}
 	return waiver_num;
     }
+    @StrutsParameter(depth=1)
     public void setWaiverNum(String val){
 	if(val != null && !val.isEmpty())		
 	    waiver_num = val;
     }
+    @StrutsParameter(depth=1)
     public void setEntityId(String val){
 	if(val != null && !val.equals(""))		
 	    entity_id = val;
     }
+    @StrutsParameter(depth=1)
     public void setAddressId(String val){
 	if(val != null && !val.equals(""))		
 	    address_id = val;
     }		
     // most recent
+    @StrutsParameter(depth=2)
     public List<Waiver> getWaivers(){
 	logger.debug("get waivers");		
 	if(waivers == null){
@@ -237,6 +244,7 @@ public class WaiverAction extends TopAction{
 	}
 	return false;
     }
+    @StrutsParameter(depth=2)
     public List<EmailLog> getEmailLogs(){
 	logger.debug("email logs");		
 	return emailLogs;

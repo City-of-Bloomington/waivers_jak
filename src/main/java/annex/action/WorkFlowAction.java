@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.SessionMap;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -75,13 +76,14 @@ public class WorkFlowAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=1)
     public WorkFlow getWorkFlow(){ 
 	if(workFlow == null){
 	    workFlow = new WorkFlow(debug, id);
 	}		
 	return workFlow;
     }
-
+    @StrutsParameter(depth=1)
     public void setWorkFlow(WorkFlow val){
 	if(val != null){
 	    workFlow = val;
@@ -91,11 +93,12 @@ public class WorkFlowAction extends TopAction{
     public String getWorkFlowsTitle(){
 	return workFlowsTitle;
     }
-
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
+    @StrutsParameter(depth=2)
     public List<WorkFlow> getWorkFlows(){
 	logger.debug("workflows list");
 	if(workFlows == null){
@@ -114,6 +117,7 @@ public class WorkFlowAction extends TopAction{
 	return workFlows;
     }
     // start steps
+    @StrutsParameter(depth=1)
     public List<Step> getSteps(){
 	logger.debug("steps list");
 	if(steps == null){
@@ -132,6 +136,7 @@ public class WorkFlowAction extends TopAction{
 	}
 	return steps;
     }
+    @StrutsParameter(depth=2)
     public List<Step> getNextSteps(){
 	logger.debug(" next steps");
 	if(nextSteps == null){

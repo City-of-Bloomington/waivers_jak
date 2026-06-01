@@ -10,6 +10,7 @@ import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -74,6 +75,7 @@ public class GroupNotificationAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=1)
     public GroupNotification getGroupNotification(){ 
 	if(groupNotification == null){
 	    groupNotification = new GroupNotification();
@@ -81,7 +83,7 @@ public class GroupNotificationAction extends TopAction{
 	}		
 	return groupNotification;
     }
-
+    @StrutsParameter(depth=1)
     public void setGroupNotification(GroupNotification val){
 	if(val != null){
 	    groupNotification = val;
@@ -91,6 +93,7 @@ public class GroupNotificationAction extends TopAction{
     public String getGroupNotificationsTitle(){
 	return groupNotificationsTitle;
     }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
@@ -99,6 +102,7 @@ public class GroupNotificationAction extends TopAction{
 	getGroupNotifications();
 	return groupNotifications != null && groupNotifications.size() > 0;
     }
+    @StrutsParameter(depth=2)
     public List<GroupNotification> getGroupNotifications(){
 	logger.debug(" get group notifications ");
 	if(groupNotifications == null){
@@ -116,6 +120,7 @@ public class GroupNotificationAction extends TopAction{
 	}
 	return groupNotifications;
     }
+    @StrutsParameter(depth=2)
     public List<Type> getGroups(){
 	if(groups == null){
 	    logger.debug(" get groups ");
@@ -135,6 +140,7 @@ public class GroupNotificationAction extends TopAction{
 	return groups;
 
     }
+    @StrutsParameter(depth=2)
     public List<Step> getSteps(){
 	if(steps == null){
 	    logger.debug(" get steps ");

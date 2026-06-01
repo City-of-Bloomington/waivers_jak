@@ -9,6 +9,7 @@ import java.io.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -166,6 +167,7 @@ public class TaskAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=2)
     public Waiver getWaiver(){
 	logger.debug(" action get waiver ");
 	if(waiver == null){
@@ -187,6 +189,7 @@ public class TaskAction extends TopAction{
 	    addActionError(back);
 	}
     }
+    @StrutsParameter(depth=2)
     public Task getTask(){
 	logger.debug(" get task ");
 	if(task == null){
@@ -203,7 +206,7 @@ public class TaskAction extends TopAction{
 	}		
 	return task;
     }
-
+    @StrutsParameter(depth=2)
     public void setTask(Task val){
 	if(val != null)
 	    task = val;
@@ -211,11 +214,13 @@ public class TaskAction extends TopAction{
 
     public String getTasksTitle(){
 	return tasksTitle;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
+    @StrutsParameter(depth=2)
     public void setTask_id(String val){
 	if(val != null && !val.equals(""))		
 	    task_id = val;
@@ -226,6 +231,7 @@ public class TaskAction extends TopAction{
 	}
 	return task_id;
     }
+    @StrutsParameter(depth=2)
     public void setWaiver_id(String val){
 	if(val != null && !val.equals(""))		
 	    waiver_id = val;
@@ -241,6 +247,7 @@ public class TaskAction extends TopAction{
 	return waiver_id;
     }		
     // most recent
+    @StrutsParameter(depth=2)
     public List<Task> getTasks(){ 
 	if(tasks == null){
 	    TaskList dl = new TaskList();
@@ -267,6 +274,7 @@ public class TaskAction extends TopAction{
 	}
 	return emailLogs != null && emailLogs.size() > 0;
     }
+    @StrutsParameter(depth=2)
     public List<EmailLog> getEmailLogs(){
 	return emailLogs;
     }		

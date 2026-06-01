@@ -9,6 +9,7 @@ import java.io.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -73,6 +74,7 @@ public class StepAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=1)
     public Step getStep(){ 
 	if(step == null){
 	    step = new Step();
@@ -80,7 +82,7 @@ public class StepAction extends TopAction{
 	}		
 	return step;
     }
-
+    @StrutsParameter(depth=1)
     public void setStep(Step val){
 	if(val != null){
 	    step = val;
@@ -90,10 +92,12 @@ public class StepAction extends TopAction{
     public String getStepsTitle(){
 	return stepsTitle;
     }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
+    @StrutsParameter(depth=2)
     public List<Step> getSteps(){
 	if(steps == null){
 	    logger.debug(" get steps ");
@@ -111,6 +115,7 @@ public class StepAction extends TopAction{
 	}
 	return steps;
     }
+    @StrutsParameter(depth=2)
     public List<Type> getGroups(){
 	if(groups == null){
 	    logger.debug(" get groups ");

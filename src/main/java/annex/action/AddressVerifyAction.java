@@ -9,6 +9,7 @@ import java.io.*;
 import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import jakarta.servlet.ServletContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,6 +77,7 @@ public class AddressVerifyAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=1)
     public Address getAddress(){
 	logger.debug(" get address ");
 	if(address == null){
@@ -95,10 +97,12 @@ public class AddressVerifyAction extends TopAction{
 	    address.setWaiver_id(waiver_id);
 	return address;
     }
+    @StrutsParameter(depth=1)
     public void setAddress(Address val){
 	if(val != null)
 	    address = val;
     }
+    @StrutsParameter(depth=1)
     public void setWaiver_id(String val){
 	if(val != null)
 	    waiver_id = val;
@@ -112,11 +116,13 @@ public class AddressVerifyAction extends TopAction{
     }
     public String getAddressesTitle(){
 	return addressesTitle;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
+    @StrutsParameter(depth=1)
     public void setAddrCombos(String[] vals){
 	if(vals != null){
 	    addrCombs = vals;
@@ -157,6 +163,7 @@ public class AddressVerifyAction extends TopAction{
     public boolean hasAddresses(){
 	return addresses != null && addresses.size() > 0;
     }
+    @StrutsParameter(depth=1)
     public List<Address> getAddresses(){
 	return addresses;
     }

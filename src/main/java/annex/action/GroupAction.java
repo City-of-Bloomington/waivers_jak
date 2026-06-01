@@ -10,6 +10,7 @@ import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -74,6 +75,7 @@ public class GroupAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=1)
     public Type getGroup(){ 
 	if(group == null){
 	    group = new Type();
@@ -82,7 +84,7 @@ public class GroupAction extends TopAction{
 	}		
 	return group;
     }
-
+    @StrutsParameter(depth=1)
     public void setGroup(Group val){
 	if(val != null){
 	    group = val;
@@ -93,10 +95,12 @@ public class GroupAction extends TopAction{
     public String getGroupsTitle(){
 	return groupsTitle;
     }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
+    @StrutsParameter(depth=2)
     public List<Type> getGroups(){
 	logger.debug(" get groups ");
 	if(groups == null){

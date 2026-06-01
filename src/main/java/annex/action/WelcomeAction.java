@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.action.ServletContextAware;
 import org.apache.struts2.action.SessionAware;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -45,13 +46,14 @@ public class WelcomeAction extends ActionSupport implements SessionAware, Servle
 	    System.out.println(ex);
 	}		
     }	
-
+    @StrutsParameter(depth=1)
     public void setAction(String val){
 	action = val;
     }
     public String getAction(){
 	return action;
     }
+    @StrutsParameter(depth=1)
     public void setId(String val){
 	id = val;
     }

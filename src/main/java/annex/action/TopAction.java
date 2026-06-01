@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;  
 import org.apache.struts2.dispatcher.SessionMap;  
 import org.apache.struts2.action.SessionAware;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 // import org.apache.struts2.action.ParameterAware;
 import org.apache.struts2.action.ServletContextAware;  
 import org.apache.logging.log4j.LogManager;
@@ -39,11 +40,13 @@ public abstract class TopAction extends ActionSupport implements SessionAware, S
     User user = null;
     ServletContext ctx;
     Map<String, Object> sessionMap;
-
+    
+    @StrutsParameter(depth=1)
     public void setAction(String val){
 	if(val != null)
 	    action = val;
     }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))
 	    action = val;
@@ -51,6 +54,7 @@ public abstract class TopAction extends ActionSupport implements SessionAware, S
     public String getAction(){
 	return action;
     }
+    @StrutsParameter(depth=1)
     public void setId(String val){
 	if(val != null)
 	    id = val;
@@ -58,6 +62,7 @@ public abstract class TopAction extends ActionSupport implements SessionAware, S
     public String getId(){
 	return id;
     }
+    @StrutsParameter(depth=1)
     public User getUser(){
 	if(user == null && sessionMap != null){
 	    user = (User)sessionMap.get("user");

@@ -14,6 +14,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -62,24 +63,28 @@ public class ReportAction extends TopAction{
     public boolean hasWaivers(){
 	return waivers != null && waivers.size() > 0;
     }
+    @StrutsParameter(depth=2)
     public WaiverList getWaiverList(){ 
 	if(waiverList == null){
 	    waiverList = new WaiverList();
 	}		
 	return waiverList;
     }
+    @StrutsParameter(depth=2)
     public List<Integer> getYears(){
 	if(years == null){
 	    years = Helper.getYears(10);
 	}
 	return years;
     }
+    @StrutsParameter(depth=1)
     public List<Waiver> getWaivers(){
 	return waivers;
     }
     public String getOutputType(){
 	return outputType;
     }
+    @StrutsParameter(depth=1)
     public void setOutputType(String val){
 	if(val != null)
 	    outputType = val;

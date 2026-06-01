@@ -10,6 +10,7 @@ import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -45,21 +46,22 @@ public class NotificationLogsAction extends TopAction{
     public String getLogsTitle(){
 	return logsTitle;
     }
-		
+    @StrutsParameter(depth=1)		
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
-
+    @StrutsParameter(depth=1)
     public void setWaiver_id(String val){
 	if(val != null && !val.equals(""))		
 	    waiver_id = val;
     }
+    @StrutsParameter(depth=1)
     public void setWaiver_num(String val){
 	if(val != null && !val.equals(""))		
 	    waiver_num = val;
     }		
-		
+    @StrutsParameter(depth=1)		
     public void setTask_id(String val){
 	if(val != null && !val.equals(""))		
 	    task_id = val;
@@ -74,7 +76,7 @@ public class NotificationLogsAction extends TopAction{
     public String getTask_id(){
 	return task_id;
     }				
-		
+    @StrutsParameter(depth=2)		
     public List<EmailLog> getEmailLogs(){
 	logger.debug(" get email logs ");
 	if(emailLogs == null){

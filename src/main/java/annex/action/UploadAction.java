@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.activation.*;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.tika.Tika;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -192,26 +193,32 @@ public class UploadAction extends TopAction{
 	}
 
     }
+    @StrutsParameter(depth=1)
     public void setNotes(String val){
 	if(val != null)
 	    notes = val;
     }
+    @StrutsParameter(depth=1)
     public void setWaiver_id(String val){
 	if(val != null)
 	    waiver_id = val;
     }
+    @StrutsParameter(depth=1)
     public void setTask_id(String val){
 	if(val != null)
 	    task_id = val;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public void setType(String val){
 	if(val != null && !val.equals("-1"))
 	    type = val;
     }
+    @StrutsParameter(depth=1)
     public void setHardcopy_location(String val){
 	if(val != null)
 	    hardcopy_location = val;
-    }		
+    }
+
     public String getNotes(){
 	return notes;
     }
@@ -221,6 +228,7 @@ public class UploadAction extends TopAction{
     public String getTask_id(){
 	return task_id;
     }
+    
     public String getType(){
 	logger.debug(" get type");
 	if(type.equals("") && hasTask()){
@@ -239,13 +247,15 @@ public class UploadAction extends TopAction{
     }
     public String getHardcopy_location(){
 	return hardcopy_location;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public String[] getTypes(){
 	return types;
     }
     public boolean hasTask(){
 	return !task_id.equals("");
     }
+    @StrutsParameter(depth=2)
     public Waiver getWaiver(){
 	logger.debug(" get waiver");
 	if(waiver == null && !waiver_id.equals("")){
@@ -259,6 +269,7 @@ public class UploadAction extends TopAction{
 	}
 	return waiver;
     }
+    @StrutsParameter(depth=1)
     public Task getTask(){
 	logger.debug(" get task ");
 	if(task == null && !task_id.equals("")){
@@ -271,7 +282,8 @@ public class UploadAction extends TopAction{
 	    }
 	}
 	return task;
-    }		
+    }
+    @StrutsParameter(depth=2)
     public List<FileUpload> getUploads(){
 	logger.debug(" get uploads ");
 	if(uploads == null){

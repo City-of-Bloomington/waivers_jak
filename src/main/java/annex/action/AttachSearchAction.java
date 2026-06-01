@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -67,6 +68,7 @@ public class AttachSearchAction extends TopAction{
 	if(val != null)
 	    uploadList = val;
     }
+    @StrutsParameter(depth=2)
     public FileUploadList getUploadList(){
 	if(uploadList == null){
 	    uploadList = new FileUploadList();
@@ -76,6 +78,7 @@ public class AttachSearchAction extends TopAction{
     public String getAttachmentsTitle(){
 	return attachmentsTitle;
     }
+    @StrutsParameter(depth=2)
     public List<FileUpload> getUploads(){
 	if(uploads == null){
 	    String back = uploadList.find();

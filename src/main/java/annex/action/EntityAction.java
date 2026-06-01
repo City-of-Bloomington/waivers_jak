@@ -10,6 +10,7 @@ import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -109,6 +110,7 @@ public class EntityAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=1)
     public Entity getEntity(){ 
 	if(entity == null){
 	    logger.debug(" get entity");	
@@ -128,35 +130,41 @@ public class EntityAction extends TopAction{
 	    entity.setWaiver_id(waiver_id);
 	return entity;
     }
-
+    @StrutsParameter(depth=1)
     public void setEntity(Entity val){
 	if(val != null)
 	    entity = val;
     }
+    @StrutsParameter(depth=1)
     public void setName(String val){
 	if(val != null)
 	    name = val;
     }
+    @StrutsParameter(depth=1)
     public void setWaiver_id(String val){
 	if(val != null)
 	    waiver_id = val;
     }		
     public String getEntitiesTitle(){
 	return entitiesTitle;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
+    @StrutsParameter(depth=1)
     public void setType(String val){
 	if(val != null && !val.equals(""))		
 	    type = val;
     }		
     //
     // we can use to get entity list for auto_complete
+    @StrutsParameter(depth=2)
     public List<Entity> getEntities(){ 
 	if(entities == null){
-	    logger.debug(" get entities");						
+	    logger.debug(" get entities");
+	    
 	    EntityList dl = new EntityList();
 	    String back = dl.find();
 	    if(back.equals("")){

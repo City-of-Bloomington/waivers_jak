@@ -10,6 +10,7 @@ import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -87,6 +88,7 @@ public class SearchAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=2)
     public WaiverList getWaiverList(){
 	if(waiverList == null){
 	    waiverList = new WaiverList(debug); 
@@ -103,11 +105,13 @@ public class SearchAction extends TopAction{
     public boolean getOutputCsv(){
 	return outputCsv;
     }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }		
     // most recent
+    @StrutsParameter(depth=2)
     public List<Waiver> getWaivers(){ 
 	return waivers;
     }

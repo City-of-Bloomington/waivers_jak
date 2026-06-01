@@ -9,7 +9,8 @@ import java.io.*;
 import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
-import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -116,6 +117,9 @@ public class AddressAction extends TopAction{
 	}
 	return ret;
     }
+    // needed or get functions only
+    //
+    @StrutsParameter(depth=1)
     public Address getAddress(){ 
 	if(address == null){
 	    logger.debug("get address");
@@ -136,20 +140,22 @@ public class AddressAction extends TopAction{
 	}
 	return address;
     }
-
+    @StrutsParameter(depth=1)
     public void setAddress(Address val){
 	if(val != null)
 	    address = val;
     }
+    @StrutsParameter(depth=1)
     public void setWaiver_id(String val){
 	if(val != null)
 	    waiver_id = val;
     }
+    @StrutsParameter(depth=1)
     public void setType(String val){
 	if(val != null)
 	    type = val;
     }
-		
+    @StrutsParameter(depth=1)		
     public String getWaiver_id(){
 	if(waiver_id.equals("")){
 	    getAddress();
@@ -159,7 +165,8 @@ public class AddressAction extends TopAction{
     }
     public String getAddressesTitle(){
 	return addressesTitle;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
@@ -181,6 +188,7 @@ public class AddressAction extends TopAction{
     }		
     //
     // we can use to get addresss list for auto_complete
+    @StrutsParameter(depth=1)
     public List<Address> getAddresses(){ 
 	if(addresses == null){
 	    logger.debug(" get addresses ");

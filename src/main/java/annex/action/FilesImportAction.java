@@ -10,6 +10,7 @@ import java.text.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
@@ -53,6 +54,7 @@ public class FilesImportAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=1)
     public FilesImport getFimport(){ 
 	if(fimport == null){
 	    fimport = new FilesImport();
@@ -60,6 +62,7 @@ public class FilesImportAction extends TopAction{
 	return fimport;
     }
 
+    @StrutsParameter(depth=1)
     public void setFimport(FilesImport val){
 	if(val != null){
 	    fimport = val;
@@ -68,6 +71,7 @@ public class FilesImportAction extends TopAction{
     public String getFile_name(){
 	return file_name;
     }
+    @StrutsParameter(depth=1)
     public void setFile_name(String val){
 	if(val != null)
 	    file_name = val;
