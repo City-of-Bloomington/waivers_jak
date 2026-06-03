@@ -88,16 +88,16 @@ public class StepAction extends TopAction{
 	    step = val;
 	}
     }
-
+    @StrutsParameter 
     public String getStepsTitle(){
 	return stepsTitle;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=1)
     public List<Step> getSteps(){
 	if(steps == null){
 	    logger.debug(" get steps ");
@@ -115,7 +115,7 @@ public class StepAction extends TopAction{
 	}
 	return steps;
     }
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=1)
     public List<Type> getGroups(){
 	if(groups == null){
 	    logger.debug(" get groups ");

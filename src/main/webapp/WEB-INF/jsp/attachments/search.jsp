@@ -7,37 +7,41 @@
 	-->
 <s:form action="attachSearch" method="post">
   <s:if test="hasActionErrors()">
-		<div class="errors">
-      <s:actionerror/>
-	</div>
+      <div class="errors">
+	  <s:actionerror/>
+      </div>
   </s:if>
   <s:elseif test="hasActionMessages()">
-		<div class="welcome">
-      <s:actionmessage/>
-		</div>
+      <div class="welcome">
+	  <s:actionmessage/>
+      </div>
   </s:elseif>
-  <h3> Search Attachments </h3>
-	<p>To add a new attachment, go to waiver or task and click on the 'Attachments' button.
-		</p>
-	<div class="tt-row-container">
-		<dl class="fn1-output-field">
-			<dt>Attachment ID </dt>
-			<dd><s:textfield name="uploadList.id" value="%{uploadList.id}" size="10" maxlength="10" /> 
-			</dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Waiver ID</dt>
-			<dd><s:textfield name="uploadList.waiver_id" value="%{uploadList.waiver_id}" size="10" maxlength="10" /> 
-			</dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Date </dt>
-			<dd>from: <s:textfield name="uploadList.date_from" value="%{uploadList.date_from}" size="10" maxlength="10" cssClass="date" /> to:
-				<s:textfield name="uploadList.date_to" value="%{uploadList.date_to}" size="10" maxlength="10" cssClass="date" />					
-			</dd>
-		</dl>
-	</div>
-	<s:submit name="action" type="button" value="Submit" class="fn1-btn"/>
+  <p>To add a new attachment, go to waiver or task and click on the 'Attachments' button.
+  </p>
+  <table>
+      <caption>Search Attachments</caption>
+	  <tr>
+	      <td>Attachment ID </td>
+	      <td><s:textfield name="uploadList.id" value="%{uploadList.id}" size="10" maxlength="10" /> 
+	      </td>
+	  </tr>
+	  <tr>
+	      <td>Waiver ID</td>
+	      <td><s:textfield name="uploadList.waiver_id" value="%{uploadList.waiver_id}" size="10" maxlength="10" /> 
+	      </td>
+	  </tr>
+	  <tr>
+	      <td>Date </td>
+	      <td>from: <s:textfield name="uploadList.date_from" value="%{uploadList.date_from}" size="10" maxlength="10" cssClass="date" /> to:
+		  <s:textfield name="uploadList.date_to" value="%{uploadList.date_to}" size="10" maxlength="10" cssClass="date" />					
+	      </td>
+	  </tr>
+	  <tr>
+	      <td>
+		  <s:submit name="action" type="button" value="Submit"/>
+	      </td>
+	  </tr>
+  </table>
 </s:form>
 <s:if test="uploads != null">
   <s:set var="uploads" value="uploads" />

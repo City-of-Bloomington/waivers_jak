@@ -42,37 +42,39 @@ public class NotificationLogsAction extends TopAction{
 	getEmailLogs();
 	return ret;
     }
-
+    @StrutsParameter
     public String getLogsTitle(){
 	return logsTitle;
     }
-    @StrutsParameter(depth=1)		
+    @StrutsParameter
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter
     public void setWaiver_id(String val){
 	if(val != null && !val.equals(""))		
 	    waiver_id = val;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter
     public void setWaiver_num(String val){
 	if(val != null && !val.equals(""))		
 	    waiver_num = val;
     }		
-    @StrutsParameter(depth=1)		
+    @StrutsParameter	
     public void setTask_id(String val){
 	if(val != null && !val.equals(""))		
 	    task_id = val;
     }
+    @StrutsParameter
     public String getWaiver_id(){
 	return waiver_id;
     }
+    @StrutsParameter
     public String getWaiver_num(){
 	return waiver_num;
     }		
-		
+    @StrutsParameter		
     public String getTask_id(){
 	return task_id;
     }				

@@ -91,11 +91,11 @@ public class GroupAction extends TopAction{
 	    group.setTable_name("`groups`");
 	}
     }
-
+    @StrutsParameter(depth=0)
     public String getGroupsTitle(){
 	return groupsTitle;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;

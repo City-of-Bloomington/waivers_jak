@@ -68,10 +68,11 @@ public class DataImportAction extends TopAction{
 	    dimport = val;
 	}
     }
+    @StrutsParameter(depth=0)
     public String getFile_name(){
 	return file_name;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setFile_name(String val){
 	if(val != null)
 	    file_name = val;

@@ -41,9 +41,10 @@ public class TaskAction extends TopAction{
 		System.err.println(ex);
 	    }	
 	}
+	getUser();
 	if(action.equals("Save")){
 	    logger.debug(" action save ");
-	    getUser();
+	    getTask();
 	    task.setClaimedByIfNotSet(user.getId());
 	    back = task.doSave();
 	    if(!back.equals("")){
@@ -62,7 +63,7 @@ public class TaskAction extends TopAction{
 	}				
 	else if(action.equals("Save Changes")){
 	    logger.debug(" action update ");
-	    getUser();
+	    getTask();
 	    task.setClaimedByIfNotSet(user.getId());	 // we needed for actions					
 	    back = task.doUpdate();
 	    if(!back.equals("")){
@@ -80,6 +81,8 @@ public class TaskAction extends TopAction{
 	}
 	else if(action.equals("Delete")){
 	    logger.debug(" action delete ");
+	    getTask();
+	    getWaiver();
 	    back = task.doDelete();
 	    if(!back.equals("")){
 		addActionError(back);
@@ -93,7 +96,6 @@ public class TaskAction extends TopAction{
 	else if(action.endsWith("Completed")){
 	    logger.debug(" action completed ");
 	    getTask();
-	    getUser();
 	    if(!task.isCompleted()){
 		task.setClaimedByIfNotSet(user.getId());
 		task.setCompleted(true);
@@ -151,19 +153,23 @@ public class TaskAction extends TopAction{
 	    addActionMessage("Completed Successfully");				
 	}
 	else if(action.equals("Edit")){
-	    task = new Task(debug, task_id);
+	    System.err.println(" task_id "+task_id);
+	    getTask();
 	    back = task.doSelect();
 	    if(!back.equals("")){
 		addActionError(back);
 		logger.error(back);
 	    }
+	    getWaiver();
 	}
 	else if(!task_id.equals("")){
 	    ret = "view";
 	    getTask();
+	    getWaiver();
 	}
 	else{
 	    getTask();
+	    getWaiver();
 	}
 	return ret;
     }
@@ -178,6 +184,7 @@ public class TaskAction extends TopAction{
 	    else {
 		getTask();
 		waiver = task.getWaiver();
+		waiver_id = task.getWaiver_id();
 	    }
 	}		
 	return waiver;
@@ -189,7 +196,7 @@ public class TaskAction extends TopAction{
 	    addActionError(back);
 	}
     }
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=3)
     public Task getTask(){
 	logger.debug(" get task ");
 	if(task == null){
@@ -211,7 +218,7 @@ public class TaskAction extends TopAction{
 	if(val != null)
 	    task = val;
     }
-
+    @StrutsParameter(depth=1) 
     public String getTasksTitle(){
 	return tasksTitle;
     }
@@ -220,22 +227,24 @@ public class TaskAction extends TopAction{
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=1)
     public void setTask_id(String val){
 	if(val != null && !val.equals(""))		
 	    task_id = val;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public String getTask_id(){
 	if(task_id.equals("") && task != null){
 	    task_id = task.getTask_id();
 	}
 	return task_id;
     }
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=1)
     public void setWaiver_id(String val){
 	if(val != null && !val.equals(""))		
 	    waiver_id = val;
-    }		
+    }
+    @StrutsParameter(depth=1)    
     public String getWaiver_id(){
 	if(waiver_id.equals("") && waiver != null){
 	    waiver_id = waiver.getId();
@@ -245,7 +254,86 @@ public class TaskAction extends TopAction{
 	    waiver_id= task.getWaiver_id();
 	}
 	return waiver_id;
-    }		
+    }
+    public boolean isCompleted(){
+	return task.isCompleted();
+    }
+    public String getCompleted_date(){
+	return task.getCompleted_date();
+    }
+    public String getWaiverNum(){
+	return waiver.getWaiverNum();
+    }
+    public String getBasicInfo(){
+	return waiver.getBasicInfo();
+    }
+    public String getBasicInfo2(){
+	return waiver.getBasicInfo2();
+    }
+    public String getBasicInfo3(){
+	return waiver.getBasicInfo3();
+    }
+    public boolean isOpen(){
+	return waiver.isOpen();
+    }
+    public String getName(){
+	return task.getName();
+    }
+    public String getPart_name(){
+	return task.getPart_name();
+    }    
+    public String getStart_date(){
+	return task.getStart_date();
+    }    
+    public boolean getRequire_upload(){
+	return task.getRequire_upload();
+    }
+    public boolean isClaimed(){
+	return task.isClaimed();
+    }
+    public boolean hasSecondField(){
+	return task.hasSecondField();
+    }
+    public String getField2_name(){
+	return task.getField2_name();
+    }
+    public String getField2_value(){
+	return task.getField2_value();
+    }    
+    public boolean hasFirstField(){
+	return task.hasFirstField();
+    }
+
+    public boolean hasPartName(){
+	return task.hasPartName();
+    }
+    public boolean hasPart(){
+	return task.hasPart();
+    }
+    public String getGroupName(){
+	return task.getGroupName();
+    }
+    public boolean hasNextTask(){
+	return task.hasNextTask();
+    }
+    public boolean canBeCompleted(){
+	return task.canBeCompleted();
+    }
+    public User getClaimed_user(){
+	return task.getClaimed_user();
+    }
+    public List<Task> getCompletedTasks(){
+	return waiver.getCompletedTasks();
+    }
+    public boolean canBePrinted(){
+	return waiver.canBePrinted();
+    }
+    public boolean hasUploads(){
+	return waiver.hasUploads();
+    }
+    public List<FileUpload> getUploads(){
+	return waiver.getUploads();
+    }
     // most recent
     @StrutsParameter(depth=2)
     public List<Task> getTasks(){ 
@@ -259,6 +347,8 @@ public class TaskAction extends TopAction{
 	}		
 	return tasks;
     }
+    
+    @StrutsParameter(depth=1)
     public boolean hasEmailLogs(){
 	getTask();
 	EmailLogList ell = new EmailLogList(debug, task.getWaiver_id(), task.getTask_id());
@@ -274,7 +364,7 @@ public class TaskAction extends TopAction{
 	}
 	return emailLogs != null && emailLogs.size() > 0;
     }
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=3)
     public List<EmailLog> getEmailLogs(){
 	return emailLogs;
     }		

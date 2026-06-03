@@ -8,12 +8,12 @@
 <s:form action="task" id="form_id" method="post">
     <s:hidden name="action2" id="action2" value="" />
     <h2>Perform Task: <s:property value="task.name" /></h2>
-    <s:hidden name="task.task_id" value="%{task.task_id}" />
-    <s:hidden name="task.step_id" value="%{task.step_id}" />
-    <s:hidden name="waiver_id" value="%{task.waiver_id}" />
-    <s:hidden name="task.waiver_id" value="%{task.waiver_id}" />
-    <s:if test="task.claimed_by !=''">
-	<s:hidden name="task.claimed_by" value="%{task.claimed_by}" />		
+    <s:hidden name="task.task_id" value="%{task_id}" />
+    <s:hidden name="task.step_id" value="%{step_id}" />
+    <s:hidden name="waiver_id" value="%{waiver_id}" />
+    <s:hidden name="task.waiver_id" value="%{waiver_id}" />
+    <s:if test="claimed_by !=''">
+	<s:hidden name="task.claimed_by" value="%{claimed_by}" />		
     </s:if>
     <s:if test="hasActionErrors()">
 	<div class="errors">
@@ -27,91 +27,83 @@
   </s:elseif>
   <p>* Required field <br />
   </p>
-  <details>
-      <summary>Instructions</summary>
+  <b>Instructions</b>
       <ul>
 	  <li>If you make any change, please hit the 'Save Changes' button</li>
 	  <li>If all the requirements for this task are met, click on 'Completed' button so that the workflow will move to next task (if any).</li>
 	  <li>You can add files by clicking on 'New Attachment'</li>
       </ul>
-  </details>
-  <s:if test="task.require_upload && !task.canBeCompleted()">
-      <P>Requirement: You need to upload a file to complete this task </p>
-	</s:if>		
-	<div class="tt-row-container">
-	    <dl class="fn1-output-field">
-		<dt>Related Waiver</dt>
-		<dd><a href="<s:property value='#application.url' />waiver.action?id=<s:property value='task.waiver_id' />"><s:property value="task.waiver.waiverNum" /></a></dd>
-	    </dl>
-	    <dl class="fn1-output-field">
-		<dt>Waiver Info </dt>
-		<dd><s:property value="task.waiver.basicInfo" /></dd>
-		<dd><s:property value="task.waiver.basicInfo2" /></dd>
-		<dd><s:property value="task.waiver.basicInfo3" /></dd>
-	    </dl>		
-	    <dl class="fn1-output-field">
-		<dt>Start Date </dt>
-		<dd><s:property value="task.start_date" />
-		</dd>
-	    </dl>
-	    <s:if test="task.isClaimed()">
-		<dl class="fn1-output-field">
-		    <dt>Claimed by </dt>
-		    <dd><s:property value="task.claimed_user" /> </dd>
-		</dl>
-	    </s:if>
-	    <s:if test="task.hasSecondField()">
-		<dl class="fn1-output-field">
-		    <dt>Task <s:property value="%{task.field2_name}" /> </dt>
-		    <dd><s:textarea name="task.field2_value" value="%{task.field2_value}" rows="10" cols="70" /> </dd>
-		</dl>
-	    </s:if>
-	    <s:if test="task.hasPartName()">
-		<s:if test="task.part_name == 'legal'">
+  <s:if test="require_upload && !canBeCompleted()">
+      <p>Requirement: You need to upload a file to complete this task </p>
+  </s:if>		
+  <div>
+      <ul>
+	  <li>Related Waiver <a href="<s:property value='#application.url' />waiver.action?id=<s:property value='waiver_id' />"><s:property value="waiverNum" /></a></li>
+	  <li>Waiver Info:
+	      <ul>
+		  <li><s:property value="basicInfo" /></li>
+		  <li><s:property value="basicInfo2" /></li>
+		  <li><s:property value="basicInfo3" /></li>
+	      </ul>
+	  </li>
+	  <li>Start Date:
+		<s:property value="start_date" />
+	  </li>
+	  <s:if test="task.isClaimed()">
+	      <li>
+		  Claimed by:
+		  <s:property value="claimed_user" /> 
+	      </li>
+	  </s:if>
+	  <s:if test="hasSecondField()">
+	      <li>Task: <s:property value="%{field2_name}" /> 
+		    <s:textarea name="task.field2_value" value="%{field2_value}" rows="10" cols="70" /> 
+	      </li>
+	  </s:if>
+	    <s:if test="hasPartName()">
+		<s:if test="part_name == 'legal'">
 		    <s:include value="../waivers/legalPart.jsp" />
 		</s:if>
-		<s:elseif test="task.part_name == 'recorder'">
+		<s:elseif test="part_name == 'recorder'">
 		    <s:include value="../waivers/recorderPart.jsp" />
 		</s:elseif>
-		<s:elseif test="task.part_name == 'gis'">
+		<s:elseif test="part_name == 'gis'">
 		    <s:include value="../waivers/gisPart.jsp" />
 		</s:elseif>
 	    </s:if>
-	    <dl class="fn1-output-field">
-		<dt>Related Group </dt>
-		<dd><s:property value="task.groupName" /> </dd>
-	    </dl>
-	    <s:if test="task.isCompleted()">
-		<dl class="fn1-output-field">
-		    <dt>Status </dt>
-		    <dd>Completed on <s:property value="%{task.completed_date}" /> 
-		    </dd>
-		</dl>
-	    </s:if>		
-	</div>
-	<s:submit name="action" type="button" value="Save Changes" class="fn1-btn"/>
-	<s:if test="task.canBeCompleted()">
-	    <s:submit name="action" type="button" value="Task Completed" class="fn1-btn" title="If no more actions is needed for this task click completed to move to next task"/>
+	    <li>Related Group:
+		<s:property value="groupName" />
+	    </li>
+	    <s:if test="isCompleted()">
+		<li>Status: Completed on <s:property value="%{completed_date}" /> 
+		</li>
+	    </s:if>
+      </ul>
+      <s:submit name="action" type="button" value="Save Changes"/>
+      <s:if test="canBeCompleted()">
+	  Note: If no more actions is needed for this task click completed to move to next task
+	  <s:submit name="action" type="button" value="Task Completed"/>
+      </s:if>
+	<s:if test="canBePrinted()">
+	    <a href="<s:property value='#application.url' />WaiverRtf?id=<s:property value='waiver_id' />">Printable Waiver</a>
 	</s:if>
-	<s:if test="task.waiver.canBePrinted()">
-	    <a href="<s:property value='#application.url' />WaiverRtf?id=<s:property value='task.waiver_id' />" class="fn1-btn">Printable Waiver</a>
-	</s:if>
-	<a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='task.waiver_id' />&task_id=<s:property value='task.task_id' />" class="fn1-btn">New Attachment</a>
-	<s:if test="task.waiver.hasCompletedTasks()" >
+	<a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='waiver_id' />&task_id=<s:property value='task_id' />">New Attachment</a>
+	<s:if test="hasCompletedTasks()" >
 	    <s:set var="tasksTitle" value="'Completed Tasks'" />
-	    <s:set var="tasks" value="%{task.waiver.completedTasks}" />
+	    <s:set var="tasks" value="%{completedTasks}" />
 	    <%@  include file="../tasks/tasks.jsp" %>			
 	</s:if>
-	<s:if test="task.waiver.hasUploads()">
+	<s:if test="hasUploads()">
 	    <s:set var="attachmentsTitle" value="'Attachments'" />
-	    <s:set var="uploads" value="%{task.waiver.uploads}" />
-	    <%@  include file="../attachments/fileUploads.jsp" %>			
+	    <s:set var="uploads" value="%{uploads}" />
+	    <%@  include file="../attachments/fileUploads.jsp" %>
 	</s:if>
+  </div>
 </s:form>
 <s:if test="hasEmailLogs()">
-	<s:set var="logsTitle" value="'Email Logs'" />
-	<s:set var="emailLogs" value="%{emailLogs}" />
-	<%@  include file="../logs/emailLogs.jsp" %>				
+    <s:set var="logsTitle" value="'Email Logs'" />
+    <s:set var="emailLogs" value="%{emailLogs}" />
+    <%@  include file="../logs/emailLogs.jsp" %>				
 </s:if>
 
 <%@  include file="../gui/footer.jsp" %>

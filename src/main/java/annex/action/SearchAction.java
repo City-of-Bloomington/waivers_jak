@@ -95,23 +95,25 @@ public class SearchAction extends TopAction{
 	}
 	return waiverList;
     }
-
+    @StrutsParameter
     public String getWaiversTitle(){
 	return waiversTitle;
     }
+    @StrutsParameter
     public void setOutputCsv(boolean val){
 	outputCsv = val;
     }
+    @StrutsParameter
     public boolean getOutputCsv(){
 	return outputCsv;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }		
     // most recent
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=1)
     public List<Waiver> getWaivers(){ 
 	return waivers;
     }

@@ -110,7 +110,7 @@ public class EntityAction extends TopAction{
 	}
 	return ret;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=2)
     public Entity getEntity(){ 
 	if(entity == null){
 	    logger.debug(" get entity");	
@@ -130,7 +130,7 @@ public class EntityAction extends TopAction{
 	    entity.setWaiver_id(waiver_id);
 	return entity;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=2)
     public void setEntity(Entity val){
 	if(val != null)
 	    entity = val;

@@ -89,11 +89,11 @@ public class WorkFlowAction extends TopAction{
 	    workFlow = val;
 	}
     }
-
+    @StrutsParameter
     public String getWorkFlowsTitle(){
 	return workFlowsTitle;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;

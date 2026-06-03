@@ -102,11 +102,12 @@ public class AddressVerifyAction extends TopAction{
 	if(val != null)
 	    address = val;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setWaiver_id(String val){
 	if(val != null)
 	    waiver_id = val;
     }
+    @StrutsParameter(depth=0)    
     public String getWaiver_id(){
 	if(waiver_id.equals("")){
 	    getAddress();
@@ -114,10 +115,11 @@ public class AddressVerifyAction extends TopAction{
 	}
 	return waiver_id;
     }
+    @StrutsParameter(depth=0)
     public String getAddressesTitle(){
 	return addressesTitle;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;

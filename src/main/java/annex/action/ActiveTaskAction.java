@@ -78,7 +78,7 @@ public class ActiveTaskAction extends TopAction{
     public String getTasksTitle(){
 	return tasksTitle;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;

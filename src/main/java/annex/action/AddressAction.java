@@ -155,7 +155,7 @@ public class AddressAction extends TopAction{
 	if(val != null)
 	    type = val;
     }
-    @StrutsParameter(depth=1)		
+    @StrutsParameter(depth=0)		
     public String getWaiver_id(){
 	if(waiver_id.equals("")){
 	    getAddress();
@@ -188,7 +188,7 @@ public class AddressAction extends TopAction{
     }		
     //
     // we can use to get addresss list for auto_complete
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=2)
     public List<Address> getAddresses(){ 
 	if(addresses == null){
 	    logger.debug(" get addresses ");

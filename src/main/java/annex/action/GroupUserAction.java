@@ -82,14 +82,15 @@ public class GroupUserAction extends TopAction{
 	    groupUser = val;
 	}
     }
-
+    @StrutsParameter(depth=0) 
     public String getGroupUsersTitle(){
 	return groupUsersTitle;
     }
+    @StrutsParameter(depth=0) 
     public String getOtherUsersTitle(){
 	return otherUsersTitle;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;

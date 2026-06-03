@@ -122,26 +122,28 @@ public class UserAction extends TopAction{
 	    }
 	}
     }
-
+    @StrutsParameter
     public String getUsersTitle(){
 	return usersTitle;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter
     public void setYear(String val){
 	if(val != null && !val.equals(""))		
 	    id = val; // id also
-    }		
+    }
+    @StrutsParameter
     public String getId(){
 	if(id.equals("") && user != null){
 	    id = user.getId();
 	}
 	return id;
     }
+    @StrutsParameter
     public String getYear(){
 	if(id.equals("") && user != null){
 	    id = user.getId();

@@ -29,6 +29,8 @@ import annex.utils.*;
 
 public abstract class TopAction extends ActionSupport implements SessionAware, ServletContextAware{
 
+
+
     static final long serialVersionUID = 240L;
     static Logger logger = LogManager.getLogger(TopAction.class);		
     static boolean debug = false, activeMail=false;
@@ -41,12 +43,12 @@ public abstract class TopAction extends ActionSupport implements SessionAware, S
     ServletContext ctx;
     Map<String, Object> sessionMap;
     
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setAction(String val){
 	if(val != null)
 	    action = val;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))
 	    action = val;
@@ -54,7 +56,7 @@ public abstract class TopAction extends ActionSupport implements SessionAware, S
     public String getAction(){
 	return action;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setId(String val){
 	if(val != null)
 	    id = val;

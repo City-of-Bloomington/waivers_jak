@@ -178,7 +178,6 @@ public class WaiverAction extends TopAction{
 	if(val != null)
 	    waiver = val;
     }
-
     public String getWaiversTitle(){
 	return waiversTitle;
     }
@@ -186,25 +185,25 @@ public class WaiverAction extends TopAction{
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
-    }		
+    }
+    @StrutsParameter(depth=1)
     public String getId(){
 	if(id.equals("") && waiver != null){
 	    id = waiver.getId();
 	}
 	return id;
     }
+    @StrutsParameter(depth=1)
     public String getWaiverNum(){
 	if(waiver_num.isEmpty() && waiver != null){
 	    waiver_num = waiver.getWaiverNum();
 	}
 	return waiver_num;
     }
-    @StrutsParameter(depth=1)
     public void setWaiverNum(String val){
 	if(val != null && !val.isEmpty())		
 	    waiver_num = val;
     }
-    @StrutsParameter(depth=1)
     public void setEntityId(String val){
 	if(val != null && !val.equals(""))		
 	    entity_id = val;
@@ -213,7 +212,168 @@ public class WaiverAction extends TopAction{
     public void setAddressId(String val){
 	if(val != null && !val.equals(""))		
 	    address_id = val;
+    }
+    public String getDeedInstrumentNum(){
+	return waiver.getDeedInstrumentNum();
+    }
+    public String getWaiverInstrumentNum(){
+	return waiver.getWaiverInstrumentNum();
+    }
+    public String getAddEntityName(){
+	return waiver.getEntityName();
+    }
+    public String getDeedBook(){
+	return waiver.getDeedBook();
+    }
+    public String getDeedPage(){
+	return waiver.getDeedPage();
+    }
+    public String getWaiverBook(){
+	return waiver.getWaiverBook();
+    }
+    public String getWaiverPage(){
+	return waiver.getWaiverPage();
     }		
+    public String getParcelPin(){
+	return waiver.getParcelPin();
+    }
+    public String getAcreage(){
+	return waiver.getAcreage();
+    }
+    public String getAcrage(){
+	return waiver.getAcrage();
+    }
+    public String getSecTwpRangeDir(){
+	return waiver.getSecTwpRangeDir();
+    }
+    public String getDevelopmentSubdivision(){
+	return waiver.getDevelopmentSubdivision();
+    }
+    public String getLot(){
+	return waiver.getLot();
+    }
+
+    public String getEntityName(){
+	return ""; // auto_complete 
+    }
+    public String getLegalDescription(){
+	return waiver.getLegalDescription();
+    }
+    public String getParcelTaxId(){
+	return waiver.getParcelTaxId();
+    }
+		
+    public String getMappedDate(){
+	return waiver.getMappedDate();
+    }
+    public String getGisNotes(){
+	return waiver.getGisNotes();
+    }
+    public String getNotes(){
+	return waiver.getNotes();
+    }		
+		
+    public String getHookupAddress(){
+	return waiver.getHookupAddress();
+    }
+    public String getRecorderDate(){
+	return waiver.getRecorderDate();
+    }
+    public String getScannedDate(){
+	return waiver.getScannedDate();
+    }		
+    public String getInOutCity(){
+	return waiver.getInOutCity();
+    }
+    public String getPaperVerifiedDate(){
+	return waiver.getPaperVerifiedDate();
+    }
+
+		
+    public boolean getImported(){
+	return waiver.getImported();
+    }
+    // needed to know if no printing is needed anymore
+    public boolean isSigned(){
+	return waiver.isOpen();
+    }
+    public String getAddedBy(){
+	return waiver.getAddedBy();
+    }
+    public String getClosedBy(){
+	return waiver.getClosedBy();
+    }
+    public String getClosedDate(){
+	return waiver.getClosedDate();
+    }		
+    public String getStatus(){
+	return waiver.getStatus();
+    }
+    public boolean isOpen(){
+	return waiver.isOpen();
+    }
+    public boolean isClosed(){
+	return waiver.isClosed();
+    }		
+    // added date, for old data we use signed_date
+    public String getDate(){
+	return waiver.getDate();
+    }
+    public String getSignedDate(){
+	return waiver.getSignedDate();
+    }		
+    public String getExpireDate(){
+	return waiver.getExpireDate();
+    }
+    public String getEntitiesInfo(){
+	return waiver.getEntitiesInfo();
+    }
+    public String getWaiverBookPage(){
+	return waiver.getWaiverBookPage();
+    }
+    public String getDeedBookPage(){
+	return waiver.getDeedBookPage();
+    }
+    public String getLotAcreage(){
+	return waiver.getLotAcreage();
+    }		
+    public String getLotAcrage(){
+	return getLotAcreage();
+    }
+    public String getAddressInfo(){
+	return waiver.getAddressInfo();
+    }
+    // for address
+    public boolean isInvalidAddr(){
+	return waiver.isInvalidAddr();
+    }
+    public boolean isBusiness(){
+	return waiver.isBusiness();
+    }
+    public boolean isTrust(){
+	return waiver.isTrust();
+    }        
+    public boolean hasGisNotes(){
+	return waiver.hasGisNotes();
+    }
+    public boolean hasMoreTasks(){
+	return waiver.hasMoreTasks();
+    }
+    public List<Task> getTasks(){
+	return waiver.getTasks();
+    }
+    public boolean hasCompletedTasks(){
+	return waiver.hasCompletedTasks();
+    }
+    public List<Task> getCompletedTasks(){
+	return waiver.getCompletedTasks();
+    }
+    public boolean hasUploads(){
+	return waiver.hasUploads();
+    }
+    public List<FileUpload> getUploads(){
+	return waiver.getUploads();
+    }
     // most recent
     @StrutsParameter(depth=2)
     public List<Waiver> getWaivers(){

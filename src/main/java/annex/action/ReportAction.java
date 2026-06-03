@@ -81,16 +81,17 @@ public class ReportAction extends TopAction{
     public List<Waiver> getWaivers(){
 	return waivers;
     }
+    @StrutsParameter 
     public String getOutputType(){
 	return outputType;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter
     public void setOutputType(String val){
 	if(val != null)
 	    outputType = val;
     }
     //
-
+    @StrutsParameter
     public String getReportTitle(){
 	return reportTitle;
     }

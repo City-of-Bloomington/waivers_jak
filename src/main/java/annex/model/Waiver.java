@@ -592,6 +592,9 @@ public class Waiver extends CommonInc implements java.io.Serializable{
 	if(val)
 	    invalid_addr = "y";
     }
+    public boolean isInvalidAddr(){
+	return !invalid_addr.isEmpty();
+    }
     public void setImported(boolean val){
 	if(val)
 	    imported = "y";

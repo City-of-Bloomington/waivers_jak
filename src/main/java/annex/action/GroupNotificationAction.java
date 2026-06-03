@@ -89,11 +89,11 @@ public class GroupNotificationAction extends TopAction{
 	    groupNotification = val;
 	}
     }
-
+    @StrutsParameter(depth=0)
     public String getGroupNotificationsTitle(){
 	return groupNotificationsTitle;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=0)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
@@ -120,7 +120,7 @@ public class GroupNotificationAction extends TopAction{
 	}
 	return groupNotifications;
     }
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=1)
     public List<Type> getGroups(){
 	if(groups == null){
 	    logger.debug(" get groups ");
@@ -140,7 +140,7 @@ public class GroupNotificationAction extends TopAction{
 	return groups;
 
     }
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=1)
     public List<Step> getSteps(){
 	if(steps == null){
 	    logger.debug(" get steps ");

@@ -64,6 +64,7 @@ public class AttachSearchAction extends TopAction{
 	}
 	return ret;
     }
+    @StrutsParameter(depth=2)    
     public void setUploadList(FileUploadList val){
 	if(val != null)
 	    uploadList = val;
@@ -75,6 +76,7 @@ public class AttachSearchAction extends TopAction{
 	}
 	return uploadList;
     }
+    @StrutsParameter(depth=0)
     public String getAttachmentsTitle(){
 	return attachmentsTitle;
     }
