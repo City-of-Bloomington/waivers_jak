@@ -25,7 +25,8 @@
 	<li>You may Close this waiver if it is not valid or no more progress can be made by clicking on 'Close This Waiver' button </li>
     </ul>
 </s:if>
-<table><caption>Waiver Info </caption>
+<table border="1" width="90%">
+    <caption>Waiver Info </caption>
     <s:if test="isBusiness" >
 	<tr>
 	    <td>Is Business? </td>
@@ -168,14 +169,14 @@
 	    </s:else>
 	</s:iterator>
     </s:if>
-    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='id' />" class="fn1-btn">Attachments</a> <br />
+    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='id' />">Attachments</a> <br />
     Note: If you close this waiver no more changes can be made
     <a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='id' />&action=Close">Close This Waiver</a>	
 </s:if>
 <s:if test="hasCompletedTasks()" >
     <s:set var="tasksTitle" value="'Completed Actions'" />
     <s:set var="tasks" value="%{completedTasks}" />
-	<%@  include file="../tasks/tasks.jsp" %>			
+    <%@  include file="../tasks/tasks.jsp" %>			
 </s:if>
 <s:if test="hasUploads()">
     <s:set var="attachmentsTitle" value="'Attachments'" />

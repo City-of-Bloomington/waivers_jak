@@ -4,28 +4,29 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.txt
  * @author W. Sibo <sibow@bloomington.in.gov>
  *
-	-->
-<div class="tt-row-container">
-	<dl class="fn1-output-field">
-		<dt>Waiver Instrum. # </dt>
-		<dd><s:property value="#waiver.waiverInstrumentNum" />
-		</dd>
-	</dl>
-	<dl class="fn1-output-field">
-		<dt>Waiver Book/Page </dt>
-		<dd><s:property value="#waiver.waiverBookPage" />
-		</dd>
-	</dl>		
-	<dl class="fn1-output-field">
-		<dt>Recorded Date </dt>
-		<dd><s:property value="#waiver.recorderDate" />
-		</dd>
-	</dl>
-	<dl class="fn1-output-field">
-		<dt>Waiver Notes </dt>
-		<dd><s:property value="#waiver.notes" />
-		</dd>
-	</dl>
-	
-</div>
+-->
+<table border="1" width="80%">
+    <caption>Recorder Input</caption>
+    <tr>
+	<th>Waiver Instrum. # </th>
+	<td><s:property value="#waiverInstrumentNum" />
+	</td>
+    </tr>
+    <tr>
+	<th>Waiver Book/Page </th>
+	<td><s:property value="#waiverBookPage" />
+	</td>
+    </tr>
+    <tr>
+	<th>Recorded Date </th>
+	<td><s:property value="#recorderDate" />
+	</td>
+    </tr>
+    <tr>
+	<th>Waiver Notes </th>
+	<td><s:property value="#notes" />
+	</td>
+    </tr>
+</table>
+
 

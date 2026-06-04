@@ -5,20 +5,21 @@
  * @author W. Sibo <sibow@bloomington.in.gov>
  *
 	-->
-<div class="tt-row-container">
-	<dl class="fn1-output-field">
-		<dt>Paper Verified Date </dt>
-		<dd><s:property value="%{waiver.paperVerifiedDate}" />
-		</dd>
-	</dl>
-	<dl class="fn1-output-field">
-		<dt>Controller Notes </dt>
-		<dd><s:property value="%{waiver.controllerNotes}" />
-		</dd>
-	</dl>
-	<dl class="fn1-output-field">
-		<dt>Waiver Notes </dt>
-		<dd><s:property value="%{waiver.notes}" />
-		</dd>
-	</dl>
-</div>
+<table border="1" width="80%">
+    <caption>Controller's Input</caption>
+    <tr>
+	<th>Paper Verified Date </th>
+	<td><s:property value="%{paperVerifiedDate}" />
+	</td>
+    </tr>
+    <tr>
+	<th>Controller Notes </th>
+	<td><s:property value="%{controllerNotes}" />
+	</td>
+    </tr>
+    <tr>
+	<th>Waiver Notes </th>
+	<td><s:property value="%{notes}" />
+	</td>
+    </tr>
+</table>

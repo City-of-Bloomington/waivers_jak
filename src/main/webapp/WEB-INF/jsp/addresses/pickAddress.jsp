@@ -5,22 +5,23 @@
  * @author W. Sibo <sibow@bloomington.in.gov>
  *
 	-->
+<h1>Pick an address</h1>
+<s:if test="hasActionErrors()">
+    <div class="errors">
+	<s:actionerror/>
+    </div>
+</s:if>
+<s:elseif test="hasActionMessages()">
+    <div class="welcome">
+	<s:actionmessage/>
+    </div>
+</s:elseif>
 <s:form action="verify" id="form_id" method="post" >
     <s:hidden name="action2" id="action2" value="" />
     <s:hidden name="waiver_id" value="%{waiver_id}" />	
-    <h1>Pick an address</h1>
-    <s:if test="hasActionErrors()">
-	<div class="errors">
-	    <s:actionerror/>
-	</div>
-    </s:if>
-    <s:elseif test="hasActionMessages()">
-	<div class="welcome">
-	    <s:actionmessage/>
-	</div>
-    </s:elseif>
+
     <p>A number of addresses matched your address, please pick the right one(s) </p>
-    <table width="60%" border="0">
+    <table width="80%" border="1">
 	<caption>Pick an address </caption>
 	<tr>
 	    <td>Related Waiver </td>

@@ -25,7 +25,7 @@
 		    </s:else>
 		</td>
 		<td><s:property value="streetAddress" /></td>
-		<td><s:if test="invalid">Yes</s:if></td>				
+		<td><s:if test="invalid">Yes</s:if></td>
 	    </tr>
 	</s:iterator>
     </tbody>

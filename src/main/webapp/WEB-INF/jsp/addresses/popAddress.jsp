@@ -32,11 +32,11 @@ function updateOpener(){
  }
 </script>
 </head>
-<s:if test="address.id == ''">
-    <body class="fn1-body">
+<s:if test="id == ''">
+    <body>
 </s:if>
 <s:else>
-    <s:if test="address.waiver_id == ''">	
+    <s:if test="waiver_id == ''">	
 	<body onload="updateOpener()">
     </s:if>
     <s:else>
@@ -56,27 +56,17 @@ function updateOpener(){
 </s:if>	
 <s:form action="address" id="form_id" method="post" >
     <s:hidden name="type" value="popup" />
-    <s:if test="address.waiver_id != ''">
-	<s:hidden name="address.waiver_id" value="%{address.waiver_id}" id="waiver_id" />
+    <s:if test="waiver_id != ''">
+	<s:hidden name="address.waiver_id" value="%{waiver_id}" id="waiver_id" />
     </s:if>
-    <s:if test="address.id == ''">
+    <s:if test="id == ''">
 	<h1>New Address</h1>
     </s:if>
     <s:else>
-	<s:hidden name="address.addressInfo" value="%{address.addressInfo}" id="address_info_id" />				
+	<s:hidden name="address.addressInfo" value="%{addressInfo}" id="address_info_id" />				
 	<h1>Edit Address <s:property value="id" /></h1>
-	<s:hidden name="address.id" value="%{address.id}" id="addr_id" />
+	<s:hidden name="address.id" value="%{id}" id="addr_id" />
     </s:else>
-    <s:if test="hasActionErrors()">
-	<div class="errors">
-	    <s:actionerror/>
-	</div>
-    </s:if>
-    <s:elseif test="hasActionMessages()">
-	<div class="welcome">
-	    <s:actionmessage/>
-	</div>
-    </s:elseif>
     <p>* Street Name is required <br />
 	After you click on 'Save' please wait couple seconds for the address to
 	be verified with our master address and this may take some time. <br /> 
@@ -84,38 +74,38 @@ function updateOpener(){
     <table><caption>Address Info</caption>
     <tr>
 	<td>Street Num </td>
-	    <td><s:textfield name="address.streetNum" value="%{address.streetNum}" size="30" maxlength="70" title="you can enter one value, or multiple separated by comma or number range such as (401), (401,403,405) or (401-409)" placeHolder="401 or 401,403 or 401-409"/> </td>
+	    <td><s:textfield name="address.streetNum" value="%{streetNum}" size="30" maxlength="70" title="you can enter one value, or multiple separated by comma or number range such as (401), (401,403,405) or (401-409)" placeHolder="401 or 401,403 or 401-409"/> </td>
     </tr>
     <tr>
 	<td>Street Name </td>
-	<td><s:textfield name="address.streetName" value="%{address.streetName}" size="30" maxlength="30" title="include direction and street type such as N Morton St" placeHolder="N Morton St" />* </td>
+	<td><s:textfield name="address.streetName" value="%{streetName}" size="30" maxlength="30" title="include direction and street type such as N Morton St" placeHolder="N Morton St" />* </td>
     </tr>
-	<s:if test="address.id != ''">
-	    <tr>
-		<td>Street Address </td>
-		<td><s:textfield name="address.streetAddress" value="%{address.streetAddress}" size="30" maxlength="150" id="street_addr_id" /> </td>
-	    </tr>
-	    <tr>
-		<td>Invalid? </td>
-		<td><s:checkbox name="address.inValid" value="%{address.inValid}" /> Yes </td>
-	    </tr>
-	    <tr>
-		<td> </td>
-		<td>
-		    <s:submit name="action" type="button" value="Save Changes" class="fn1-btn"/>
-		    <input name="action" type="button" value="Cancel" onclick="javascript:window.close()"/>	
-		</td>
-	    </tr>
-	</s:if>
-	<s:else>
-	    <tr>
-		<td>
-		    <s:submit name="action" type="button" value="Save" class="fn1-btn"/>
-		    <s:if test="address.invalid"><s:submit name="action" type="button" value="Save Any Way" class="fn1-btn"/></s:if>
-		    <input name="action" type="button" value="Cancel" onclick="javascript:window.close()" class="fn1-btn"/>							
-		</td>
-	    </tr> 							
-	</s:else>
+    <s:if test="id != ''">
+	<tr>
+	    <td>Street Address </td>
+	    <td><s:textfield name="address.streetAddress" value="%{streetAddress}" size="30" maxlength="150" id="street_addr_id" /> </td>
+	</tr>
+	<tr>
+	    <td>Invalid? </td>
+	    <td><s:checkbox name="address.inValid" value="%{inValid}" /> Yes </td>
+	</tr>
+	<tr>
+	    <td> </td>
+	    <td>
+		<s:submit name="action" type="button" value="Save Changes" class="fn1-btn"/>
+		<input name="action" type="button" value="Cancel" onclick="javascript:window.close()"/>	
+	    </td>
+	</tr>
+    </s:if>
+    <s:else>
+	<tr>
+	    <td>
+		<s:submit name="action" type="button" value="Save" class="fn1-btn"/>
+		<s:if test="address.invalid"><s:submit name="action" type="button" value="Save Any Way"/></s:if>
+		<input name="action" type="button" value="Cancel" onclick="javascript:window.close()"/>							
+	    </td>
+	</tr> 							
+    </s:else>
     </table>
     <br />
     <a href="javascript:window.close();">Close This Window</a></div>

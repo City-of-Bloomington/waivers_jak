@@ -5,27 +5,28 @@
  * @author W. Sibo <sibow@bloomington.in.gov>
  *
 	-->
+<s:if test="hasActionErrors()">
+    <div class="errors">
+	<s:actionerror/>
+    </div>
+</s:if>
+<s:elseif test="hasActionMessages()">
+    <div class="welcome">
+	<s:actionmessage/>
+    </div>
+</s:elseif>
 <s:form action="address" id="form_id" method="post" >
     <s:hidden name="action2" id="action2" value="" />
-    <s:hidden name="address.waiver_id" value="%{address.waiver_id}" />
-    <s:if test="address.id == ''">
+    <s:hidden name="address.waiver_id" value="%{waiver_id}" />
+    <s:if test="id == ''">
 	<h1>New Address</h1>
     </s:if>
     <s:else>
-	<h1>Edit Address <s:property value="%{address.streetAddress}" /></h1>
-	<s:hidden name="address.id" value="%{address.id}" />
+	<h1>Edit Address <s:property value="%{streetAddress}" /></h1>
+	<s:hidden name="address.id" value="%{id}" />
     </s:else>
-    <s:if test="hasActionErrors()">
-	<div class="errors">
-	    <s:actionerror/>
-	</div>
-    </s:if>
-    <s:elseif test="hasActionMessages()">
-	<div class="welcome">
-	    <s:actionmessage/>
-	</div>
-    </s:elseif>
-    <b>Instructions</b>
+
+    <h3>Instructions</h3>
     <ul>
 	<li>Street # could be one or multiple or number range such as (10), (10,12,14) or (10-30)</li>
 	<li>Street name has to be one name at a time</li>
@@ -35,33 +36,38 @@
 	After you click on 'Save' please wait couple seconds for the address to
 	be verified with our master address and this may take some time. <br />
     </p>
-    <table>
+    <table border="1" width="80%">
 	<caption>Address Info</caption>
-	<tr><td>Street Num </td>
-	    <td><s:textfield name="address.streetNum" value="%{address.streetNum}" size="30" maxlength="50" title="you can enter one value, or multiple separated by comma or number range such as (401), (401,403,405) or (401-409)" placeHolder="401 or 401,403 or 401-409"/>
+	<tr>
+	    <td>Street Num </td>
+	    <td><s:textfield name="address.streetNum" value="%{streetNum}" size="30" maxlength="50" title="you can enter one value, or multiple separated by comma or number range such as (401), (401,403,405) or (401-409)" placeHolder="401 or 401,403 or 401-409"/>
 	    </td>
 	</tr>
 	<tr>
 	    <td>Street Name </td>
-	    <td><s:textfield name="address.streetName" value="%{address.streetName}" size="30" maxlength="50" title="include direction and street type such as N Morton St" placeHolder="N Morton St"/>*
+	    <td><s:textfield name="address.streetName" value="%{streetName}" size="30" maxlength="50" title="include direction and street type such as N Morton St" placeHolder="N Morton St"/>*
 	    </td>
 	</tr>		
 	<tr>
 	    <td>Address </td>
-	    <td><s:textfield name="address.streetAddress" value="%{address.streetAddress}" size="30" maxlength="150" />
+	    <td><s:textfield name="address.streetAddress" value="%{streetAddress}" size="30" maxlength="150" />
 	    </td>
 	</tr>
 	<tr>
 	    <td>Related Waiver </td>
-	    <td><a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='%{address.waiver_id}' />&action=Edit" > <s:property value="%{address.waiver_id}" /></a></td>
+	    <td><a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='%{waiver_id}' />&action=Edit" > <s:property value="%{waiver_id}" /></a></td>
 	</tr>
-	<s:if test="address.id == ''">
-	    <s:submit name="action" type="button" value="Save" class="fn1-btn"/></dd>
+	<s:if test="id == ''">
+	    <tr>
+		<td>
+		    <s:submit name="action" type="button" value="Save" />
+		</td>
+	    </tr>
 	</s:if>
 	<s:else>
 	    <tr>
 		<td>Valid? </td>
-		<td><s:if test="address.invalid">No</s:if><s:else>Yes</s:else> </td>
+		<td><s:if test="invalid">No</s:if><s:else>Yes</s:else> </td>
 	    </tr>
 	    <tr>
 		<td>

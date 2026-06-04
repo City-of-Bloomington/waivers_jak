@@ -6,7 +6,7 @@
 <table class="stat" border="1" width="95%">
 	-->
 
-<table>
+<table border="1" width="80%">
     <caption><s:property value="#tasksTitle" /></caption>
     <thead>
 	<tr>

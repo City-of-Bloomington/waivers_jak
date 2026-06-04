@@ -49,7 +49,7 @@
 	  <li>Start Date:
 		<s:property value="start_date" />
 	  </li>
-	  <s:if test="task.isClaimed()">
+	  <s:if test="isClaimed()">
 	      <li>
 		  Claimed by:
 		  <s:property value="claimed_user" /> 

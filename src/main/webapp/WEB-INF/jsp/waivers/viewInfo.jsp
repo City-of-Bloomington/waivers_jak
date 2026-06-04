@@ -4,173 +4,170 @@
  * @author W. Sibo <sibow@bloomington.in.gov>
  *
 	-->
-<div class="tt-row-container">
-	<s:if test="waiver.isBusiness()" >
-		<dl class="fn1-output-field">
-			<dt>Is Business? </dt>
-			<dd>Yes</dd>
-		</dl>
-	</s:if>
-	<s:if test="waiver.isTrust()" >
-		<dl class="fn1-output-field">
-			<dt>Is Trust? </dt>
-			<dd>Yes</dd>
-		</dl>
-	</s:if>	
-	<s:if test="waiver.hasEntities()">
-		<s:set var="entitiesTitle" value="'Entities(s)'" />
-		<s:set var="entities" value="%{waiver.entities}" />
-		<%@  include file="../entities/entitiesBasic.jsp" %>
-	</s:if>	
-	<div class="tt-split-container">
-		<dl class="fn1-output-field">
-			<dt>Waiver County ID </dt>
-			<dd><s:property value="%{waiver.countyWaiverId}" /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Service address(es) </dt>
-			<dd><s:property value="%{waiver.addressInfo}" /> <s:if test="waiver.invalidAddr" >(Invalid) </s:if> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Legal description </dt>
-			<dd><s:property value="%{waiver.legalDescription}"  /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Parcel Pin </dt>
-			<dd><s:property value="%{waiver.parcelPin}" /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Parcel Tax ID </dt>
-			<dd><s:property value="%{waiver.parcelTaxId}" /> </dd>
-		</dl>		
-		<dl class="fn1-output-field">
-			<dt>Waiver Instrument # </dt>
-			<dd><s:property value="%{waiver.waiverInstrumentNum}" /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Deed Instrument # </dt>
-			<dd><s:property value="%{waiver.deedInstrumentNum}" /> </dd>
-		</dl>		
-		<dl class="fn1-output-field">
-			<dt>Waiver Book/Page </dt>
-			<dd><s:property value="%{waiver.waiverBook}" />/<s:property value="%{waiver.waiverPage}" /></dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Deed Book/Page </dt>
-			<dd><s:property value="%{waiver.deedBook}" />/<s:property value="%{waiver.deedPage}" /></dd>
-		</dl>		
-		<dl class="fn1-output-field">
-			<dt>Township Section Range </dt>
-			<dd><s:property value="%{waiver.secTwpRangeDir}" /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Development </dt>
-			<dd><s:property value="%{waiver.developmentSubdivision}" /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Lot </dt>
-			<dd><s:property value="%{waiver.lot}"  /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Acreage </dt>
-			<dd><s:property value="%{waiver.acrage}"  /> </dd>
-		</dl>		
-		<dl class="fn1-output-field">
-			<dt>IN/OUT City? </dt>
-			<dd><s:property value="%{waiver.inOutCity}" /></dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>IN GIS? </dt>
-			<dd><s:if test="waiver.inGis" > Yes</s:if><s:else> No</s:else></dd> 
-		</dl>				
-		<s:if test="waiver.hasNotes()">
-			<dl class="fn1-output-field">
-				<dt>Waiver Notes </dt>
-				<dd><s:property value="%{waiver.notes}"  /> </dd>
-			</dl>
-		</s:if>
-		<dl class="fn1-output-field">
-			<dt>Request date </dt>
-			<dd><s:property value="%{waiver.date}" /> 
-			</dd>
-		</dl>
-		<s:if test="waiver.needExpireDate()">		
-			<dl class="fn1-output-field">
-				<dt>Expire date </dt>
-				<dd><s:property value="%{waiver.expireDate}" /> 
-				</dd>
-			</dl>
-		</s:if>
-		<dl class="fn1-output-field">
-			<dt>Signed date </dt>
-			<dd><s:property value="%{waiver.signedDate}"  /> </dd>
-		</dl>		
-	</div>
-	<div class="tt-split-container">
-		<dl class="fn1-output-field">
-			<dt>Recorder ID </dt>
-			<dd><s:property value="%{waiver.recorderId}"  /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Recorded date </dt>
-			<dd><s:property value="%{waiver.recorderDate}"  /> </dd>
-		</dl>
-		<s:if test="waiver.recorder_notes">
-			<dl class="fn1-output-field">
-				<dt>Recorder notes </dt>
-				<dd><s:property value="%{waiver.recorderNotes}"  /> </dd>
-			</dl>
-		</s:if>
-		<dl class="fn1-output-field">
-			<dt>Paper verified </dt>
-			<dd><s:property value="%{waiver.paperVerifiedDate}"  /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Controller notes </dt>
-			<dd><s:property value="%{waiver.controllerNotes}"  /> </dd>
-		</dl>
-		<dl class="fn1-output-field">
-			<dt>Mapped date </dt>
-			<dd><s:property value="%{waiver.mappedDate}"  /> </dd>
-		</dl>
-		<s:if test="waiver.hasGisNotes()">
-			<dl class="fn1-output-field">
-				<dt>GIS notes </dt>
-				<dd><s:property value="%{waiver.gisNotes}"  /> </dd>
-			</dl>
-		</s:if>
-		<details>
-			<summary>Other Info</summary>	
-			<s:if test="waiver.hasAdded_by()">
-				<dl class="fn1-output-field">
-					<dt>Added by </dt>
-					<dd><s:property value="%{waiver.addedByUser}" /> 
-					</dd>
-				</dl>
-			</s:if>
-			<s:if test="waiver.imported" > 		
-				<dl class="fn1-output-field">
-					<dt>Imported </dt>
-					<dd>Yes</dd> 
-				</dl>
-			</s:if>
-			<dl class="fn1-output-field">
-				<dt>Status </dt>
-				<dd><s:property value="%{waiver.status}" /> 
-				</dd>
-			</dl>
-			<s:if test="waiver.isClosed()">
-				<dl class="fn1-output-field">
-					<dt>Closed date </dt>
-					<dd><s:property value="%{waiver.closedDate}" /> </dd>
-				</dl>
-				<dl class="fn1-output-field">
-					<dt>Closed by </dt>
-					<dd><s:property value="%{waiver.closedByUser}" /></dd>
-				</dl>		
-			</s:if>
-		</details>
-	</div>
-</div>
+<table border="1" width="80%">
+    <caption>Waiver Info</caption>
+    <s:if test="isBusiness()">
+	<tr>
+	    <td>Is Business? </td>
+	    <td>Yes</td>
+	</tr>
+    </s:if>
+    <s:if test="isTrust()" >
+	<tr>
+	    <td>Is Trust? </td>
+	    <td>Yes</td>
+	</tr>
+    </s:if>	
+    <s:if test="hasEntities()">
+	<tr><td colspan="2">
+	    <s:set var="entitiesTitle" value="'Entities(s)'" />
+	    <s:set var="entities" value="%{entities}" />
+	    <%@  include file="../entities/entitiesBasic.jsp" %>
+	</td>
+	</tr>
+    </s:if>	
+    <tr>
+	<td>Waiver County ID </td>
+	<td><s:property value="%{countyWaiverId}" /> </td>
+    </tr>
+    <tr>
+	<td>Service address(es) </td>
+	<td><s:property value="%{addressInfo}" /> <s:if test="invalidAddr" >(Invalid) </s:if> </td>
+    </tr>
+    <tr>
+	<td>Legal description </td>
+	<td><s:property value="%{legalDescription}"  /> </td>
+    </tr>
+    <tr>
+	<td>Parcel Pin </td>
+	<td><s:property value="%{parcelPin}" /> </td>
+    </tr>
+    <tr>
+	<td>Parcel Tax ID </td>
+	<td><s:property value="%{parcelTaxId}" /> </td>
+    </tr>		
+    <tr>
+	<td>Waiver Instrument # </td>
+	<td><s:property value="%{waiverInstrumentNum}" /> </td>
+    </tr>
+    <tr>
+	<td>Deed Instrument # </td>
+	<td><s:property value="%{deedInstrumentNum}" /> </td>
+    </tr>		
+    <tr>
+	<td>Waiver Book/Page </td>
+	<td><s:property value="%{waiverBook}" />/<s:property value="%{waiverPage}" /></td>
+    </tr>
+    <tr>
+	<td>Deed Book/Page </td>
+	<td><s:property value="%{deedBook}" />/<s:property value="%{deedPage}" /></td>
+    </tr>		
+    <tr>
+	<td>Township Section Range </td>
+	<td><s:property value="%{secTwpRangeDir}" /> </td>
+    </tr>
+    <tr>
+	<td>Development </td>
+	<td><s:property value="%{developmentSubdivision}" /> </td>
+    </tr>
+    <tr>
+	<td>Lot </td>
+	<td><s:property value="%{lot}"  /> </td>
+    </tr>
+    <tr>
+	<td>Acreage </td>
+	<td><s:property value="%{acrage}"  /> </td>
+    </tr>		
+    <tr>
+	<td>IN/OUT City? </td>
+	<td><s:property value="%{inOutCity}" /></td>
+    </tr>
+    <tr>
+	<td>IN GIS? </td>
+	<td><s:if test="inGis" > Yes</s:if><s:else> No</s:else></td> 
+    </tr>				
+    <s:if test="hasNotes()">
+	<tr>
+	    <td>Waiver Notes </td>
+	    <td><s:property value="%{notes}"  /> </td>
+	</tr>
+    </s:if>
+    <tr>
+	<td>Request date </td>
+	<td><s:property value="%{date}" /> 
+	</td>
+    </tr>
+    <s:if test="needExpireDate()">		
+	<tr>
+	    <td>Expire date </td>
+	    <td><s:property value="%{expireDate}" /> 
+	    </td>
+	</tr>
+    </s:if>
+    <tr>
+	<td>Signed date </td>
+	<td><s:property value="%{signedDate}"  /> </td>
+    </tr>		
+    <tr>
+	<td>Recorder ID </td>
+	<td><s:property value="%{recorderId}"  /> </td>
+    </tr>
+    <tr>
+	<td>Recorded date </td>
+	<td><s:property value="%{recorderDate}"  /> </td>
+    </tr>
+    <s:if test="recorder_notes">
+	<tr>
+	    <td>Recorder notes </td>
+	    <td><s:property value="%{recorderNotes}"  /> </td>
+	</tr>
+    </s:if>
+    <tr>
+	<td>Paper verified </td>
+	<td><s:property value="%{paperVerifiedDate}"  /> </td>
+    </tr>
+    <tr>
+	<td>Controller notes </td>
+	<td><s:property value="%{controllerNotes}"  /> </td>
+    </tr>
+    <tr>
+	<td>Mapped date </td>
+	<td><s:property value="%{mappedDate}"  /> </td>
+    </tr>
+    <s:if test="hasGisNotes()">
+	<tr>
+	    <td>GIS notes </td>
+	    <td><s:property value="%{gisNotes}"  /> </td>
+	</tr>
+    </s:if>
+    <s:if test="hasAdded_by()">
+	<tr>
+	    <td>Other Info Added by </td>
+	    <td><s:property value="%{addedByUser}" /> 
+	    </td>
+	</tr>
+    </s:if>
+    <s:if test="imported" > 		
+	<tr>
+	    <td>Imported </td>
+	    <td>Yes</td> 
+	</tr>
+    </s:if>
+    <tr>
+	<td>Status </td>
+	<td><s:property value="%{status}" /> 
+	</td>
+    </tr>
+    <s:if test="isClosed()">
+	<tr>
+	    <td>Closed date </td>
+	    <td><s:property value="%{closedDate}" /> </td>
+	</tr>
+	<tr> 
+	    <td>Closed by </td> 
+	    <td><s:property value="%{closedByUser}" /></td> 
+	</tr> 		
+    </s:if>
+</table>
 
 

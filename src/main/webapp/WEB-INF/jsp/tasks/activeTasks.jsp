@@ -18,7 +18,7 @@
 
 <s:if test="tasks != null" >
     <h3> Your active task list </h3>
-    <table>
+    <table border="1" width="80%">
 	<caption><s:property value="tasksTitle" /></caption>
 	<thead>
 	    <tr>
