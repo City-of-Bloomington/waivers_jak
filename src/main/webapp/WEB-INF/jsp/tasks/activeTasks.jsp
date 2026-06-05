@@ -33,7 +33,7 @@
 	    <s:iterator var="one" value="tasks">
 		<tr>
 		    <td><a href="<s:property value='#application.url' />task.action?task_id=<s:property value='task_id' />"><s:property value="name" /></a></td>
-		    <td><a href="<s:property value='#application.url' />waiver.action?id=<s:property value='waiver_id' />"><s:property value="waiver.waiverNum" /></a></td>
+		    <td><a href="<s:property value='#application.url' />waiver.action?id=<s:property value='waiver_id' />"><s:property value="waiverNum" /></a></td>
 		    <td><s:property value="start_date" /></td>				
 		    <td><s:property value="claimed_user" /></td>
 		    <td><s:property value="field2_value" /></td>

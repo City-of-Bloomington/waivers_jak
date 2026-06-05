@@ -39,6 +39,7 @@ public class GroupAction extends TopAction{
 		System.err.println(ex);
 	    }	
 	}
+	getGroup();
 	if(action.equals("Save")){
 	    logger.debug(" action save ");
 	    back = group.doSave();
@@ -62,7 +63,6 @@ public class GroupAction extends TopAction{
 	    }
 	}
 	else{		
-	    getGroup();
 	    if(!id.equals("")){
 		back = group.doSelect();
 		if(!back.equals("")){
@@ -91,6 +91,16 @@ public class GroupAction extends TopAction{
 	    group.setTable_name("`groups`");
 	}
     }
+    public String getId(){
+	return id;
+    }
+    public String getName(){
+	return group.getName();
+    }
+    public boolean getInactive(){
+	return group.getInactive();
+    }
+	
     @StrutsParameter(depth=0)
     public String getGroupsTitle(){
 	return groupsTitle;

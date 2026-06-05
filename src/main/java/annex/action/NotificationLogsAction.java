@@ -46,35 +46,32 @@ public class NotificationLogsAction extends TopAction{
     public String getLogsTitle(){
 	return logsTitle;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setWaiver_id(String val){
 	if(val != null && !val.equals(""))		
 	    waiver_id = val;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setWaiver_num(String val){
 	if(val != null && !val.equals(""))		
 	    waiver_num = val;
     }		
-    @StrutsParameter	
+    @StrutsParameter(depth=1)	
     public void setTask_id(String val){
 	if(val != null && !val.equals(""))		
 	    task_id = val;
     }
-    @StrutsParameter
     public String getWaiver_id(){
 	return waiver_id;
     }
-    @StrutsParameter
     public String getWaiver_num(){
 	return waiver_num;
     }		
-    @StrutsParameter		
     public String getTask_id(){
 	return task_id;
     }				

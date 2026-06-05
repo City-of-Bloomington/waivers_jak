@@ -4,22 +4,22 @@
  * @author W. Sibo <sibow@bloomington.in.gov>
  *
 	-->
-<table class="fn1-table">
-	<caption><s:property value="#typesTitle" /></caption>
+<table border="1" width="80%">
+    <caption><s:property value="#typesTitle" /></caption>
 	<thead>
-		<tr>
-			<th align="center"><b>ID</b></th>
-			<th align="center"><b>Name</b></th>
-			<th align="center"><b>Inactive</b></th>						
-		</tr>
+	    <tr>
+		<th align="center"><b>ID</b></th>
+		<th align="center"><b>Name</b></th>
+		<th align="center"><b>Inactive</b></th>						
+	    </tr>
 	</thead>
 	<tbody>
-		<s:iterator var="one" value="#types">
-			<tr>
-				<td><a href="<s:property value='#application.url' />type.action?id=<s:property value='id' />&selection=<s:property value='selection'/>">Edit</a></td>
-				<td><s:property value="name" /></td>
-				<td><s:property value="inactive" /></td>
-			</tr>
-		</s:iterator>
+	    <s:iterator var="one" value="#types">
+		<tr>
+		    <td><a href="<s:property value='#application.url' />type.action?id=<s:property value='id' />&selection=<s:property value='selection'/>">Edit</a></td>
+		    <td><s:property value="name" /></td>
+		    <td><s:property value="inactive" /></td>
+		</tr>
+	    </s:iterator>
 	</tbody>
 </table>

@@ -31,17 +31,18 @@ function updateOpener(){
  }
 </script>
 </head>
-<s:if test="entity.id == ''">
+<s:if test="id == ''">
     <body>
 </s:if>
 <s:else>
-    <s:if test="entity.waiver_id == ''">	
+    <s:if test="waiver_id == ''">	
 	<body onload="updateOpener()">
     </s:if>
     <s:else>
 	<body onload="refreshOpener()">
     </s:else>
 </s:else>
+<h1>Entity Info</h1>
 <s:if test="hasActionErrors()">
     <div class="errors">
 	<s:actionerror/>
@@ -56,11 +57,11 @@ function updateOpener(){
     <s:hidden name="action2" id="action2" value="" />
     <s:hidden name="type" value="popup" />
     <s:if test="entity.waiver_id != ''">
-	<s:hidden name="entity.waiver_id" value="%{entity.waiver_id}" />
-	<s:hidden name="entity.id" value="%{entity.id}" id="entity_id" />
-	<s:hidden name="entity.name2" value="%{entity.name}" id="entity_name" />
+	<s:hidden name="entity.waiver_id" value="%{waiver_id}" />
+	<s:hidden name="entity.id" value="%{id}" id="entity_id" />
+	<s:hidden name="entity.name2" value="%{name}" id="entity_name" />
     </s:if>
-    <h1>Entity Info</h1>
+
     <p>* Name is required. <br />
 	<table>
 	<s:if test="entity.id == ''">
@@ -72,27 +73,27 @@ function updateOpener(){
 	</s:else>
 	<tr>
 	    <td>Name </td>
-	    <td><s:textfield name="entity.name" value="%{entity.name}" size="30" maxlength="70" placeholder="last name, first name or business name" /></td>
+	    <td><s:textfield name="entity.name" value="%{name}" size="30" maxlength="70" placeholder="last name, first name or business name" /></td>
 	</tr>
 	<tr>
 	    <td>Title </td>
-	    <td><s:textfield name="entity.title" value="%{entity.title}" size="30" maxlength="30" placeholder="Owner, Agent, Manager, etc" /> </td>
+	    <td><s:textfield name="entity.title" value="%{title}" size="30" maxlength="30" placeholder="Owner, Agent, Manager, etc" /> </td>
 	</tr>
 	<tr>
 	    <td>Is Business? </td>
-	    <td><s:checkbox name="entity.isBusiness" value="%{entity.isBusiness}" /> Yes </td>
+	    <td><s:checkbox name="entity.isBusiness" value="%{isBusiness}" /> Yes </td>
 	</tr>
 	<tr>
 	    <td>Is Trust? </td>
-	    <td><s:checkbox name="entity.isTrust" value="%{entity.isTrusts}" /> Yes </td>			
+	    <td><s:checkbox name="entity.isTrust" value="%{isTrusts}" /> Yes </td>			
 	</tr>
 	<tr>
 	    <td>
-		<s:if test="entity.id == ''">
-		    <s:submit name="action" type="button" value="Save" class="fn1-btn"/> <input name="action" type="button" value="Cancel" onclick="javascript:window.close()" class="fn1-btn"/>		
+		<s:if test="id == ''">
+		    <s:submit name="action" type="button" value="Save" class="fn1-btn"/> <input name="action" type="button" value="Cancel" onclick="javascript:window.close()"/>		
 		</s:if>
 		<s:else>
-		    <s:submit name="action" type="button" value="Save Changes" class="fn1-btn"/> <input name="action" type="button" value="Cancel" onclick="javascript:window.close()" class="fn1-btn"/>								
+		    <s:submit name="action" type="button" value="Save Changes" class="fn1-btn"/> <input name="action" type="button" value="Cancel" onclick="javascript:window.close()"/>								
 		</s:else>
 	    </td> 
 	</tr>

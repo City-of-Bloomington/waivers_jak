@@ -4,7 +4,7 @@
  * @author W. Sibo <sibow@bloomington.in.gov>
  *
 	-->
-<table>
+<table border="1" width="80%">
     <caption><s:property value="#entitiesTitle" /></caption>
     <thead>
 	<tr>

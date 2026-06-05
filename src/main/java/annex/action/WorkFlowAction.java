@@ -42,6 +42,7 @@ public class WorkFlowAction extends TopAction{
 		logger.error(ex);
 	    }	
 	}
+	getWorkFlow();
 	if(action.equals("Save")){
 	    logger.debug("save");
 	    back = workFlow.doSave();
@@ -65,7 +66,6 @@ public class WorkFlowAction extends TopAction{
 	    }
 	}
 	else{		
-	    getWorkFlow();
 	    if(!id.equals("")){
 		back = workFlow.doSelect();
 		if(!back.equals("")){
@@ -89,15 +89,30 @@ public class WorkFlowAction extends TopAction{
 	    workFlow = val;
 	}
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public String getWorkFlowsTitle(){
 	return workFlowsTitle;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
+    public String getId(){
+	return id;
+    }
+    public String getStep_id(){
+	return workFlow.getStep_id();
+    }
+    public String getStep_name(){
+	return workFlow.getStep_name();
+    }
+    public String getNext_step_name(){
+	return workFlow.getNext_step_name();
+    }    
+    public String getNext_step_id(){
+	return workFlow.getNext_step_id();
+    }    
     @StrutsParameter(depth=2)
     public List<WorkFlow> getWorkFlows(){
 	logger.debug("workflows list");

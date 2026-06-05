@@ -4,7 +4,8 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.txt
  * @author W. Sibo <sibow@bloomington.in.gov>
  *
-	-->
+-->
+<h1>Search Attachments</h1>
 <s:form action="attachSearch" method="post">
   <s:if test="hasActionErrors()">
       <div class="errors">
@@ -19,21 +20,21 @@
   <p>To add a new attachment, go to waiver or task and click on the 'Attachments' button.
   </p>
   <table>
-      <caption>Search Attachments</caption>
+      <caption>Search Options</caption>
 	  <tr>
 	      <td>Attachment ID </td>
-	      <td><s:textfield name="uploadList.id" value="%{uploadList.id}" size="10" maxlength="10" /> 
+	      <td><s:textfield name="uploadList.id" value="%{id}" size="10" maxlength="10" /> 
 	      </td>
 	  </tr>
 	  <tr>
 	      <td>Waiver ID</td>
-	      <td><s:textfield name="uploadList.waiver_id" value="%{uploadList.waiver_id}" size="10" maxlength="10" /> 
+	      <td><s:textfield name="uploadList.waiver_id" value="%{waiver_id}" size="10" maxlength="10" /> 
 	      </td>
 	  </tr>
 	  <tr>
-	      <td>Date </td>
-	      <td>from: <s:textfield name="uploadList.date_from" value="%{uploadList.date_from}" size="10" maxlength="10" cssClass="date" /> to:
-		  <s:textfield name="uploadList.date_to" value="%{uploadList.date_to}" size="10" maxlength="10" cssClass="date" />					
+	      <td>Date Range </td>
+	      <td>from: <s:textfield name="uploadList.date_from" value="%{date_from}" size="10" maxlength="10" cssClass="date" /> to:
+		  <s:textfield name="uploadList.date_to" value="%{date_to}" size="10" maxlength="10" cssClass="date" />					
 	      </td>
 	  </tr>
 	  <tr>

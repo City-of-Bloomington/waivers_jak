@@ -40,23 +40,23 @@ public class UploadAction extends TopAction{
     public void setUpload(File file) {
 	this.file = file;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setSaveDir(String str) {
 	if(str != null)
 	    saveDir = str;
     }		
-    @StrutsParameter	
+    @StrutsParameter(depth=1)	
     public void setUploadContentType(String contentType) {
 	this.contentType = contentType;
 	System.err.println(" content type "+contentType);
     }
-    @StrutsParameter	
+    @StrutsParameter(depth=1)	
     public void setUploadFileName(String val) {
 	if(val != null)
 	    this.filename = val;
 
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setAction(String val){
 	action = val;
     }	
@@ -195,44 +195,44 @@ public class UploadAction extends TopAction{
 	}
 
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setNotes(String val){
 	if(val != null)
 	    notes = val;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setWaiver_id(String val){
 	if(val != null)
 	    waiver_id = val;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setTask_id(String val){
 	if(val != null)
 	    task_id = val;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setType(String val){
 	if(val != null && !val.equals("-1"))
 	    type = val;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setHardcopy_location(String val){
 	if(val != null)
 	    hardcopy_location = val;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public String getNotes(){
 	return notes;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public String getWaiver_id(){
 	return waiver_id;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public String getTask_id(){
 	return task_id;
     }
-    @StrutsParameter    
+    @StrutsParameter(depth=1)
     public String getType(){
 	logger.debug(" get type");
 	if(type.equals("") && hasTask()){
@@ -246,11 +246,11 @@ public class UploadAction extends TopAction{
 	    return "-1";
 	return type;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public boolean hasType(){
 	return !type.equals("");
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public String getHardcopy_location(){
 	return hardcopy_location;
     }
@@ -258,7 +258,7 @@ public class UploadAction extends TopAction{
     public String[] getTypes(){
 	return types;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public boolean hasTask(){
 	return !task_id.equals("");
     }
@@ -278,7 +278,6 @@ public class UploadAction extends TopAction{
     }
     @StrutsParameter(depth=1)
     public Task getTask(){
-	logger.debug(" get task ");
 	if(task == null && !task_id.equals("")){
 	    Task one = new Task(debug, task_id);
 	    String back = one.doSelect();
@@ -289,6 +288,13 @@ public class UploadAction extends TopAction{
 	    }
 	}
 	return task;
+    }
+    @StrutsParameter(depth=1)    
+    public String getTask_name(){
+	getTask();
+	if(task != null)
+	    return task.getName();
+	return "";
     }
     @StrutsParameter(depth=1)
     public List<FileUpload> getUploads(){

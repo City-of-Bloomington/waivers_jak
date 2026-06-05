@@ -40,6 +40,7 @@ public class EntityAction extends TopAction{
 		logger.error(ex);
 	    }	
 	}
+	getEntity();
 	if(!type.equals("")){
 	    ret = "popup";
 	}
@@ -99,14 +100,10 @@ public class EntityAction extends TopAction{
 	    */
 	}
 	else if(action.equals("Edit")){
-	    getEntity();
+	    //
 	}
 	else if(!id.equals("")){
 	    ret = "view";
-	    getEntity();
-	}
-	else{
-	    getEntity();
 	}
 	return ret;
     }
@@ -157,7 +154,31 @@ public class EntityAction extends TopAction{
     public void setType(String val){
 	if(val != null && !val.equals(""))		
 	    type = val;
+    }
+    public String getId(){
+	return entity.getId();
+    }
+    public String getName(){
+	return entity.getName();
+    }
+    public String getTitle(){
+	return entity.getTitle();
+    }
+    public boolean getIsBusiness(){
+	return entity.getIsBusiness();
+    }
+    public boolean getIsTrust(){
+	return entity.getIsTrust();
     }		
+    public String getWaiver_id(){
+	return entity.getWaiver_id();
+    }
+    public String getInfo(){
+	return entity.getInfo();
+    }
+    public boolean hasWaiver(){
+	return entity.hasWaiver();
+    }
     //
     // we can use to get entity list for auto_complete
     @StrutsParameter(depth=2)

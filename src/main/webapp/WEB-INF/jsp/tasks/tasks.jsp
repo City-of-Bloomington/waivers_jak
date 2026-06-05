@@ -25,7 +25,7 @@
 	    <tr>
 		<td><a href="<s:property value='#application.url' />task.action?task_id=<s:property value='task_id' />"><s:property value="name" /></a></td>
 		<s:if test="#showWaiver">
-		    <td><a href="<s:property value='#application.url' />waiver.action?id=<s:property value='waiver_id' />"><s:property value="waiver.waiverNum" /></a></td>
+		    <td><a href="<s:property value='#application.url' />waiver.action?id=<s:property value='waiver_id' />"><s:property value="waiverNum" /></a></td>
 		</s:if>
 		<td><s:property value="start_date" /></td>				
 		<td><s:property value="completed_date" /></td>

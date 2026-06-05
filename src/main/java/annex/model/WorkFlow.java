@@ -150,7 +150,21 @@ public class WorkFlow extends CommonInc{
     }
     public String getNext_step_id(){
 	return next_step_id;
-    }		
+    }
+    public String getStep_name(){
+	String ret = "";
+	getStep();
+	if(step != null)
+	    ret = step.getName();
+	return ret;
+    }
+    public String getNext_step_name(){
+	String ret = "";
+	getNextStep();
+	if(nextStep != null)
+	    ret = nextStep.getName();
+	return ret;
+    }    
     //
     // setters
     //

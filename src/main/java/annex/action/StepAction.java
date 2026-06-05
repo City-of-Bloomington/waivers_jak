@@ -39,6 +39,7 @@ public class StepAction extends TopAction{
 		logger.error(ex);
 	    }	
 	}
+	getStep();
 	if(action.equals("Save")){
 	    logger.debug(" action save ");
 	    back = step.doSave();
@@ -62,7 +63,6 @@ public class StepAction extends TopAction{
 	    }
 	}
 	else{		
-	    getStep();
 	    if(!id.equals("")){
 		logger.debug(" action select ");
 		back = step.doSelect();
@@ -88,16 +88,49 @@ public class StepAction extends TopAction{
 	    step = val;
 	}
     }
-    @StrutsParameter 
+    public String getId(){
+	return id;
+    }
+    public String getName(){
+	return step.getName();
+    }    
+    public String getField_name(){
+	return step.getField_name();
+    }
+    public String getField2_name(){
+	return step.getField2_name();
+    }
+    public String getPart_name(){
+	return step.getPart_name();
+    }
+    public String getSuggested_upload_type(){
+	return step.getSuggested_upload_type();
+    }		
+    public String getAlias(){
+	return step.getAlias();
+    }		
+		
+    public String getGroup_id(){
+	return step.getGroup_id();
+	    
+    }
+    // require attachment to upload
+    public boolean getRequire_upload(){
+	return step.getRequire_upload();
+    }
+    public boolean hasSuggested_upload_type(){
+	return step.hasSuggested_upload_type();
+    }
+    //    
     public String getStepsTitle(){
 	return stepsTitle;
     }
-    @StrutsParameter
+    @StrutsParameter(depth=1)
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
-    @StrutsParameter(depth=1)
+    @StrutsParameter(depth=2)
     public List<Step> getSteps(){
 	if(steps == null){
 	    logger.debug(" get steps ");

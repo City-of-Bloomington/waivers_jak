@@ -6,27 +6,22 @@
  *
 	-->
 <s:form action="importCsv" id="form_id" method="post" >
-  <s:if test="hasActionErrors()">
-		<div class="errors">
-      <s:actionerror/>
-		</div>
+    <s:if test="hasActionErrors()">
+	<div class="errors">
+	    <s:actionerror/>
+	</div>
   </s:if>
   <s:elseif test="hasActionMessages()">
-		<div class="welcome">
-      <s:actionmessage/>
-		</div>
+      <div class="welcome">
+	  <s:actionmessage/>
+      </div>
   </s:elseif>
-	<h3>Import Old Data</h3>
-	Important: Running this form will cause to delete all data and start 
-	reading the old data again (import). This should be done when it is really needed.
-	<div class="tt-row-container">
-		<dl class="fn1-output-field">
-			<dt> </dt>
-			<dd> </dd>
-		</dl>
-		<s:submit name="action" type="button" value="Submit" class="fn1-btn"/></dd>
-	</div>
-
+  <h3>Import Old Data (Not needed anymore)</h3>
+  Important: Running this form will cause to delete all data and start 
+  reading the old data again (import). This should be done when it is really needed.
+      <s:submit name="action" type="button" value="Submit" class="fn1-btn"/></dd>
+  </div>
+  
 </s:form>
 <%@  include file="../gui/footer.jsp" %>
 

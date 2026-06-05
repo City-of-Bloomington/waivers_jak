@@ -1,10 +1,21 @@
 <%@  include file="../gui/header.jsp" %>
 <!--
- * @copyright Copyright (C) 2014-2015 City of Bloomington, Indiana. All rights reserved.
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.txt
- * @author W. Sibo <sibow@bloomington.in.gov>
- *
-	-->
+     * @copyright Copyright (C) 2014-2015 City of Bloomington, Indiana. All rights reserved.
+     * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.txt
+     * @author W. Sibo <sibow@bloomington.in.gov>
+     *
+-->
+<s:if test="hasActionErrors()">
+    <div class="errors">
+	<s:actionerror/>
+    </div>
+</s:if>
+<s:elseif test="hasActionMessages()">
+    <div class="welcome">
+	<s:actionmessage/>
+    </div>
+</s:elseif>
+<h1>Waiver Task</h1>
 <s:form action="task" id="form_id" method="post">
     <s:hidden name="action2" id="action2" value="" />
     <h2>Perform Task: <s:property value="task.name" /></h2>
@@ -15,16 +26,6 @@
     <s:if test="claimed_by !=''">
 	<s:hidden name="task.claimed_by" value="%{claimed_by}" />		
     </s:if>
-    <s:if test="hasActionErrors()">
-	<div class="errors">
-	    <s:actionerror/>
-	</div>
-    </s:if>
-  <s:elseif test="hasActionMessages()">
-      <div class="welcome">
-	  <s:actionmessage/>
-      </div>
-  </s:elseif>
   <p>* Required field <br />
   </p>
   <b>Instructions</b>

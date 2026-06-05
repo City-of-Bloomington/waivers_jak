@@ -40,7 +40,8 @@ public class AttachSearchAction extends TopAction{
 	    }catch(Exception ex){
 		logger.error(ex);
 	    }
-	}		
+	}
+	getUploadList();
 	if(!action.equals("")){
 	    // since we are searching we want all that match
 	    uploadList.setNoLimit(); 
@@ -93,6 +94,27 @@ public class AttachSearchAction extends TopAction{
 	}
 	return uploads;
     }
+    public String getId(){
+	return uploadList.getId();
+    }	
+    public String getUser_id(){
+	return uploadList.getUser_id();
+    }
+    public String getDate_from(){
+	return uploadList.getDate_from();
+    }
+    public String getDate_to(){
+	return uploadList.getDate_to();
+    }
+    public String getType(){
+	return uploadList.getType();
+    }
+    public String getWaiver_id(){
+	return uploadList.getWaiver_id();
+    }
+    public String getTask_id(){
+	return uploadList.getTask_id();
+    }		    
     @Override  
     public void withSession(Map<String, Object> map) {  
 	sessionMap=map;  

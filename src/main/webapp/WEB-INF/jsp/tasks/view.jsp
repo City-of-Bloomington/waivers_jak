@@ -6,14 +6,14 @@
  *
 	-->
 <s:if test="hasActionErrors()">
-	<div class="errors">
-    <s:actionerror/>
-	</div>
+    <div class="errors">
+	<s:actionerror/>
+    </div>
 </s:if>
 <s:elseif test="hasActionMessages()">
-	<div class="welcome">
-    <s:actionmessage/>
-	</div>
+    <div class="welcome">
+	<s:actionmessage/>
+    </div>
 </s:elseif>
 <h1>Task: <s:property value='name' /></h1>
 <h3>Instructions</h3>
@@ -80,7 +80,7 @@
     <s:if test="waiver.canBePrinted()">
 	<a href="<s:property value='#application.url' />WaiverRtf?id=<s:property value='waiver_id' />">Printable Waiver</a>
     </s:if>
-    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='task.waiver_id' />&task_id=<s:property value='task.task_id' />">New Attachments</a>	
+    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='task.waiver_id' />&task_id=<s:property value='task_id' />">New Attachments</a>	
     <s:if test="task.isCompleted()">
 	<s:if test="waiver.hasMoreTasks()">
 	    <s:iterator var="one" value="waiver.tasks">
@@ -96,12 +96,12 @@
 </s:if>
 <s:if test="waiver.hasCompletedTasks()" >
     <s:set var="tasksTitle" value="'Completed Tasks'" />
-    <s:set var="tasks" value="%{waiver.completedTasks}" />
+    <s:set var="tasks" value="%{completedTasks}" />
     <%@  include file="tasks.jsp" %>			
 </s:if>
 <s:if test="task.waiver.hasUploads()">
     <s:set var="attachmentsTitle" value="'Attachments'" />
-    <s:set var="uploads" value="%{waiver.uploads}" />
+    <s:set var="uploads" value="%{uploads}" />
     <%@  include file="../attachments/fileUploads.jsp" %>			
 </s:if>
 <s:if test="hasEmailLogs()">
