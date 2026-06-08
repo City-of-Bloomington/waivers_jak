@@ -40,6 +40,7 @@ public class WaiverAction extends TopAction{
 		logger.error(back);
 	    }	
 	}
+	getWaiver();
 	if(action.equals("Save")){
 	    logger.debug("save");		
 	    waiver.setAddedBy(user.getId());
@@ -108,7 +109,6 @@ public class WaiverAction extends TopAction{
 	}
 	else if(action.startsWith("Remove Entity")){ // remove owner
 	    logger.debug("remove entity");		
-	    getWaiver();
 	    back = waiver.doRemoveEntity();
 	    if(!back.equals("")){
 		addActionError(back);
@@ -121,7 +121,6 @@ public class WaiverAction extends TopAction{
 	}
 	else if(action.startsWith("Remove Addr")){ // remove owner
 	    logger.debug("remove addr");		
-	    getWaiver();
 	    back = waiver.doRemoveAddress();
 	    if(!back.equals("")){
 		addActionError(back);
@@ -152,9 +151,6 @@ public class WaiverAction extends TopAction{
 		logger.error(back);		
 	    }
 	}
-	else{
-	    getWaiver();
-	}
 	return ret;
     }
     @StrutsParameter(depth=2)
@@ -173,6 +169,11 @@ public class WaiverAction extends TopAction{
 	}		
 	return waiver;
     }
+    @StrutsParameter(depth=1)    
+    public void setId(String val){
+	if(val != null)
+	    id = val;
+    }
     @StrutsParameter(depth=1)
     public void setWaiver(Waiver val){
 	if(val != null)
@@ -186,24 +187,24 @@ public class WaiverAction extends TopAction{
 	if(val != null && !val.equals(""))		
 	    action = val;
     }
-    @StrutsParameter(depth=1)
     public String getId(){
 	if(id.equals("") && waiver != null){
 	    id = waiver.getId();
 	}
 	return id;
     }
-    @StrutsParameter(depth=1)
     public String getWaiverNum(){
 	if(waiver_num.isEmpty() && waiver != null){
 	    waiver_num = waiver.getWaiverNum();
 	}
 	return waiver_num;
     }
+    @StrutsParameter(depth=1)
     public void setWaiverNum(String val){
 	if(val != null && !val.isEmpty())		
 	    waiver_num = val;
     }
+    @StrutsParameter(depth=1)
     public void setEntityId(String val){
 	if(val != null && !val.equals(""))		
 	    entity_id = val;
