@@ -51,7 +51,19 @@ public class Entity extends CommonInc{
 		  ){
 	super(deb);
 	setVals(val, val2, val3, val4, val5);
-    }			
+    }
+    public Entity(boolean deb,
+		  String val,
+		  String val2, // name 
+		  String val3, // title
+		  boolean val4, // is business
+		  boolean val5, // is trust
+		  String val6
+		  ){
+	super(deb);
+	setVals(val, val2, val3, val4, val5);
+	setWaiver_id(val6);
+    }	    
     void setVals(String val, String val2, String val3, boolean val4, boolean val5){
 	setId(val);
 	setName(val2);

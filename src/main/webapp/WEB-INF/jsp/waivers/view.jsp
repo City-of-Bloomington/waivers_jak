@@ -148,31 +148,48 @@
 	<tr>
 	    <td>Closed date </td>
 	    <td><s:property value="%{closedDate}" /> </td>
-	</tr><tr>
+	</tr>
+	<tr>
 	    <td>Closed by </td> 
 	    <td><s:property value="%{closedByUser}" /></td>  
 	</tr>
     </s:if>
-    </table>
-<a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='id' />&action=Edit">Edit</a>
-<s:if test="isOpen()">
-    <s:if test="canBePrinted()">
-	<a href="<s:property value='#application.url'/>WaiverRtf?id=<s:property value='%{id}' />">Printable Waiver </a>
+    <tr>
+	<td colspan="2">
+	    <a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='id' />&action=Edit">Edit</a>
+	</td>
+    </tr>
+</table>
+<ul>    
+    <s:if test="isOpen()">
+	<s:if test="canBePrinted()">
+	    <li>
+		    <a href="<s:property value='#application.url'/>WaiverRtf?id=<s:property value='%{id}' />">Printable Waiver </a>
+	    </li>
+	</s:if>
+	<s:if test="hasMoreTasks()">
+	    <s:iterator var="one" value="tasks">
+		<s:if test="canBeClaimedBy(#session.user)">
+		<li>
+			<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit">Next: <s:property value='alias' /> (<s:property value="group" />)</a>
+		</li>
+		</s:if>
+		<s:else>
+		    <li>
+			    <a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit" id="a_disabled"  disabled="disabled">Next: <s:property value='alias' /> (<s:property value="group" /> disabled)</a>
+		    </li>
+		</s:else>
+	    </s:iterator>
+	</s:if>
+	<li>
+		<a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='id' />">Attachments</a> <br />
+	</li>
+	<li>
+	    Note: If you close this waiver no more changes can be made
+	    <a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='id' />&action=Close">Close This Waiver</a>
+	</li>
     </s:if>
-    <s:if test="hasMoreTasks()">
-	<s:iterator var="one" value="tasks">
-	    <s:if test="canBeClaimedBy(#session.user)"> 
-		<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit">Next: <s:property value='alias' /> (<s:property value="group" />)</a>
-	    </s:if>
-	    <s:else>
-		<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit" id="a_disabled"  disabled="disabled">Next: <s:property value='alias' /> (<s:property value="group" /> disabled)</a>
-	    </s:else>
-	</s:iterator>
-    </s:if>
-    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='id' />">Attachments</a> <br />
-    Note: If you close this waiver no more changes can be made
-    <a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='id' />&action=Close">Close This Waiver</a>	
-</s:if>
+</ul>
 <s:if test="hasCompletedTasks()" >
     <s:set var="tasksTitle" value="'Completed Actions'" />
     <s:set var="tasks" value="%{completedTasks}" />

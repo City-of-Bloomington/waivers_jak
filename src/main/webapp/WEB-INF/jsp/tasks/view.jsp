@@ -76,23 +76,34 @@
     </s:elseif>
 </s:if>
 <s:if test="isOpen()">
-    <a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit">Edit: <s:property value='task.name' /></a>
-    <s:if test="waiver.canBePrinted()">
-	<a href="<s:property value='#application.url' />WaiverRtf?id=<s:property value='waiver_id' />">Printable Waiver</a>
-    </s:if>
-    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='task.waiver_id' />&task_id=<s:property value='task_id' />">New Attachments</a>	
-    <s:if test="task.isCompleted()">
-	<s:if test="waiver.hasMoreTasks()">
-	    <s:iterator var="one" value="waiver.tasks">
-		<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit">Next: <s:property value="alias" /> (<s:property value="group" />)</a>
-	    </s:iterator>
+    <ul>
+	<li>
+	    <a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit">Edit: <s:property value='task.name' /></a></li>
+	<s:if test="waiver.canBePrinted()">
+	    <li>
+		<a href="<s:property value='#application.url' />WaiverRtf?id=<s:property value='waiver_id' />">Printable Waiver</a>
+	    </li>
 	</s:if>
-    </s:if>
+	<li>
+	    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='task.waiver_id' />&task_id=<s:property value='task_id' />">New Attachments</a>
+	</li>
+	<s:if test="task.isCompleted()">
+	    <s:if test="waiver.hasMoreTasks()">
+		<s:iterator var="one" value="waiver.tasks">
+		    <li>
+			<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit">Next: <s:property value="alias" /> (<s:property value="group" />)</a>
+		    </li>
+		</s:iterator>
+	    </s:if>
+	</s:if>
     <s:else>
 	<s:if test="task.canBeCompleted()">
-	    <a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Task+Completed">Task Completed </a>		
+	    <li>
+		<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Task+Completed">Task Completed </a>
+	    </li>
 	</s:if>		
     </s:else>
+    </ul>
 </s:if>
 <s:if test="waiver.hasCompletedTasks()" >
     <s:set var="tasksTitle" value="'Completed Tasks'" />

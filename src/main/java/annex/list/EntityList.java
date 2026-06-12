@@ -75,7 +75,7 @@ public class EntityList extends CommonInc{
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	Connection con = Helper.getConnection();
-	String qq = "select u.id,u.name,u.title,u.is_business,u.is_trust from entities u, entity_waivers ow where ow.entity_id=u.id and ow.waiver_id=? ";
+	String qq = "select u.id,u.name,u.title,u.is_business,u.is_trust,ow.waiver_id from entities u, entity_waivers ow where ow.entity_id=u.id and ow.waiver_id=? ";
 	logger.debug("find for waiver");
 	if(con == null){
 	    back = "Could not connect to DB";
@@ -110,7 +110,9 @@ public class EntityList extends CommonInc{
 			       rs.getString(2),
 			       rs.getString(3),
 			       rs.getString(4) != null,
-			       rs.getString(5) != null);
+			       rs.getString(5) != null,
+			       rs.getString(6)
+			       );
 
 		entities.add(one);
 	    }

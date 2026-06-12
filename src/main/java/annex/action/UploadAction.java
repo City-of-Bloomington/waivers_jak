@@ -76,6 +76,7 @@ public class UploadAction extends TopAction{
 	}		
 	if(action.equals("Save")){
 	    logger.debug(" action upload save ");
+	    System.err.println(" save file ");
 	    if(!hasType()){
 		back = "You need to choose file type ";
 		addActionError(back);
@@ -220,19 +221,24 @@ public class UploadAction extends TopAction{
 	if(val != null)
 	    hardcopy_location = val;
     }
-    @StrutsParameter(depth=1)
     public String getNotes(){
 	return notes;
     }
-    @StrutsParameter(depth=1)
     public String getWaiver_id(){
+	if(waiver_id.isEmpty()){
+	    getWaiver();
+	}
 	return waiver_id;
     }
-    @StrutsParameter(depth=1)
+    public String getWaiverNum(){
+	getWaiver();
+	if(waiver != null)
+	    return waiver.getWaiverNum();;
+	return "";
+    }
     public String getTask_id(){
 	return task_id;
     }
-    @StrutsParameter(depth=1)
     public String getType(){
 	logger.debug(" get type");
 	if(type.equals("") && hasTask()){
@@ -246,11 +252,9 @@ public class UploadAction extends TopAction{
 	    return "-1";
 	return type;
     }
-    @StrutsParameter(depth=1)
     public boolean hasType(){
 	return !type.equals("");
     }
-    @StrutsParameter(depth=1)
     public String getHardcopy_location(){
 	return hardcopy_location;
     }
@@ -258,12 +262,17 @@ public class UploadAction extends TopAction{
     public String[] getTypes(){
 	return types;
     }
-    @StrutsParameter(depth=1)
+
     public boolean hasTask(){
 	return !task_id.equals("");
     }
     @StrutsParameter(depth=2)
     public Waiver getWaiver(){
+	if(waiver == null && waiver_id.isEmpty()){
+	    getTask();
+	    if(task != null)
+		waiver_id = task.getWaiver_id();
+	}
 	logger.debug(" get waiver");
 	if(waiver == null && !waiver_id.equals("")){
 	    Waiver one = new Waiver(debug, waiver_id);
@@ -289,7 +298,6 @@ public class UploadAction extends TopAction{
 	}
 	return task;
     }
-    @StrutsParameter(depth=1)    
     public String getTask_name(){
 	getTask();
 	if(task != null)

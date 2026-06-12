@@ -56,6 +56,8 @@ public class WaiverAction extends TopAction{
 	    }
 	}				
 	else if(action.equals("Save Changes")){
+
+	    System.err.println(" doing update ");
 	    logger.debug("update");		
 	    waiver.setUserId(user.getId()); // we needed for actions					
 	    back = waiver.doUpdate();
@@ -178,6 +180,9 @@ public class WaiverAction extends TopAction{
     public void setWaiver(Waiver val){
 	if(val != null)
 	    waiver = val;
+    }
+    public String getWaiver_id(){
+	return id;
     }
     public String getWaiversTitle(){
 	return waiversTitle;
@@ -387,6 +392,9 @@ public class WaiverAction extends TopAction{
 	}		
 	return waivers;
     }
+    public boolean hasEntities(){
+	return waiver.hasEntities();
+    }
     public boolean hasEmailLogs(){
 	getWaiver();
 	if(!waiver.getId().equals("")){
@@ -404,6 +412,10 @@ public class WaiverAction extends TopAction{
 	    return emailLogs != null && emailLogs.size() > 0;
 	}
 	return false;
+    }
+    @StrutsParameter(depth=3)    
+    public List<Entity> getEntities(){
+	return waiver.getEntities();
     }
     @StrutsParameter(depth=2)
     public List<EmailLog> getEmailLogs(){

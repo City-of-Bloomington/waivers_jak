@@ -17,13 +17,16 @@
 	</div>
     </s:elseif>
     <s:form action="waiver" id="form_id" method="post">
-    <s:hidden name="action2" id="action2" value="" />
-    <s:hidden name="waiver.id" value="%{id}" />
-    <s:hidden name="waiver.date" value="%{date}" />
-    <s:hidden name="waiver.status" value="%{status}" />
-    <s:hidden name="waiver.addedBy" value="%{addedBy}" />
-    <s:hidden name="waiver.addAddrIds" id="add_addr_ids" value="" />
-    <s:hidden name="waiver.addEntityIds" id="entity_ids" value="" />	
+	<s:set var="waiver_id" value="%{id}" scope="application" />
+	
+	<s:hidden name="action2" id="action2" value="" />
+	<s:hidden name="waiver.id" value="%{id}" />
+	<s:hidden name="id" value="%{id}" />	
+	<s:hidden name="waiver.date" value="%{date}" />
+	<s:hidden name="waiver.status" value="%{status}" />
+	<s:hidden name="waiver.addedBy" value="%{addedBy}" />
+	<s:hidden name="waiver.addAddrIds" id="add_addr_ids" value="" />
+	<s:hidden name="waiver.addEntityIds" id="entity_ids" value="" />	
 	<h3>Instructions</h3>
 	<ul>
 	    <li>* Required field </li>
@@ -50,9 +53,9 @@
 		<s:iterator value="entities">
 		    <tr>
 			<td><s:property value="info" /></td>
-			<td><a href="<s:property value='#application.url' />entity.action?id=<s:property value='id' />&waiver_id=<s:property value='waiver.id' />" class="fn1-btn">Edit</a>
+			<td><a href="<s:property value='#application.url' />entity.action?id=<s:property value='id' />&waiver_id=<s:property value='waiver_id' />">Edit</a>
 			</td>
-			<td><a href="<s:property value='#application.url'/>waiver.action?action=Remove+Entity&entityId=<s:property value='id' />&id=<s:property value='waiver.id' />" class="fn1-btn">Remove</a></td>
+			<td><a href="<s:property value='#application.url'/>waiver.action?action=Remove+Entity&entityId=<s:property value='id' />&id=<s:property value='waiver_id' />">Remove</a></td>
 		    </tr>
 		</s:iterator>
 	    </table>
@@ -104,13 +107,13 @@
 	    <tr>
 		<td>Parcel PIN</td>
 		<td>
-		    <input type="text" name="waiver.parcelPin2" value="" size="2" maxlength="2" id="pin_id_1" placeHolder="xx" class="pin_number"/>-
-		    <input type="text" name="waiver.parcelPin2" value="" size="2" maxlength="2" id="pin_id_2" placeHolder="xx" class="pin_number"/>-
-		    <input type="text" name="waiver.parcelPin2" value="" size="2" maxlength="2" id="pin_id_3" placeHolder="xx" class="pin_number"/>-
-		    <input type="text" name="waiver.parcelPin2" value="" size="3" maxlength="3" id="pin_id_4" placeHolder="xxx" class="pin_number"/>-
-		    <input type="text" name="waiver.parcelPin2" value="" size="3" maxlength="3" id="pin_id_5" placeHolder="xxx" class="pin_number"/>.
-		    <input type="text" name="waiver.parcelPin2" value="" size="3" maxlength="3" id="pin_id_6" placeHolder="xxx" class="pin_number"/>-
-		    <input type="text" name="waiver.parcelPin2" value="" size="3" maxlength="3" id="pin_id_7" placeHolder="xxx" class="pin_number"/>
+		    <input type="text" name="waiver.parcelPin2" value="" size="2" maxlength="2" id="pin_id_1" placeHolder="xx" class="tax_number" />-
+		    <input type="text" name="waiver.parcelPin2" value="" size="2" maxlength="2" id="pin_id_2" placeHolder="xx" class="tax_number" />-
+		    <input type="text" name="waiver.parcelPin2" value="" size="2" maxlength="2" id="pin_id_3" placeHolder="xx" class="tax_number" />-
+		    <input type="text" name="waiver.parcelPin2" value="" size="3" maxlength="3" id="pin_id_4" placeHolder="xxx" class="tax_number" />-
+		    <input type="text" name="waiver.parcelPin2" value="" size="3" maxlength="3" id="pin_id_5" placeHolder="xxx" class="tax_number" />.
+		    <input type="text" name="waiver.parcelPin2" value="" size="3" maxlength="3" id="pin_id_6" placeHolder="xxx" class="tax_number" />-
+		    <input type="text" name="waiver.parcelPin2" value="" size="3" maxlength="3" id="pin_id_7" placeHolder="xxx" class="tax_number" />
 		</td>
 	    </tr>
 	    <tr>
@@ -120,9 +123,9 @@
 	    <tr>
 		<td>Parcel tax ID </td>
 		<td>
-		    <input type="text" name="waiver.parcelTaxId2" value="" size="3" maxlength="3" id="tax_id_1" class="tax_number" placeHolder="xxx"/> -
-		    <input type="text" name="waiver.parcelTaxId2" value="" size="5" maxlength="5" id="tax_id_2" class="tax_number" placeHolder="xxxxx" /> -
-		    <input type="text" name="waiver.parcelTaxId2" value="" size="2" maxlength="2" id="tax_id_3" class="tax_number" placeHolder="xx"/> (enter one at a time)
+		    <input type="text" name="waiver.parcelTaxId2" value="" size="3" maxlength="3" id="tax_id_1" placeHolder="xxx"/> -
+		    <input type="text" name="waiver.parcelTaxId2" value="" size="5" maxlength="5" id="tax_id_2"  placeHolder="xxxxx" /> -
+		    <input type="text" name="waiver.parcelTaxId2" value="" size="2" maxlength="2" id="tax_id_3"  placeHolder="xx"/> (enter one at a time)
 		</td>
 	    </tr>		
 	    <tr>
@@ -204,11 +207,8 @@
 		</td>  
 	    </tr> 
 	    <tr>
-		<td>
+		<td colspan="2">
 		    <s:submit name="action" type="button" value="Save Changes"/>
-		</td>
-		<td>
-		    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='id' />">Attachments</a>
 		</td>
 	    </tr>
 	    <s:if test="canBePrinted()">
@@ -219,8 +219,8 @@
 		</tr>
 	    </s:if>
 	</table>
-	<s:if test="status == 'Open'">
-	    <ul>
+	<ul>	
+	    <s:if test="status == 'Open'">
 		<s:if test="hasMoreTasks()">
 		    <s:iterator var="one" value="tasks">
 			<li>
@@ -228,14 +228,17 @@
 				<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />">Next: <s:property value="alias" /> (<s:property value="group" />)</a>
 			    </s:if>
 			    <s:else>
-				<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit" id="a_disabled"  disabled="disabled" class="fn1-btn">Next: <s:property value='alias' /> (<s:property value="group" /> disabled)</a>
+				<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit" id="a_disabled"  disabled="disabled">Next: <s:property value='alias' /> (<s:property value="group" /> disabled)</a>
 			    </s:else>
 			</li>
 		    </s:iterator>
 		</s:if>
-		<li><a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='id' />&action=Close" class="fn1-btn" title="If you close this waiver no more changes can be done to it">Close This Waiver</a></li>
-	    </ul>
-	</s:if>
+		<li><a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='id' />&action=Close" title="If you close this waiver no more changes can be done to it">Close This Waiver</a></li>
+	    </s:if>
+	    <li>
+		<a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='id' />">Attachments</a>
+	    </li>
+	</ul>
     </s:form>
     <s:if test="hasCompletedTasks()" >
 	<s:set var="tasksTitle" value="'Completed Tasks'" />

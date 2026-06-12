@@ -42,9 +42,15 @@
 	  <li>Related Waiver <a href="<s:property value='#application.url' />waiver.action?id=<s:property value='waiver_id' />"><s:property value="waiverNum" /></a></li>
 	  <li>Waiver Info:
 	      <ul>
-		  <li><s:property value="basicInfo" /></li>
-		  <li><s:property value="basicInfo2" /></li>
-		  <li><s:property value="basicInfo3" /></li>
+		  <s:if test="basicInfo != ''">
+		      <li><s:property value="basicInfo" /></li>
+		  </s:if>
+		  <s:if test="basicInfo2 != ''">
+		      <li><s:property value="basicInfo2" /></li>
+		  </s:if>
+		  <s:if test="basicInfo3 != ''">
+		      <li><s:property value="basicInfo3" /></li>
+		  </s:if>
 	      </ul>
 	  </li>
 	  <li>Start Date:
@@ -57,7 +63,8 @@
 	      </li>
 	  </s:if>
 	  <s:if test="hasSecondField()">
-	      <li>Task: <s:property value="%{field2_name}" /> 
+	      <li>Task <s:property value="%{field2_name}" />:
+		  <br />
 		    <s:textarea name="task.field2_value" value="%{field2_value}" rows="10" cols="70" /> 
 	      </li>
 	  </s:if>
@@ -80,25 +87,35 @@
 		</li>
 	    </s:if>
       </ul>
-      <s:submit name="action" type="button" value="Save Changes"/>
-      <s:if test="canBeCompleted()">
-	  Note: If no more actions is needed for this task click completed to move to next task
-	  <s:submit name="action" type="button" value="Task Completed"/>
-      </s:if>
-	<s:if test="canBePrinted()">
-	    <a href="<s:property value='#application.url' />WaiverRtf?id=<s:property value='waiver_id' />">Printable Waiver</a>
-	</s:if>
-	<a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='waiver_id' />&task_id=<s:property value='task_id' />">New Attachment</a>
-	<s:if test="hasCompletedTasks()" >
-	    <s:set var="tasksTitle" value="'Completed Tasks'" />
-	    <s:set var="tasks" value="%{completedTasks}" />
+      <ul>
+	  <li>
+	      <s:submit name="action" type="button" value="Save Changes"/>
+	  </li>
+	  <s:if test="canBeCompleted()">
+	      <li>
+		  Note: If no more actions is needed for this task click completed to move to next task
+		  <s:submit name="action" type="button" value="Task Completed"/>
+	      </li>
+	  </s:if>
+	  <s:if test="canBePrinted()">
+	      <li>
+		  <a href="<s:property value='#application.url' />WaiverRtf?id=<s:property value='waiver_id' />">Printable Waiver</a>
+	      </li>
+	  </s:if>
+	  <li>
+	      <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='waiver_id' />&task_id=<s:property value='task_id' />">New Attachment</a>
+	  </li>
+      </ul>
+      <s:if test="hasCompletedTasks()" >
+	  <s:set var="tasksTitle" value="'Completed Tasks'" />
+	  <s:set var="tasks" value="%{completedTasks}" />
 	    <%@  include file="../tasks/tasks.jsp" %>			
-	</s:if>
-	<s:if test="hasUploads()">
-	    <s:set var="attachmentsTitle" value="'Attachments'" />
-	    <s:set var="uploads" value="%{uploads}" />
-	    <%@  include file="../attachments/fileUploads.jsp" %>
-	</s:if>
+      </s:if>
+      <s:if test="hasUploads()">
+	  <s:set var="attachmentsTitle" value="'Attachments'" />
+	  <s:set var="uploads" value="%{uploads}" />
+	  <%@  include file="../attachments/fileUploads.jsp" %>
+      </s:if>
   </div>
 </s:form>
 <s:if test="hasEmailLogs()">

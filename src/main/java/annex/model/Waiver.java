@@ -1734,6 +1734,7 @@ public class Waiver extends CommonInc implements java.io.Serializable{
 	logger.debug(qq);
 	try{
 	    pstmt = con.prepareStatement(qq);
+	    System.err.println(" update "+qq);
 	    int jj=1;
 	    back = setParamsForUpdate(pstmt);
 	    pstmt.setString(25, id);
@@ -1742,14 +1743,16 @@ public class Waiver extends CommonInc implements java.io.Serializable{
 		qq = qq2;
 		if(debug){
 		    logger.debug(qq);
-		}						
+		}
+		System.err.println(" enity "+qq);
 		pstmt2 = con.prepareStatement(qq);
 		pstmt2.setString(1, add_entity_id);								
 		pstmt2.setString(2, id);
 		pstmt2.executeUpdate();
 	    }
 	    if(!add_addr_ids.equals("")){
-		qq = qq3;								
+		qq = qq3;
+		System.err.println(" addr "+qq);
 		qq += "("+add_addr_ids+")";
 		if(debug){
 		    logger.debug(qq);
