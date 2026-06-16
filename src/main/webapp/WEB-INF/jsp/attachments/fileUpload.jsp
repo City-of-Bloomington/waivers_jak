@@ -1,10 +1,11 @@
 <%@  include file="../gui/header.jsp" %>
 <!--
- * @copyright Copyright (C) 2014-2015 City of Bloomington, Indiana. All rights reserved.
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.txt
- * @author W. Sibo <sibow@bloomington.in.gov>
- *
-	-->
+     * @copyright Copyright (C) 2014-2015 City of Bloomington, Indiana. All rights reserved.
+     * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.txt
+     * @author W. Sibo <sibow@bloomington.in.gov>
+     *
+
+-->
 <h1>Upload New File</h1>
 <s:if test="hasActionErrors()">
     <div class="errors">
@@ -21,7 +22,6 @@
     <s:if test="hasTask()">
 	<s:hidden name="task_id" value="%{task_id}" />
     </s:if>
-
     <p>* indicate a required field</p>
     <table>
 	<caption>Upload File</caption>
@@ -50,11 +50,12 @@
 	<tr>
 	    <td>Notes:</td>
 	    <td><s:textarea name="notes" value="%{notes}" row="5" cols="50" /></td>
-	</tr>		
+	</tr>
 	<tr>
 	    <td>
-		<s:submit name="action" type="button" value="Save" /></td>
-	</tr>			
+		<s:submit name="action" type="button" value="Save" />
+	    </td>
+	</tr>
     </table>
 </s:form>
 <s:if test="uploads != null">

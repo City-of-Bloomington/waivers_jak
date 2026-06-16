@@ -31,10 +31,14 @@
       <result name="error">/Login</result>			
       <result name="login">/Login</result>	   
     </action>
-    
     <action name="doUpload" 
 	    class="annex.action.UploadAction" 
 	    method="execute">
+      <interceptor-ref name="basicStack"/>
+      <interceptor-ref name="actionFileUpload">
+      </interceptor-ref>
+      <interceptor-ref name="validation"/>
+      <interceptor-ref name="workflow"/>
       <result name="input">/WEB-INF/jsp/attachments/fileUpload.jsp</result>		
       <result name="error">/WEB-INF/jsp/attachments/fileUpload.jsp</result>
       <result name="success">/WEB-INF/jsp/attachments/fileUpload.jsp</result>

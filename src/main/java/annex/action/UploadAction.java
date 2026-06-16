@@ -5,29 +5,41 @@
  */
 package annex.action;
 
-import java.io.File;
+// import java.io.File;
 import java.util.*;
-import java.nio.file.*;
-import org.apache.commons.io.FileUtils;
+import java.io.File;
+//import java.nio.file.*;
+// import org.apache.commons.io.FileUtils;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.activation.*;
 import jakarta.servlet.ServletContext;
+import org.apache.commons.fileupload2.core.DiskFileItem;
+import org.apache.commons.fileupload2.core.DiskFileItemFactory;
+import org.apache.commons.fileupload2.core.FileItem; // For Commons FileUpload 2
+import org.apache.commons.fileupload2.jakarta.servlet6.JakartaServletFileUpload;
+import org.apache.commons.fileupload2.jakarta.servlet6.*;
+import org.apache.commons.io.*;
+import org.apache.struts2.action.UploadedFilesAware; 
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
-import org.apache.tika.Tika;
+// import org.apache.tika.Tika;
+import java.io.InputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
 import annex.list.*;
 import annex.utils.*;
 
-public class UploadAction extends TopAction{
+public class UploadAction extends TopAction implements UploadedFilesAware{
 
     static final long serialVersionUID = 270L;
     static Logger logger = LogManager.getLogger(UploadAction.class);			
     String waiver_id="", task_id="", notes="", hardcopy_location="",
 	type="";
-    private File file;
     private String contentType, saveDir="";
     private String filename="";
     private String upload="";
@@ -36,20 +48,22 @@ public class UploadAction extends TopAction{
     static private Map<String, String> mimeTypes = null;
     private Waiver waiver = null;
     private Task task = null;
-    @StrutsParameter(depth=1) 
-    public void setUpload(File file) {
+    private UploadedFile file;
+    private String originalName=null;
+    
+    @StrutsParameter(depth=2) 
+    public void setUpload(UploadedFile file) {
 	this.file = file;
     }
+    @StrutsParameter(depth=2)
+    public void setUploadContentType(String contentType) {
+        this.contentType = contentType;
+    }    
     @StrutsParameter(depth=1)
     public void setSaveDir(String str) {
 	if(str != null)
 	    saveDir = str;
     }		
-    @StrutsParameter(depth=1)	
-    public void setUploadContentType(String contentType) {
-	this.contentType = contentType;
-	System.err.println(" content type "+contentType);
-    }
     @StrutsParameter(depth=1)	
     public void setUploadFileName(String val) {
 	if(val != null)
@@ -59,7 +73,16 @@ public class UploadAction extends TopAction{
     @StrutsParameter(depth=1)
     public void setAction(String val){
 	action = val;
-    }	
+    }
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        if (!uploadedFiles.isEmpty()) {
+          this.file = uploadedFiles.get(0);
+          this.filename = file.getName();
+          this.contentType = file.getContentType();
+          this.originalName = file.getOriginalName();
+        }
+    }    
     public String execute() {
 	String ret = INPUT;		
 	String back = doPrepare();
@@ -75,8 +98,6 @@ public class UploadAction extends TopAction{
 	    }
 	}		
 	if(action.equals("Save")){
-	    logger.debug(" action upload save ");
-	    System.err.println(" save file ");
 	    if(!hasType()){
 		back = "You need to choose file type ";
 		addActionError(back);
@@ -84,28 +105,31 @@ public class UploadAction extends TopAction{
 	    else if(file != null){
 		try{
 		    //
-		    Tika tika = new Tika();
-		    String mimeType = tika.detect(file);
-		    String file_ext = "";
-		    if(mimeTypes.containsKey(mimeType)){
-			file_ext = mimeTypes.get(mimeType);
+		    String file_ext = "pdf";		    
+		    if(originalName.indexOf(".") > 0){
+			file_ext = originalName.substring(originalName.indexOf(".")+1);
+		    }
+		    if(contentType != null){
+			if(mimeTypes.containsKey(contentType)){
+			    file_ext = mimeTypes.get(contentType);
+			}
 		    }
 		    FileUpload upload = new FileUpload();
 		    upload.setWaiver_id(waiver_id);
 		    upload.setTask_id(task_id);
 		    upload.setType(type);
 		    upload.setNotes(notes);
-		    upload.setHardcopy_location(hardcopy_location);
 		    String new_file_name = upload.genNewFileName(file_ext);
-		    upload.setOld_file_name(filename);
+		    upload.setOld_file_name(originalName);
 		    upload.setUser_id(user.getId());
 		    String year = Helper.getThisYear();
 		    //
 		    // String filePath = ctx.getRealPath("/") +"WEB-INF"+File.separator+"files"+File.separator+year+File.separator;
 		    //
-		    String filePath = server_path+File.separator+year+File.separator;
-		    File new_file = new File(filePath, new_file_name);
-		    FileUtils.copyFile(file, new_file);
+		    String filePath = server_path+File.separator+year+File.separator+new_file_name;
+		    File destinationFile = new File(filePath);
+		    File tempFile = (File) file.getContent();
+		    FileUtils.copyFile(tempFile, destinationFile);		    
 		    back = upload.doSave();
 		    if(back.equals("")){
 			ret = SUCCESS;
