@@ -6,8 +6,6 @@ package annex.action;
  */
 import java.util.*; 
 import jakarta.servlet.ServletContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.action.ServletContextAware;
 import org.apache.struts2.action.SessionAware;  
@@ -18,7 +16,8 @@ import annex.model.*;
 import annex.list.*;
 import annex.utils.*;
 
-public class WelcomeAction extends ActionSupport implements SessionAware, ServletContextAware{
+public class WelcomeAction extends TopAction 
+    implements SessionAware, ServletContextAware{
     private static final long serialVersionUID = 330L;
     static Logger logger = LogManager.getLogger(WelcomeAction.class);
     private ServletContext ctx;
@@ -29,7 +28,6 @@ public class WelcomeAction extends ActionSupport implements SessionAware, Servle
     // if we have global list we can set them here and will
     // be available for all pages
     //
-    @Override
     public String execute(){
 	String ret = SUCCESS;
 	doPrepare();
@@ -38,14 +36,6 @@ public class WelcomeAction extends ActionSupport implements SessionAware, Servle
 	}
 	return ret;
     }
-    void doPrepare(){
-	String back = "";
-	try{
-	    user = (User)sessionMap.get("user");
-	}catch(Exception ex){
-	    System.out.println(ex);
-	}		
-    }	
     @StrutsParameter(depth=1)
     public void setAction(String val){
 	action = val;

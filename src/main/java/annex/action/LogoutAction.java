@@ -7,7 +7,6 @@ package annex.action;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletRequest;  
-import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;  
 import org.apache.struts2.action.ServletContextAware;  
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,7 +14,8 @@ import annex.model.*;
 import annex.list.*;
 import annex.utils.*;
 
-public class LogoutAction extends ActionSupport implements ServletContextAware{
+public class LogoutAction extends TopAction 
+    implements ServletContextAware{
 
     private static boolean debug = false;
     private static final long serialVersionUID = 210L;

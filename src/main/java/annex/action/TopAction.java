@@ -9,12 +9,12 @@ import java.io.*;
 import java.text.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import com.opensymphony.xwork2.ModelDriven;
+//import com.opensymphony.xwork2.ModelDriven;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.opensymphony.xwork2.ActionSupport;
+// import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;  
 import org.apache.struts2.dispatcher.SessionMap;  
 import org.apache.struts2.action.SessionAware;
@@ -27,7 +27,8 @@ import annex.model.*;
 import annex.list.*;
 import annex.utils.*;
 
-public abstract class TopAction extends ActionSupport implements SessionAware, ServletContextAware{
+public abstract class TopAction // extends ActionSupport
+    implements SessionAware, ServletContextAware{
 
 
 
@@ -38,7 +39,15 @@ public abstract class TopAction extends ActionSupport implements SessionAware, S
     static String server_path="";
     static String city_email="", legal_username = "", utility_username="",
 	gis_username="";
+    static String LOGIN="login";
+    static String INPUT="input";    
+    static String SUCCESS="success";
+    static String ERROR="error";
+    List<String> errors = new ArrayList<>();
+    List<String> messages = new ArrayList<>();
     String action="",id="";
+
+    
     User user = null;
     ServletContext ctx;
     Map<String, Object> sessionMap;
@@ -71,7 +80,39 @@ public abstract class TopAction extends ActionSupport implements SessionAware, S
 	}
 	return user;
     }
-    
+        public String execute() throws Exception {
+	return SUCCESS;
+    }
+    public void addActionMessage(String str){
+	messages.add(str);
+    }
+    public void addActionError(String str){
+	errors.add(str);
+    }
+    public boolean hasErrors(){
+	return errors.size() > 0;
+    }
+    public boolean hasMessages(){
+	return messages.size() > 0;
+    }
+    public boolean hasActionErrors(){
+	return errors.size() > 0;
+    }
+    public boolean hasActionMessages(){
+	return messages.size() > 0;
+    }    
+    public List<String> getErrors(){
+	return errors;
+    }
+    public List<String> getMessages(){
+	return messages;
+    }
+    public List<String> getActionErrors(){
+	return errors;
+    }
+    public List<String> getActionMessages(){
+	return messages;
+    }    
     String doPrepare(){
 	String back = "";
 	try{
