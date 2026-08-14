@@ -24,8 +24,8 @@
     </head>
 <body>
     <header>
-	<h1><a href="<s:property value='#application.url'/>">Annexation Waivers</a></h1>	
-	<h3><a href="<s:property value='#application.url'/>">City of Bloomington, IN</a></h3>
+	<h1><a href="<s:property value='#application.url'/>welcome.action">Annexation Waivers</a></h1>	
+	<h3><a href="<s:property value='#application.url'/>welcome.action">City of Bloomington, IN</a></h3>
 	<s:if test="#session.user != null">
 	    <div id="div_top">
 		<ul id="ul_top">

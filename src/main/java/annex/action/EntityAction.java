@@ -22,7 +22,7 @@ public class EntityAction extends TopAction{
     static final long serialVersionUID = 315L;	
     static Logger logger = LogManager.getLogger(EntityAction.class);
     //
-    String name = "", type="", waiver_id="";
+    String name = "", title = "", type="", waiver_id="";
     Entity entity = null;
     List<Entity> entities = null;
     String entitiesTitle = "Entities";
@@ -101,6 +101,11 @@ public class EntityAction extends TopAction{
 	}
 	else if(action.equals("Edit")){
 	    //
+	    back = entity.doSelect();
+	    if(!back.isEmpty()){
+		addActionError(back);
+		logger.error(back);
+	    }
 	}
 	else if(!id.equals("")){
 	    ret = "view";
@@ -138,6 +143,11 @@ public class EntityAction extends TopAction{
 	    name = val;
     }
     @StrutsParameter(depth=1)
+    public void setTitle(String val){
+	if(val != null)
+	    title = val;
+    }    
+    @StrutsParameter(depth=1)
     public void setWaiver_id(String val){
 	if(val != null)
 	    waiver_id = val;
@@ -161,7 +171,8 @@ public class EntityAction extends TopAction{
     public String getName(){
 	return entity.getName();
     }
-    public String getTitle(){
+    // avoid title
+    public String getOwner_title(){
 	return entity.getTitle();
     }
     public boolean getIsBusiness(){

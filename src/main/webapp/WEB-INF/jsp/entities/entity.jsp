@@ -50,7 +50,7 @@
 	</tr>
 	<tr>
 	    <td>Title </td>
-	    <td><s:textfield name="entity.title" value="%{title}" size="30" maxlength="30" placeholder="Owner, Agent, Manager, etc" /> </td>
+	    <td><s:textfield name="entity.title" value="%{owner_title}" size="30" maxlength="30" placeholder="Owner, Agent, Manager, etc" /> </td>
 	</tr>		
 	<tr>
 	    <td>Is Business? </td>
@@ -60,7 +60,7 @@
 	    <td>Is Trust? </td>
 	    <td><s:checkbox name="entity.isTrust" value="%{isTrusts}" /> Yes </td>			
 	</tr>
-	<s:if test="entity.hasWaiver()">
+	<s:if test="hasWaiver()">
 	    <tr>
 		<td>Related Waiver </td>
 		<td><a href="<s:property value='#application.url'/>waiver.action?id=<s:property value='waiver_id' />"> Back To Waiver</a>	

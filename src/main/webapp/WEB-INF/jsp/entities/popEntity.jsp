@@ -26,7 +26,7 @@ function updateOpener(){
  }
  // for an existing waiver
  function refreshOpener(){
-     window.opener.location="<s:property value='application_url' />waiver.action?id=<s:property value='entity.waiver_id' />&action=Edit";
+     window.opener.location="<s:property value='application_url' />waiver.action?id=<s:property value='waiver_id' />&action=Edit";
      window.close();
  }
 </script>
@@ -56,7 +56,7 @@ function updateOpener(){
 <s:form action="entity" id="form_id" method="post" >
     <s:hidden name="action2" id="action2" value="" />
     <s:hidden name="type" value="popup" />
-    <s:if test="entity.waiver_id != ''">
+    <s:if test="waiver_id != ''">
 	<s:hidden name="entity.waiver_id" value="%{waiver_id}" />
 	<s:hidden name="entity.id" value="%{id}" id="entity_id" />
 	<s:hidden name="entity.name2" value="%{name}" id="entity_name" />
@@ -64,7 +64,7 @@ function updateOpener(){
 
     <p>* Name is required. <br />
 	<table>
-	<s:if test="entity.id == ''">
+	<s:if test="id == ''">
 	    <caption>New Owner, Business or Trust</caption>
 	</s:if>
 	<s:else>

@@ -11,13 +11,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;  
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.apache.struts2.action.SessionAware;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.model.*;
 import annex.list.*;
 import annex.utils.*;
 
-public class SearchAction extends TopAction{
+public class SearchAction extends TopAction implements SessionAware{
 
     static final long serialVersionUID = 215L;	
     static Logger logger = LogManager.getLogger(SearchAction.class);
@@ -25,7 +26,7 @@ public class SearchAction extends TopAction{
     boolean outputCsv = false;
     List<Waiver> waivers = null;
     WaiverList waiverList = null;
-    String waiversTitle = " Most recent Waivers";		
+    String waiversTitle = " Most recent Waivers";
     public String execute(){
 	String ret = SUCCESS;
 	String back = doPrepare();

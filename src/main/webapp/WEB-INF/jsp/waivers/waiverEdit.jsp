@@ -60,9 +60,9 @@
 		</s:iterator>
 	    </table>
 	</s:if>
+	<b>Entities</b><br />	
 	<p>Note: To add a new entity click on 'New Entity' or to add an existing entity use 'Search Entity' </p>
-	<b>Add Entity</b><br />
-	<li><button onclick="windowOpener('<s:property value='#application.url' />entity.action?type=popup&waiver_id=<s:property value='waiver.id' />','_blank', 'menubar=no,toolbar=no,location=no,toolbar=no,scrollbars=no,resizable=yes,top=500,left=500,width=500,height=500');return false;">New Entity</button>	</li>
+	<li><a href="<s:property value='#application.url'/>entity.action?waiver_id=<s:property value='id' />"> Add New Entity  </a> </li>
 	<b>To search for an existing entity, start typing the name to pick from the list.</b><br />
 	<b>Search Entity</b>						
 	<li><s:textfield name="waiver.entityName" value="" size="25" maxlength="80" id="entity_name" /> Entity ID:<s:textfield name="waiver.addEntityId" value="" size="10" maxlength="10" id="entity_id" /> 

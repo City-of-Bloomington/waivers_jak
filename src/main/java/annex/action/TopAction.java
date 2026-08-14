@@ -9,17 +9,14 @@ import java.io.*;
 import java.text.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-//import com.opensymphony.xwork2.ModelDriven;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-// import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;  
 import org.apache.struts2.dispatcher.SessionMap;  
 import org.apache.struts2.action.SessionAware;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
-// import org.apache.struts2.action.ParameterAware;
 import org.apache.struts2.action.ServletContextAware;  
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -80,7 +77,7 @@ public abstract class TopAction // extends ActionSupport
 	}
 	return user;
     }
-        public String execute() throws Exception {
+    public String execute() throws Exception {
 	return SUCCESS;
     }
     public void addActionMessage(String str){
@@ -112,16 +109,21 @@ public abstract class TopAction // extends ActionSupport
     }
     public List<String> getActionMessages(){
 	return messages;
-    }    
+    }
+    String doPrepare(Map<String, Object>  map){
+	sessionMap = map;
+	return doPrepare();
+    }
     String doPrepare(){
-	String back = "";
-	try{
-	    user = (User)sessionMap.get("user");
-	    if(user == null){
-		back = LOGIN;
-	    }
-	    if(url.equals("")){
-		String val = ctx.getInitParameter("url");
+	String back = "";	
+	if(sessionMap != null){
+	    try{
+		user = (User)sessionMap.get("user");
+		if(user == null){
+		    back = LOGIN;
+		}
+		if(url.equals("")){
+		    String val = ctx.getInitParameter("url");
 		if(val != null)
 		    url = val;
 		val = ctx.getInitParameter("addrUrl");
@@ -145,15 +147,14 @@ public abstract class TopAction // extends ActionSupport
 		val = ctx.getInitParameter("activeMail");
 		if(val != null && val.equals("true"))
 		    activeMail = true;								
+		}
+	    }catch(Exception ex){
+		System.out.println(ex);
 	    }
-	}catch(Exception ex){
-	    System.out.println(ex);
-	}		
+	}
 	return back;
-    }		
-    public void withSession(Map<String, Object> map) {
-        sessionMap=map;
     }
+
 
 }
 

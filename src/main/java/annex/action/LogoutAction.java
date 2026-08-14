@@ -4,6 +4,7 @@ package annex.action;
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.txt
  * @author W. Sibo <sibow@bloomington.in.gov>
  */
+import java.util.Map;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletRequest;  
@@ -14,12 +15,10 @@ import annex.model.*;
 import annex.list.*;
 import annex.utils.*;
 
-public class LogoutAction extends TopAction 
-    implements ServletContextAware{
+public class LogoutAction extends TopAction {
 
     private static boolean debug = false;
     private static final long serialVersionUID = 210L;
-    private ServletContext ctx;	
     @Override
     public String execute(){
 	try{
@@ -39,7 +38,11 @@ public class LogoutAction extends TopAction
     @Override  	
     public void withServletContext(ServletContext ctx) {  
         this.ctx = ctx;  
-    }      
+    }
+    @Override  
+    public void withSession(Map<String, Object> map) {  
+	sessionMap=map;  
+    }
 }
 
 
