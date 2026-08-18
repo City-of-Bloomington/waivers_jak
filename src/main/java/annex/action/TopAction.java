@@ -116,7 +116,6 @@ public abstract class TopAction // extends ActionSupport
     }
     String doPrepare(){
 	String back = "";	
-	if(sessionMap != null){
 	    try{
 		user = (User)sessionMap.get("user");
 		if(user == null){
@@ -151,7 +150,6 @@ public abstract class TopAction // extends ActionSupport
 	    }catch(Exception ex){
 		System.out.println(ex);
 	    }
-	}
 	return back;
     }
 

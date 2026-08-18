@@ -42,9 +42,9 @@ public class TaskAction extends TopAction{
 	    }	
 	}
 	getUser();
+	getTask();
 	if(action.equals("Save")){
 	    logger.debug(" action save ");
-	    getTask();
 	    task.setClaimedByIfNotSet(user.getId());
 	    back = task.doSave();
 	    if(!back.equals("")){
@@ -63,7 +63,6 @@ public class TaskAction extends TopAction{
 	}				
 	else if(action.equals("Save Changes")){
 	    logger.debug(" action update ");
-	    getTask();
 	    task.setClaimedByIfNotSet(user.getId());	 // we needed for actions					
 	    back = task.doUpdate();
 	    if(!back.equals("")){
@@ -81,7 +80,6 @@ public class TaskAction extends TopAction{
 	}
 	else if(action.equals("Delete")){
 	    logger.debug(" action delete ");
-	    getTask();
 	    getWaiver();
 	    back = task.doDelete();
 	    if(!back.equals("")){
@@ -95,7 +93,6 @@ public class TaskAction extends TopAction{
 	}
 	else if(action.endsWith("Completed")){
 	    logger.debug(" action completed ");
-	    getTask();
 	    if(!task.isCompleted()){
 		task.setClaimedByIfNotSet(user.getId());
 		task.setCompleted(true);
@@ -154,7 +151,6 @@ public class TaskAction extends TopAction{
 	}
 	else if(action.equals("Edit")){
 	    System.err.println(" task_id "+task_id);
-	    getTask();
 	    back = task.doSelect();
 	    if(!back.equals("")){
 		addActionError(back);
@@ -164,11 +160,9 @@ public class TaskAction extends TopAction{
 	}
 	else if(!task_id.equals("")){
 	    ret = "view";
-	    getTask();
 	    getWaiver();
 	}
 	else{
-	    getTask();
 	    getWaiver();
 	}
 	return ret;
@@ -232,6 +226,7 @@ public class TaskAction extends TopAction{
 	if(val != null && !val.equals(""))		
 	    task_id = val;
     }
+    
     @StrutsParameter(depth=1)
     public String getTask_id(){
 	if(task_id.equals("") && task != null){
@@ -244,7 +239,6 @@ public class TaskAction extends TopAction{
 	if(val != null && !val.equals(""))		
 	    waiver_id = val;
     }
-    @StrutsParameter(depth=1)    
     public String getWaiver_id(){
 	if(waiver_id.equals("") && waiver != null){
 	    waiver_id = waiver.getId();
@@ -262,6 +256,8 @@ public class TaskAction extends TopAction{
 	return task.getCompleted_date();
     }
     public String getWaiverNum(){
+	if(waiver == null)
+	    getWaiver();
 	return waiver.getWaiverNum();
     }
     public String getBasicInfo(){

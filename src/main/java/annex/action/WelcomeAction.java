@@ -32,7 +32,8 @@ public class WelcomeAction extends TopAction
 	String ret = SUCCESS;
 	doPrepare();
 	if(user == null){
-	    ret = LOGIN;
+	    getUser();
+	    // ret = LOGIN;
 	}
 	return ret;
     }

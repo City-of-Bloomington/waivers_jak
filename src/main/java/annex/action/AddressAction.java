@@ -176,6 +176,7 @@ public class AddressAction extends TopAction{
 	logger.debug(" do verify");
 	if(address != null && address.canVerify()){
 	    AddressList adl = new AddressList();
+	    System.err.println(" address to verify "+address.getAddressToVerify());
 	    back = adl.findSimilarAddr(addrUrl, address.getAddressToVerify());
 	    if(back.equals("")){
 		List<Address> addrs = adl.getAddresses();

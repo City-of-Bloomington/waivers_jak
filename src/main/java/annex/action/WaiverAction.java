@@ -358,7 +358,13 @@ public class WaiverAction extends TopAction{
     }
     public boolean isTrust(){
 	return waiver.isTrust();
-    }        
+    }
+    public boolean hasAddresses(){
+	return waiver.hasAddresses();
+    }
+    public List<Address> getAddresses(){
+	return waiver.getAddresses();
+    }
     public boolean hasGisNotes(){
 	return waiver.hasGisNotes();
     }

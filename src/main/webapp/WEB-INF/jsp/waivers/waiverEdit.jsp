@@ -76,7 +76,7 @@
 		    <tr>
 			<td><s:property value="addressInfo" /></td>
 			<td><a href="<s:property value='#application.url' />address.action?id=<s:property value='id' />&action=Edit">Edit</a></td>
-			<td><a href="<s:property value='#application.url'/>waiver.action?addressId=<s:property value='id' />&id=<s:property value='waiver.id' />&action=Remove+Address">Remove</a></td>
+			<td><a href="<s:property value='#application.url'/>waiver.action?addressId=<s:property value='id' />&id=<s:property value='waiver_id' />&action=Remove+Address">Remove</a></td>
 		    </tr>
 		</s:iterator>
 	    </table>

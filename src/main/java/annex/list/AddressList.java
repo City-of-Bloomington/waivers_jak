@@ -149,6 +149,8 @@ public class AddressList extends CommonInc{
 	String urlStr = url+"?";
 	String query="format=json;queryType=address;query=";
 	logger.debug(" find similar addresses ");
+	System.err.println(" addr "+addr);
+	System.err.println(" url "+url);
 	if(addr == null || addr.equals("")){
 	    back = " No address set ";
 	    return back;
@@ -159,6 +161,7 @@ public class AddressList extends CommonInc{
 	    query += java.net.URLEncoder.encode(addr, "UTF-8");
 	    query +="+Bloomington;";
 	    urlStr += query;
+	    System.err.println("query "+query);
 	    HttpGet httpget = new HttpGet(urlStr);
 	    if(debug){
 		logger.debug(urlStr);

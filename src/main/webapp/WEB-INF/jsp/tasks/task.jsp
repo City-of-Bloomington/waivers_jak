@@ -18,7 +18,7 @@
 <h1>Waiver Task</h1>
 <s:form action="task" id="form_id" method="post">
     <s:hidden name="action2" id="action2" value="" />
-    <h2>Perform Task: <s:property value="task.name" /></h2>
+    <h2>Perform Task: <s:property value="name" /></h2>
     <s:hidden name="task.task_id" value="%{task_id}" />
     <s:hidden name="task.step_id" value="%{step_id}" />
     <s:hidden name="waiver_id" value="%{waiver_id}" />
