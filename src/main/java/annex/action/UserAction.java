@@ -136,14 +136,50 @@ public class UserAction extends TopAction{
 	if(val != null && !val.equals(""))		
 	    id = val; // id also
     }
-    @StrutsParameter
+
     public String getId(){
 	if(id.equals("") && user != null){
 	    id = user.getId();
 	}
 	return id;
     }
-    @StrutsParameter
+    public String getFullName(){
+	String str = "";
+	if(user != null){
+	   str = user.getFullName();
+	}
+	return str;
+    }
+    public String getUsername(){
+	String str = "";
+	if(user != null){
+	   str = user.getUsername();
+	}
+	return str;
+    }
+    public boolean isActive(){
+	return user.isActive();
+    }
+    public boolean isInactive(){
+	return user.isInactive();
+    }    
+    public boolean isActiveMail(){
+	return user.hasActiveMail();
+    }    
+   public String getRole(){
+	String str = "";
+	if(user != null){
+	   str = user.getRole();
+	}
+	return str;
+    }
+   public String getDept(){
+	String str = "";
+	if(user != null){
+	   str = user.getDept();
+	}
+	return str;
+    }        
     public String getYear(){
 	if(id.equals("") && user != null){
 	    id = user.getId();

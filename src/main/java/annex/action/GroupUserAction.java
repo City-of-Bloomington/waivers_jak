@@ -32,6 +32,7 @@ public class GroupUserAction extends TopAction{
     public String execute(){
 	String ret = SUCCESS;
 	String back = doPrepare();
+	getGroupUser();
 	if(!back.equals("")){
 	    try{
 		HttpServletResponse res = ServletActionContext.getResponse();
@@ -64,9 +65,6 @@ public class GroupUserAction extends TopAction{
 		addActionMessage("Removed Successfully");
 	    }
 	}
-	else{		
-	    getGroupUser();
-	}
 	return ret;
     }
     @StrutsParameter(depth=1)
@@ -76,12 +74,29 @@ public class GroupUserAction extends TopAction{
 	}		
 	return groupUser;
     }
+    public String getGroup_id(){
+	return groupUser.getGroup_id();
+    }
     @StrutsParameter(depth=1)
     public void setGroupUser(GroupUser val){
 	if(val != null){
 	    groupUser = val;
 	}
     }
+    public boolean hasOtherUsers(){
+	return groupUser.hasOtherUsers();
+    }
+    @StrutsParameter(depth=2)
+    public List<User> getOther_users(){
+	return groupUser.getOther_users();
+    }
+    public boolean hasGroupUsers(){
+	return groupUser.hasGroupUsers();
+    }    
+    @StrutsParameter(depth=2)
+    public List<User> getGroup_users(){
+	return groupUser.getGroup_users();
+    }    
     @StrutsParameter(depth=0) 
     public String getGroupUsersTitle(){
 	return groupUsersTitle;

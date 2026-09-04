@@ -36,27 +36,27 @@
 	</s:if>
 	<tr>
 	    <th>Username</th>
-	    <td><s:textfield name="user.username" size="10" value="%{user.username}" /></td>
+	    <td><s:textfield name="user.username" size="10" value="%{username}" /></td>
 	</tr>
 	<tr>
 	    <th>Full Name </th>
-	    <td><s:textfield name="user.fullName" value="%{user.fullName}" size="30" maxlength="70" /> </td>
+	    <td><s:textfield name="user.fullName" value="%{fullName}" size="30" maxlength="70" /> </td>
 	</tr>
 	<tr>
 	    <th>Roles</th>
-	    <td><s:select name="user.role" value="%{user.role}" list="#{'View':'View Only','Edit':'Edit','Edit:Admin':'All (Admin)'}" /></td>
+	    <td><s:select name="user.role" value="%{role}" list="#{'View':'View Only','Edit':'Edit','Edit:Admin':'All (Admin)'}" /></td>
 	</tr>
 	<tr>
 	    <th>Department</th>
-	    <td><s:select name="user.dept" value="%{user.dept}" list="#{'Controller':'Controller','ITS':'ITS','Legal':'Legal','Utilities':'Utilities'}" /></td>
+	    <td><s:select name="user.dept" value="%{dept}" list="#{'Controller':'Controller','ITS':'ITS','Legal':'Legal','Utilities':'Utilities'}" /></td>
 	</tr>
 	<tr>
 	    <th>Active Email</th>
-	    <td><s:checkbox name="user.activeMail" value="%{user.activeMail}" /> Yes</td> 
+	    <td><s:checkbox name="user.activeMail" value="%{activeMail}" /> Yes</td> 
 	</tr>
 	<tr>
 	    <th>Inactive </th> 
-	    <td><s:checkbox name="user.inactive" value="%{user.inactive}" /> Yes</td>   
+	    <td><s:checkbox name="user.inactive" value="%{inactive}" /> Yes</td>   
 	</tr>
 	<tr>
 	    <td>

@@ -31,6 +31,7 @@ public class GroupNotificationAction extends TopAction{
     public String execute(){
 	String ret = SUCCESS;
 	String back = doPrepare();
+	getGroupNotification();
 	if(!back.equals("")){
 	    try{
 		HttpServletResponse res = ServletActionContext.getResponse();
@@ -64,7 +65,6 @@ public class GroupNotificationAction extends TopAction{
 	    }
 	}
 	else{		
-	    getGroupNotification();
 	    if(!id.equals("")){
 		back = groupNotification.doSelect();
 		if(!back.equals("")){
@@ -97,6 +97,18 @@ public class GroupNotificationAction extends TopAction{
     public void setAction2(String val){
 	if(val != null && !val.equals(""))		
 	    action = val;
+    }
+    public String getGroup_id(){
+	return groupNotification.getGroup_id();
+    }
+    public String getId(){
+	return groupNotification.getId();
+    }    
+    public String getStep_id(){
+	return groupNotification.getStep_id();
+    }
+    public boolean getInactive(){
+	return groupNotification.getInactive();
     }
     public boolean hasGroupNotifications(){
 	getGroupNotifications();

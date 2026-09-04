@@ -52,7 +52,7 @@
       </tr>
       <tr>
 	  <td>
-	      <s:if test="group.id == ''">
+	      <s:if test="id == ''">
 		  <s:submit name="action" type="button" value="Save"/></dd>
 	      </s:if>
 	      <s:else>

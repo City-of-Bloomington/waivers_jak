@@ -34,7 +34,7 @@
 		    <table>
 			<caption>Add New Users to this group</caption>
 			<tr><td>*</td><td>Name</td><td>Dept</td></tr>
-			<s:iterator var="one" value="groupUser.other_users">
+			<s:iterator var="one" value="other_users">
 			    <tr>
 				<td><input type="checkbox" name="groupUser.add_users" value="<s:property value='id' />" /></td>
 				<td><s:property value="fullName" /></td>
@@ -42,7 +42,7 @@
 			    </tr>
 			</s:iterator>
 			<tr>
-			    <td>
+			    <td colspan="3">
 				<s:submit name="action" type="button" value="Add to this group"/>
 			    </td>
 			</tr>
@@ -65,8 +65,8 @@
 			    </tr>
 			</s:iterator>
 			<tr>
-			    <td>
-				<s:submit name="action" type="button" value="Remove from this group" class="fn1-btn"/>
+			    <td colspan="3">
+				<s:submit name="action" type="button" value="Remove from this group"/>
 			    </td>
 			</tr>
 		    </table>

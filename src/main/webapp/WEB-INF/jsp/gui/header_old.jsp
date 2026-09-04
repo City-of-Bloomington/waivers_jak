@@ -28,61 +28,61 @@
   <script type="text/javascript">
     var APPLICATION_URL = '<s:property value='#application.url' />';
   </script>
-	<style>
-	.ui-autocomplete {
-		position:absolute;
-		z-index: 1001;
-	}
-	ul.ui-autocomplete.ui-menu {
-		z-index: 1000;
-	}
-	.ui-front{
-		z-index: 1000;
-	}
-	</style>
+  <style>
+   .ui-autocomplete {
+       position:absolute;
+       z-index: 1001;
+   }
+   ul.ui-autocomplete.ui-menu {
+       z-index: 1000;
+   }
+   .ui-front{
+       z-index: 1000;
+   }
+  </style>
 </head>
 <body class="fn1-body">
-  <header class="fn1-siteHeader">
-    <div class="fn1-siteHeader-container">
-      <div class="fn1-site-title">
-        <h1 id="application_name"><a href="<s:property value='#application.url'/>">Annexation Waivers</a></h1>
-        <div class="fn1-site-location" id="location_name"><a href="<s:property value='#application.url'/>">City of Bloomington, IN</a></div>
-      </div>
-      <s:if test="#session != null && #session.user != null">
-        <div class="fn1-site-utilityBar">
-          <nav id="user_menu">
-            <div class="menuLauncher"><s:property value='#session.user.fullName' /></div>
-            <div class="menuLinks closed" style="background-color:wheat">
-							<br />
-              <a href="<s:property value='#application.url'/>logout.action">Logout</a>
-            </div>
-          </nav>
-          <s:if test="#session.user.isAdmin()">					
-						<nav id="admin_menu">
-							<div class="menuLauncher">Admin</div>
-							<div class="menuLinks closed" style="background-color:wheat">
-								<br />
-								<a href="<s:property value='#application.url'/>report.action">Reports</a>														
-								<a href="<s:property value='#application.url'/>import.action">Data Imports</a>						
-								<a href="<s:property value='#application.url'/>user.action">Users</a>
-								<a href="<s:property value='#application.url'/>group.action">Groups</a>
-								<a href="<s:property value='#application.url'/>groupUser.action">Manage Groups</a>
-								<a href="<s:property value='#application.url'/>step.action">Workflow Steps</a>
-								<a href="<s:property value='#application.url'/>workflow.action">Workflows</a>																
-							</div>
-						</nav>
-          </s:if>
-        </div>
-	  </s:if>
+    <header class="fn1-siteHeader">
+	<div class="fn1-siteHeader-container">
+	    <div class="fn1-site-title">
+		<h1 id="application_name"><a href="<s:property value='#application.url'/>">Annexation Waivers</a></h1>
+		<div class="fn1-site-location" id="location_name"><a href="<s:property value='#application.url'/>">City of Bloomington, IN</a></div>
+	    </div>
+	    <s:if test="#session != null && #session.user != null">
+		<div class="fn1-site-utilityBar">
+		    <nav id="user_menu">
+			<div class="menuLauncher"><s:property value='#session.user.fullName' /></div>
+			<div class="menuLinks closed" style="background-color:wheat">
+			    <br />
+			    <a href="<s:property value='#application.url'/>logout.action">Logout</a>
+			</div>
+		    </nav>
+		    <s:if test="#session.user.isAdmin()">					
+			<nav id="admin_menu">
+			    <div class="menuLauncher">Admin</div>
+			    <div class="menuLinks closed" style="background-color:wheat">
+				<br />
+				<a href="<s:property value='#application.url'/>report.action">Reports</a>														
+				<a href="<s:property value='#application.url'/>import.action">Data Imports</a>						
+				<a href="<s:property value='#application.url'/>user.action">Users</a>
+				<a href="<s:property value='#application.url'/>group.action">Groups</a>
+				<a href="<s:property value='#application.url'/>groupUser.action">Manage Groups</a>
+				<a href="<s:property value='#application.url'/>step.action">Workflow Steps</a>
+				<a href="<s:property value='#application.url'/>workflow.action">Workflows</a>																
+			    </div>
+			</nav>
+		    </s:if>
+		</div>
+	    </s:if>
 	</div>
 	<div class="fn1-nav1">
       <nav class="fn1-nav1-container">
-				<a href="<s:property value='#application.url'/>activeTasks.action">Active Task List</a>				
-				<a href="<s:property value='#application.url'/>waiver.action">New Waiver</a>
-				<a href="<s:property value='#application.url'/>owner.action">New Owner</a>				
-				<a href="<s:property value='#application.url'/>search.action">Search</a>
-				<a href="<s:property value='#application.url'/>importCsv.action">CSV Import</a>				
-				
+	  <a href="<s:property value='#application.url'/>activeTasks.action">Active Task List</a>				
+	  <a href="<s:property value='#application.url'/>waiver.action">New Waiver</a>
+	  <a href="<s:property value='#application.url'/>owner.action">New Owner</a>				
+	  <a href="<s:property value='#application.url'/>search.action">Search</a>
+	  <a href="<s:property value='#application.url'/>importCsv.action">CSV Import</a>				
+	  
       </nav>
     </div>
   </header>

@@ -147,10 +147,9 @@ public class AddressList extends CommonInc{
 	//
 	String back = "";
 	String urlStr = url+"?";
-	String query="format=json;queryType=address;query=";
+	// String query="format=json;queryType=address;query=";
+	String query="format=json;address=";	
 	logger.debug(" find similar addresses ");
-	System.err.println(" addr "+addr);
-	System.err.println(" url "+url);
 	if(addr == null || addr.equals("")){
 	    back = " No address set ";
 	    return back;
@@ -159,9 +158,9 @@ public class AddressList extends CommonInc{
 	ResponseHandler<String> responseHandler = new BasicResponseHandler();
 	try{
 	    query += java.net.URLEncoder.encode(addr, "UTF-8");
-	    query +="+Bloomington;";
+	    //query +="+Bloomington;";
 	    urlStr += query;
-	    System.err.println("query "+query);
+	    // System.err.println("query "+query);
 	    HttpGet httpget = new HttpGet(urlStr);
 	    if(debug){
 		logger.debug(urlStr);
@@ -174,9 +173,11 @@ public class AddressList extends CommonInc{
 	    JSONArray jArray = new JSONArray(responseBody);
 	    addresses = new ArrayList<>();
 	    for (int i = 0; i < jArray.length(); i++) {
+		
 		JSONObject jObj = jArray.getJSONObject(i);
+		// System.err.println(" obj "+jObj);
 		if(jObj.has("street_id")){
-		    String street_id = jObj.getString("street_id");
+		    Integer street_id = jObj.getInt("street_id");
 		    String street = "";
 		    String full_addr="";
 		    if(!jObj.isNull("streetAddress")){

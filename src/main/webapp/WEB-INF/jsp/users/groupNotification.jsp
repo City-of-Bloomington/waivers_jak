@@ -19,7 +19,7 @@
     <s:form action="groupNotification" id="form_id" method="post">
     <s:hidden name="action2" id="action2" value="" />
     <s:if test="id != ''">
-	<s:hidden name="groupNotification.id" value="id" />
+	<s:hidden name="groupNotification.id" value="%{id}" />
     </s:if>
     <p>If you want certain group to be Not notified, make that group as inactive</p>
     <table border="1" width="60%">

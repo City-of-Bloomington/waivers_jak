@@ -40,7 +40,7 @@
 	<s:if test="id != ''">
 	    <tr>
 		<th>ID </th>
-		<td><s:property value="step.id" /> </td>
+		<td><s:property value=" id" /> </td>
 	    </tr>
 	</s:if>		
 	<tr>
@@ -61,7 +61,7 @@
 	</tr>
 	<tr>
 	    <th>Assignment</th>
-	    <td><s:select name="step.group_id" value="%{group_id}" list="groups" listKey="id" listValue="name" headerKey="-1" headerValue="Pick group" /> </td>
+	    <td><s:select name="step.group_id" value="%{group_id}" list="groups" listKey="id" listValue="name" headerKey="-1" headerValue="Pick a group" /> </td>
 	</tr>
 	<tr>
 	    <th>Attachment Required?</th>
@@ -77,7 +77,7 @@
 	</tr>
 	<tr>
 	    <td>
-		<s:if test="step.id == ''">
+		<s:if test="id == ''">
 		    <s:submit name="action" type="button" value="Save" class="fn1-btn"/></td>
 		</s:if>
 		<s:else>

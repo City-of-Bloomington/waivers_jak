@@ -68,9 +68,6 @@ public class GroupAction extends TopAction{
 		if(!back.equals("")){
 		    addActionError(back);
 		}
-		else{
-		    logger.error(back);	
-		}
 	    }
 	}
 	return ret;
@@ -97,7 +94,7 @@ public class GroupAction extends TopAction{
     public String getName(){
 	return group.getName();
     }
-    public boolean getInactive(){
+    public boolean isInactive(){
 	return group.getInactive();
     }
 	
