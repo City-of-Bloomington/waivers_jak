@@ -53,7 +53,7 @@ public class WelcomeAction extends TopAction
     }
     @Override  
     public void withSession(Map<String, Object> map) {  
-	sessionMap=map;  
+	sessionMap = map;  
     }
     @Override  	
     public void withServletContext(ServletContext ctx) {  

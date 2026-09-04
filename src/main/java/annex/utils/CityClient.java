@@ -135,11 +135,6 @@ public class CityClient {
 		    user.setSid(sid);
 	    }
 	    verify(header_chunk, payLoad_chunk, signature, config);
-	    // byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(config.getClientSecret());
-	    // Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());	    
-	    // SecretKey secretKey = convertStringToSecretKey(config.getClientSecret());
-	    //Claims claims = decodeJWT(id_token, config.getClientSecret());
-	    // Claims claims = decodeJWT(id_token, signingKey);
 	}catch(Exception ex){
 	    System.err.println(" Error "+ex);
 	    logger.error(ex);
@@ -215,12 +210,6 @@ public class CityClient {
             .parseClaimsJws(jwt).getBody();
     return claims;
     }    
-    /**
-HMACSHA256( 
-    base64UrlEncode(header) + "." + 
-    base64UrlEncode(payload), 
-    secret)
-     */
     /**
     public static Claims decodeJWT(String jwt) {
 	//This line will throw an exception if it is not a signed JWS (as expected)
