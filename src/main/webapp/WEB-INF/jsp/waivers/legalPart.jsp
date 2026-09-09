@@ -8,7 +8,7 @@
 	</td>
     </tr>
     <tr>
-	<th>Waiver Notes </th>
+	<th>Notes </th>
 	<td><s:textarea name="waiver.notes" value="%{notes}" rows="5" cols="50" />
 	</td>
     </tr>

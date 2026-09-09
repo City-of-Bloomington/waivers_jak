@@ -9,22 +9,22 @@
     <caption>GIS Input</caption>
     <tr>
 	<th>Mapped Date </th>
-	<td><s:property value="#mappedDate" />
+	<td><s:property value="mappedDate" />
 	</td>
     </tr>
     <tr>
 	<th>In/Out City </th>
-	<td><s:property value="#inOutCity" /> 
+	<td><s:property value="inOutCity" /> 
 	</td>
     </tr>
     <tr>
 	<th>GIS Notes </th>
-	<td><s:property value="#gisNotes" />
+	<td><s:property value="gisNotes" />
 	</td>
     </tr>
     <tr>
 	<th>Waiver Notes </th>
-	<td><s:property value="%{notes}" />
+	<td><s:property value="notes" />
 	</td>
     </tr>
 </table>

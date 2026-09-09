@@ -8,17 +8,18 @@
     </tr>
     <tr>
 	<th>Recorded Date </th>
-	<td><s:textfield name="waiver.recorderDate" value="%{waiver.recorderDate}" size="10" maxlength="10" class="date" />
+	<td><s:textfield name="waiver.recorderDate" value="%{recorderDate}" size="10" maxlength="10" class="date" />
 	</td>
     </tr>
     <tr>
 	<th>Waiver Book </th>
-	<td><s:textfield name="waiver.waiverBook" size="10" maxlength="10" value="%{waiver.waiverBook}" /> Page: <s:textfield name="waiver.waiverPage" size="10" maxlength="10" value="%{waiver.waiverPage}" /> </td>
+	<td><s:textfield name="waiver.waiverBook" size="10" maxlength="10" value="%{waiverBook}" /> Page: <s:textfield name="waiver.waiverPage" size="10" maxlength="10" value="%{waiverPage}" /> </td>
     </tr>
     <tr>
+    <tr>
 	<th>Waiver Notes </th>
-	<td><s:property value="#waiver.notes" />
-	</td>
+	<td><s:textfield name="waiver.notes" size="80" maxlength="80" value="%{notes}" /></td>
+    </tr>
     </tr>
 </table>
 

@@ -72,20 +72,19 @@ public class WaiverAction extends TopAction{
 	}
 	else if(action.startsWith("Remove Entity")){
 	    logger.debug("remove entity");		
-	    getWaiver();
 	    back = waiver.doRemoveEntity();
 	    if(!back.equals("")){
 		addActionError(back);
 		logger.error(back);																
 	    }
 	    else{
-		addActionMessage("Deleted Successfully");								
+		addActionMessage("Deleted Successfully");
+		waiver.doSelect();
 		ret = "edit";
 	    }
 	}
 	else if(action.equals("Delete")){
 	    logger.debug("Delete");		
-	    getWaiver();
 	    back = waiver.doDelete();
 	    if(!back.equals("")){
 		addActionError(back);
@@ -109,18 +108,6 @@ public class WaiverAction extends TopAction{
 		ret = "view";
 	    }
 	}
-	else if(action.startsWith("Remove Entity")){ // remove owner
-	    logger.debug("remove entity");		
-	    back = waiver.doRemoveEntity();
-	    if(!back.equals("")){
-		addActionError(back);
-		logger.error(back);		
-	    }
-	    else{
-		addActionMessage("Entity removed Successfully");
-	    }
-	    ret = "edit";
-	}
 	else if(action.startsWith("Remove Addr")){ // remove owner
 	    logger.debug("remove addr");		
 	    back = waiver.doRemoveAddress();
@@ -129,6 +116,7 @@ public class WaiverAction extends TopAction{
 		logger.error(back);		
 	    }
 	    else{
+		waiver.doSelect();
 		addActionMessage("Address removed Successfully");
 	    }
 	    ret = "edit";

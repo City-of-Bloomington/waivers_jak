@@ -9,22 +9,22 @@
     <caption>Recorder Input</caption>
     <tr>
 	<th>Waiver Instrum. # </th>
-	<td><s:property value="#waiverInstrumentNum" />
+	<td><s:property value="waiverInstrumentNum" />
 	</td>
     </tr>
     <tr>
 	<th>Waiver Book/Page </th>
-	<td><s:property value="#waiverBookPage" />
+	<td><s:property value="waiverBookPage" />
 	</td>
     </tr>
     <tr>
 	<th>Recorded Date </th>
-	<td><s:property value="#recorderDate" />
+	<td><s:property value="recorderDate" />
 	</td>
     </tr>
     <tr>
 	<th>Waiver Notes </th>
-	<td><s:property value="#notes" />
+	<td><s:property value="notes" />
 	</td>
     </tr>
 </table>

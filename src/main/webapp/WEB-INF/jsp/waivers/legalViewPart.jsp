@@ -9,11 +9,11 @@
     <caption>Legal Input</caption>
     <tr>
 	<th>Signed Date </th>
-	<td><s:property value="#signedDate" />
+	<td><s:property value="%{signedDate}" />
 	</td>
     </tr>
     <tr>
-	<th>Waiver Notes </th>
+	<th>Notes </th>
 	<td><s:property value="%{notes}" />
 	</td>
     </tr>

@@ -184,6 +184,7 @@ public class WaiverRtf extends TopServlet {
 	    }
 	}
     }
+
     void writeWaiver(Document document,
 		     Waiver waiver,
 		     List<Entity> owners,
@@ -241,101 +242,59 @@ public class WaiverRtf extends TopServlet {
 	    pp.add(phrase);
 	    document.add(pp);
 	    //
-	    int withs[] = {30,70};
-	    Table table = new Table(2);
-	    table.setBorder(5);
-	    // table.setPadding(3);
-	    // table.getDefaultCell().setBorder(1);
-	    table.setWidth(100);
-	    table.setWidths(withs);
-	    table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-	    table.getDefaultCell().setVerticalAlignment(Element.ALIGN_TOP);						
+	    pp = new Paragraph();
+	    pp.setIndentationLeft(0);
+	    pp.setFirstLineIndent(pp_indent);
+
 	    phrase = new Phrase();
-	    ch = new Chunk("Service Address:",fntu);
-	    phrase.add(ch);						
-	    RtfCell cell = new RtfCell(phrase);
-	    cell.setVerticalAlignment(Element.ALIGN_TOP);
-	    table.addCell(cell);
+	    ch = new Chunk("Service Address: ",fntu);
+	    phrase.add(ch);
+	    ch = new Chunk(waiver.getAddressInfo(),fnt);	    
+	    pp.add(phrase);
+	    //
 
 	    //
 	    phrase = new Phrase();
-	    ch = new Chunk(waiver.getAddressInfo(),fnt);
-	    phrase.add(ch);
-	    cell = new RtfCell(phrase);
-	    cell.setVerticalAlignment(Element.ALIGN_TOP);
-	    // cell.setBorder(0);
-	    table.addCell(cell);						
-	    //
-	    phrase = new Phrase();
-	    ch = new Chunk("Legal Description:",fntu);
+	    ch = new Chunk("Legal Description: ",fntu);
 	    phrase.add(ch);						
-	    cell = new RtfCell(phrase);
-	    cell.setVerticalAlignment(Element.ALIGN_TOP);
-	    // cell.setBorder(0);
-	    table.addCell(cell);						
-	    //
-	    phrase = new Phrase();
+
 	    ch = new Chunk(waiver.getLegalDescription(),fnt);
 	    phrase.add(ch);
-	    cell = new RtfCell(phrase);
-	    cell.setVerticalAlignment(Element.ALIGN_TOP);
-	    // cell.setBorder(0);
-	    table.addCell(cell);
+	    pp.add(phrase);
 	    //
 	    phrase = new Phrase();
 	    ch = new Chunk("Deed Instrument Nos.:",fntu);
 	    phrase.add(ch);
-	    cell = new RtfCell(phrase);
-	    cell.setVerticalAlignment(Element.ALIGN_TOP);
-	    // cell.setBorder(0);
-	    table.addCell(cell);
-	    //
-	    phrase = new Phrase();
+
 	    ch = new Chunk(waiver.getDeedInstrumentNum(),fnt);
 	    phrase.add(ch);
-	    cell = new RtfCell(phrase);
-	    cell.setVerticalAlignment(Element.ALIGN_TOP);
-	    // cell.setBorder(0);
-	    table.addCell(cell);
+
+	    pp.add(phrase);
 	    //
 	    String str="", str2 = waiver.getParcelPin();
 	    if(str2 != null && !str2.equals("")){
-		str = "Parcel Pin #:";
+		str = "Parcel Pin #: ";
 		phrase = new Phrase();
 		ch = new Chunk(str,fntu);
 		phrase.add(ch);
-		cell = new RtfCell(phrase);
-		cell.setVerticalAlignment(Element.ALIGN_TOP);
-		// cell.setBorder(0);
-		table.addCell(cell);
-		phrase = new Phrase();
+
 		ch = new Chunk(str2,fnt);
 		phrase.add(ch);
-		cell = new RtfCell(phrase);
-		cell.setVerticalAlignment(Element.ALIGN_TOP);
-		// cell.setBorder(0);
-		table.addCell(cell);
+		pp.add(phrase);
 	    }
 	    str2 = waiver.getParcelTaxId();
 	    if(str2 != null && !str2.equals("")){
-		str = "Parcel Tax ID #:";
+		str = "Parcel Tax ID #: ";
 		phrase = new Phrase();
 		ch = new Chunk(str,fntu);
 		phrase.add(ch);
-		cell = new RtfCell(phrase);
-		cell.setVerticalAlignment(Element.ALIGN_TOP);
-		//cell.setBorder(0);
-		table.addCell(cell);
-		phrase = new Phrase();
+
 		ch = new Chunk(str2,fnt);
 		phrase.add(ch);
-		cell = new RtfCell(phrase);
-		cell.setVerticalAlignment(Element.ALIGN_TOP);
-		// cell.setBorder(0);
-		table.addCell(cell);					
+		pp.add(phrase);
 	    }
 	    //
-	    document.add(table);
+	    document.add(pp);
 	    //
 	    // monroe table
 	    //
@@ -350,7 +309,7 @@ public class WaiverRtf extends TopServlet {
 	    ch = new Chunk("STATE OF INDIANA",fnt);
 	    phrase = new Phrase();
 	    phrase.add(ch);
-	    cell = new RtfCell(phrase);
+	    RtfCell cell = new RtfCell(phrase);
 	    cell.setBorder(Rectangle.NO_BORDER);
 	    ssTable.addCell(cell);
 	    //
@@ -389,43 +348,7 @@ public class WaiverRtf extends TopServlet {
 	    cell.setBorder(Rectangle.NO_BORDER);
 	    ssTable.addCell(cell);
 						
-	    // old
-	    /**
-	       Paragraph pss = new Paragraph();
-	       pss.setIndentationLeft(0);
-	       phrase = new Phrase();
-	       ch = new Chunk("STATE OF INDIANA    )\n",fnt);
-	       phrase.add(ch);
-	       pss.add(phrase);
-	       // cell = new RtfCell(phrase);
-	       // cell.setBorder(0);
-	       // ssTable.addCell(cell);
-	       //						
-	       // phrase = new Phrase();
-	       // ch = new Chunk("      )\n",fnt);
-	       // phrase.add(ch);
-	       // pss.add(phrase);
-	       // cell = new RtfCell(phrase);
-	       // cell.setBorder(Rectangle.NO_BORDER);
-	       // ssTable.addCell(cell);
-						
-	       phrase = new Phrase();
-	       ch = new Chunk(" ",fnt);
-	       phrase.add(ch);
-	       pss.add(phrase);
-						
-	       phrase = new Phrase();
-	       ch = new Chunk("                        ) SS:\n",fnt);
-	       phrase.add(ch);
-	       pss.add(phrase);						
 
-	       //
-	       // third row
-	       ch = new Chunk("COUNTY OF MONROE)\n",fnt);
-	       phrase = new Phrase();
-	       phrase.add(ch);
-	       pss.add(phrase);
-	    */
 
 	    Paragraph pnote = new Paragraph();
 	    pnote.setIndentationLeft(0);
@@ -529,6 +452,7 @@ public class WaiverRtf extends TopServlet {
 	    logger.error(ex);
 	}
     }
+    
     void writeBusinessWaiver(Document document,
 			     Waiver waiver,
 			     Entity businessEntity,
@@ -673,195 +597,75 @@ public class WaiverRtf extends TopServlet {
 	    pp.add(phrase);
 	    document.add(pp);
 	    //
-	    /**
-	       table = new Table(2);
-	       table.setBorder(3);
-	       table.setBorderWidth(3);
-	       table.getDefaultCell().setBorder(3);
-	       table.getDefaultCell().setBorderWidth(3);
-	       table.setBorder(Rectangle.TOP);
-	       table.setBorder(Rectangle.RIGHT);
-	       table.setBorder(Rectangle.LEFT);
-	       table.setBorder(Rectangle.BOTTOM);
-	       table.setWidth(100);
-	    */
-
-	    //
 	    phrase = new Phrase();
 	    ch = new Chunk("OWNER: ",fnt);
 	    phrase.add(ch);						
 	    ch = new Chunk(businessEntity.getName()+"\t",fntu);
 	    phrase.add(ch);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // table.addCell(cell);						
 	    document.add(phrase);
 						
 	    ch = new Chunk("By: ______________\n",fnt);
 	    phrase = new Phrase();
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // table.addCell(cell);
 
-	    // empty cell
 	    ch = new Chunk(" ",fnt);
 	    phrase = new Phrase();
 	    phrase.add(ch);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // table.addCell(cell);						
-	    //
+
 	    document.add(phrase);
 	    phrase = new Phrase();
 	    ch = new Chunk("\t Name Printed:         \n\tTitle:_______________\n",fnt);						
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    //table.addCell(cell);
-	    // document.add(table);
 	    //
-	    //
-	    /**
-	       Table contTable = new Table(2);
-	       contTable.setWidth(100);
-	       contTable.setBorderWidth(3);
-	       contTable.getDefaultCell().setBorderWidth(3);
-	       contTable.setBorder(Rectangle.TOP);
-	       contTable.setBorder(Rectangle.RIGHT);
-	       contTable.setBorder(Rectangle.LEFT);
-	       contTable.setBorder(Rectangle.BOTTOM);
-	       contTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-	    */
 	    phrase = new Phrase();
 	    ch = new Chunk("STATE OF INDIANA    )\n",fnt);
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // contTable.addCell(cell);
-	    //
-	    /**
-	       phrase = new Phrase();
-	       ch = new Chunk(") \n",fnt);
-	       phrase.add(ch);
-	       document.add(phrase);
-	    */
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);						
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // contTable.addCell(cell);
-
-	    // phrase = new Phrase();
-	    // ch = new Chunk(" \n",fnt);
-	    // phrase.add(ch);
-	    // document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // contTable.addCell(cell);
 						
 	    phrase = new Phrase();
 	    ch = new Chunk("                 ) SS:\n",fnt);
 	    phrase.add(ch);
 	    document.add(phrase);						
 
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // contTable.addCell(cell);
-	    //
-	    // third row
 	    ch = new Chunk("COUNTY OF MONROE  )\n",fnt);
 	    phrase = new Phrase();
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    //contTable.addCell(cell);
-	    // 
-	    // ch = new Chunk(")\n",fnt);
-	    // phrase = new Phrase();
-	    //; phrase.add(ch);
-	    // document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // contTable.addCell(cell);
-	    //
-	    // document.add(contTable);
 	    //
 	    phrase = new Phrase();
 	    ch = new Chunk("Before me, a Notary Public, personally appeared _________ and acknowledged the execution of the above release of the right to remonstrate against pending or future annexation to the City of Bloomington, Indiana, to be a voluntary act and deed, this ____ day of _______________, 20__.\n",fnt); 
 	    phrase.add(ch);
 	    document.add(phrase);
 	    //
-	    /**
-	       Table notTable = new Table(2);
-	       notTable.setWidth(100);
-	       notTable.setWidths(withs);
-	       notTable.setBorderWidth(3);
-	       notTable.getDefaultCell().setBorder(3);
-	       notTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-	    */
 	    phrase = new Phrase();
 	    ch = new Chunk("My Commission Expires:________      \t",fnt);
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // notTable.addCell(cell);						
-
 	    phrase = new Phrase();
 	    ch = new Chunk("Signed:__________________\n",fnt);
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // notTable.addCell(cell);
-
 	    phrase = new Phrase();
 	    ch = new Chunk("NP#:__________________     \t",fnt);
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // notTable.addCell(cell);
 
 	    phrase = new Phrase();
 	    ch = new Chunk("Printed Name:__________________\n",fnt);
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // notTable.addCell(cell);
 
 	    phrase = new Phrase();
 	    ch = new Chunk(" ",fnt);
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // notTable.addCell(cell);
 
 	    phrase = new Phrase();
 	    ch = new Chunk("              Notary Public\n Residing in ___________ County, Indiana\n",fnt);
 	    phrase.add(ch);
 	    document.add(phrase);
-	    // cell = new RtfCell(phrase);
-	    // cell.setBorder(3);
-	    // cell.setBorder(Rectangle.NO_BORDER);
-	    // notTable.addCell(cell);
-	    //
-	    // document.add(notTable);						
 	    //
 	    phrase = new Phrase();
 	    pp = new Paragraph();

@@ -2098,7 +2098,8 @@ public class Waiver extends CommonInc implements java.io.Serializable{
 	    if(notes.equals(""))
 		pstmt.setNull(5, Types.VARCHAR);
 	    else
-		pstmt.setString(5, notes);						
+		pstmt.setString(5, notes);
+	    
 	    pstmt.setString(6, id);
 	    pstmt.executeUpdate();
 	}

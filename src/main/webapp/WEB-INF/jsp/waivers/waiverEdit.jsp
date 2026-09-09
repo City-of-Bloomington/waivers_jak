@@ -47,6 +47,7 @@
 	    <li>After you are done with data entry, hit the 'Save Changes' button</li>			
 	</ul>
 	<h3>Entities</h3>
+	<p>Note: To add a new entity click on 'New Entity' or to add an existing entity use 'Search Entity' </p>
 	<s:if test="hasEntities()">
 	    <table width="80%" border="1">
 		<caption>Entity(ies)</caption>
@@ -60,14 +61,11 @@
 		</s:iterator>
 	    </table>
 	</s:if>
-	<b>Entities</b><br />	
-	<p>Note: To add a new entity click on 'New Entity' or to add an existing entity use 'Search Entity' </p>
 	<li><a href="<s:property value='#application.url'/>entity.action?waiver_id=<s:property value='id' />"> Add New Entity  </a> </li>
 	<b>To search for an existing entity, start typing the name to pick from the list.</b><br />
 	<b>Search Entity</b>						
 	<li><s:textfield name="waiver.entityName" value="" size="25" maxlength="80" id="entity_name" /> Entity ID:<s:textfield name="waiver.addEntityId" value="" size="10" maxlength="10" id="entity_id" /> 
 	</li>
-
 	<h3>Service Address(es)</h3>			
 	<s:if test="hasAddresses()">
 	    <table width="80%" border="1">

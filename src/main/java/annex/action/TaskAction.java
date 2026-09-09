@@ -43,6 +43,8 @@ public class TaskAction extends TopAction{
 	}
 	getUser();
 	getTask();
+	getWaiver();
+	
 	if(action.equals("Save")){
 	    logger.debug(" action save ");
 	    task.setClaimedByIfNotSet(user.getId());
@@ -54,7 +56,6 @@ public class TaskAction extends TopAction{
 	    else{
 		id = task.getId();
 		if(task.hasPartName()){
-		    getWaiver();
 		    handleWaiverUpdate();
 		}								
 		addActionMessage("Saved Successfully");
@@ -71,7 +72,6 @@ public class TaskAction extends TopAction{
 	    }
 	    else{
 		if(task.hasPartName()){
-		    getWaiver();
 		    handleWaiverUpdate();
 		}
 		addActionMessage("Updated Successfully");
@@ -80,7 +80,6 @@ public class TaskAction extends TopAction{
 	}
 	else if(action.equals("Delete")){
 	    logger.debug(" action delete ");
-	    getWaiver();
 	    back = task.doDelete();
 	    if(!back.equals("")){
 		addActionError(back);
@@ -136,8 +135,14 @@ public class TaskAction extends TopAction{
 					}
 				    }
 				}
-				// System.err.println(" process email ");
-				back = processEmails();
+
+				if(activeMail){
+				    back = processEmails();
+
+				}
+				else{
+				    System.err.println(" email not active ");
+				}
 			    }
 			    else{
 				System.err.println(" notify not required ");
@@ -160,10 +165,6 @@ public class TaskAction extends TopAction{
 	}
 	else if(!task_id.equals("")){
 	    ret = "view";
-	    getWaiver();
-	}
-	else{
-	    getWaiver();
 	}
 	return ret;
     }
@@ -212,7 +213,11 @@ public class TaskAction extends TopAction{
 	if(val != null)
 	    task = val;
     }
-    @StrutsParameter(depth=1) 
+    @StrutsParameter(depth=2)
+    public void setWaiver(Waiver val){
+	if(val != null)
+	    waiver = val;
+    }    
     public String getTasksTitle(){
 	return tasksTitle;
     }
@@ -227,7 +232,6 @@ public class TaskAction extends TopAction{
 	    task_id = val;
     }
     
-    @StrutsParameter(depth=1)
     public String getTask_id(){
 	if(task_id.equals("") && task != null){
 	    task_id = task.getTask_id();
@@ -249,6 +253,7 @@ public class TaskAction extends TopAction{
 	}
 	return waiver_id;
     }
+    
     public boolean isCompleted(){
 	return task.isCompleted();
     }
@@ -318,6 +323,82 @@ public class TaskAction extends TopAction{
     public User getClaimed_user(){
 	return task.getClaimed_user();
     }
+    public String getSignedDate(){
+	return waiver.getSignedDate();
+    }
+    public String getWaiverInstrumentNum(){
+	return waiver.getWaiverInstrumentNum();
+    }
+    public String getRecorderDate(){
+	return waiver.getRecorderDate();
+    }
+    public String getWaiverBook(){
+	return waiver.getWaiverBook();
+    }
+    public String getWaiverPage(){
+	return waiver.getWaiverPage();
+    }
+    public String getWaiverBookPage(){
+	return waiver.getWaiverBookPage();
+    }
+    public String getMappedDate(){
+	return waiver.getMappedDate();
+    }
+    public String getGisNotes(){
+	return waiver.getGisNotes();
+    }
+    public String getInOutCity(){
+	return waiver.getInOutCity();
+    }
+    public String getNotes(){
+	return waiver.getNotes();
+    }    
+    @StrutsParameter(depth=1)
+    public void setMappedDate(String val){
+	if(val != null)
+	    waiver.setMappedDate(val);
+    }
+    @StrutsParameter(depth=1)
+    public void setGisNotes(String val){
+	if(val != null)
+	    waiver.setGisNotes(val);
+    }
+    @StrutsParameter(depth=1)
+    public void setInOutCity(String val){
+	if(val != null)
+	    waiver.setInOutCity(val);
+    }    
+    @StrutsParameter(depth=1)
+    public void setWaiverInstrumentNum(String val){
+	if(val != null)
+	    waiver.setWaiverInstrumentNum(val);
+    }
+    @StrutsParameter(depth=1)
+    public void setRecorderDate(String val){
+	if(val != null)
+	    waiver.setRecorderDate(val);
+    }
+    @StrutsParameter(depth=1)
+    public void setWaiverBook(String val){
+	if(val != null)
+	    waiver.setWaiverBook(val);
+    }
+    @StrutsParameter(depth=1)
+    public void setWaiverPage(String val){
+	if(val != null)
+	    waiver.setWaiverPage(val);
+    }    
+    @StrutsParameter(depth=1)
+    public void setSignedDate(String val){
+	if(val != null)
+	    waiver.setSignedDate(val);
+    }
+    @StrutsParameter(depth=1)
+    public void setNotes(String val){
+	if(val != null)
+	    waiver.setNotes(val);
+    }    
+    
     public List<Task> getCompletedTasks(){
 	return waiver.getCompletedTasks();
     }
