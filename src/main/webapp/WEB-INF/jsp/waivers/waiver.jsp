@@ -39,23 +39,23 @@
     <table border="1" width="80%">
 	<caption>Waiver Info</caption>
 	<tr>
-	    <dt>Waiver # </dt>
+	    <th>Waiver # </th>
 	    <td><s:textfield name="waiver.waiverNum" value="%{waiverNum}" size="10" maxlength="15"  required="required" /> </td>
 	</tr>
 	<tr>
-	    <dt>Waiver Instrument # </dt>
+	    <th>Waiver Instrument # </th>
 	    <td><s:textfield name="waiver.waiverInstrumentNum" value="%{instrumentNum}" size="10" maxlength="15" /></td>
 	</tr>						
 	<tr>
-	    <dt>Deed Instrument # </dt>
+	    <th>Deed Instrument # </th>
 	    <td><s:textfield name="waiver.deedInstrumentNum" value="%{deedInstrumentNum}" size="10" maxlength="70" title="Enter instrument number, deed book number" /> </td>
 	</tr>
 	<tr>
-	    <td>Deed Book </td>
+	    <th>Deed Book </th>
 	    <td><s:textfield name="waiver.deedBook" size="5" maxlength="10" value="%{deedBook}" />Page:<s:textfield name="waiver.deedPage" size="5" maxlength="10" value="%{deedPage}" /> </td>
 	</tr>
 	<tr>
-	    <td>Parcel PIN</td>
+	    <th>Parcel PIN</th>
 	    <td><input type="text" name="waiver.parcelPin2" value="" size="2" maxlength="2" id="pin_id_1" placeHolder="xx" class="pin_number"/>-
 		<input type="text" name="waiver.parcelPin2" value="" size="2" maxlength="2" id="pin_id_2" placeHolder="xx" class="pin_number"/>-
 		<input type="text" name="waiver.parcelPin2" value="" size="2" maxlength="2" id="pin_id_3" placeHolder="xx" class="pin_number"/>-
@@ -65,11 +65,11 @@
 		<input type="text" name="waiver.parcelPin2" value="" size="3" maxlength="3" id="pin_id_7" placeHolder="xxx" class="pin_number"/></td>
 	</tr>
 	<tr>
-	    <td>Parcel PIN </td>
+	    <th>Parcel PIN </th>
 	    <td><s:textarea name="waiver.parcelPin" value="%{parcelPin}" rows="3" cols="25" id="pin_id_multiple" title="For parcel state pin use space to separate" /> </td>
 	</tr>
 	<tr>
-	    <td>Parcel Tax ID</td>
+	    <th>Parcel Tax ID</th>
 	    <td>
 		<input type="text" name="waiver.parcelTaxId2" value="" size="3" maxlength="3" id="tax_id_1" class="tax_number" placeHolder="xxx"/> -
 		<input type="text" name="waiver.parcelTaxId2" value="" size="5" maxlength="5" id="tax_id_2" class="tax_number" placeHolder="xxxxx" /> -
@@ -77,40 +77,40 @@
 		(enter one at a time) </td>
 	</tr>			
 	<tr>
-	    <td>Parcel Tax ID </td>
+	    <th>Parcel Tax ID </th>
 	    <td><s:textarea name="waiver.parcelTaxId" value="%{parcelTaxId}" rows="3" cols="25" id="tax_id_multiple" title="For multiple tax ids use space to separate" />(old records) </td>
 	</tr>
 	<tr>
-	    <td>Legal description </td>
+	    <th>Legal description </th>
 	    <td><s:textarea name="waiver.legalDescription" value="%{legalDescription}" rows="5" cols="50"  required="required" /> </td>
 	</tr>
 	<tr>
-	    <td>Township Sec. Range </td>
+	    <th>Township Sec. Range </th>
 	    <td><s:textfield name="waiver.secTwpRangeDir" size="30" maxlength="50" value="%{secTwpRangeDir}" /> </td>
 	</tr>
 	<tr>
-	    <td>Lot </td>
+	    <th>Lot </th>
 	    <td><s:textfield name="waiver.lot" size="15" maxlength="30" value="%{lot}" /></td>
 	</tr>
 	<tr>
-	    <td>Acreage </td>
+	    <th>Acreage </th>
 	    <td><s:textfield name="waiver.acreage" size="10" maxlength="10" value="%{acreage}" />	</td>
 	</tr>			
 	<tr>
-	    <td>Develop./Subdiv. </td>
+	    <th>Develop./Subdiv. </th>
 	    <td><s:textfield name="waiver.developmentSubdivision" size="30" maxlength="128" value="%{developmentSubdivision}" /> </td>
 	</tr>			
 	<tr>
-	    <td>In City Limits</td>
+	    <th>In City Limits</th>
 	    <td><s:radio name="waiver.inOutCity" value="%{inOutCity}" list="#{'IN':'IN','OUT':'OUT'}" /> 
 	    </td>
 	</tr>
 	<tr>
-	    <td>Waiver Notes </td>
+	    <th>Waiver Notes </th>
 	    <td><s:textarea name="waiver.notes" value="%{notes}" rows="5" cols="50"  /> </td>
 	</tr>
 	<tr>
-	    <td></td>
+	    <td>&nbsp;</td>
 	    <td><s:submit name="action" type="button" value="Save" class="fn1-btn"/></td>
 	</tr>
     </table>

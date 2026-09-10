@@ -36,6 +36,7 @@ public abstract class TopAction // extends ActionSupport
     static String server_path="";
     static String city_email="", legal_username = "", utility_username="",
 	gis_username="";
+    static String email_host="";
     static String LOGIN="login";
     static String INPUT="input";    
     static String SUCCESS="success";
@@ -115,37 +116,40 @@ public abstract class TopAction // extends ActionSupport
 	return doPrepare();
     }
     String doPrepare(){
-	String back = "";	
+	String back = "", val="";	
 	    try{
 		user = (User)sessionMap.get("user");
 		if(user == null){
 		    back = LOGIN;
 		}
 		if(url.equals("")){
-		    String val = ctx.getInitParameter("url");
-		if(val != null)
-		    url = val;
-		val = ctx.getInitParameter("addrUrl");
-		if(val != null)
-		    addrUrl = val;								
-		val = ctx.getInitParameter("server_path");
-		if(val != null)
-		    server_path = val;
-		val = ctx.getInitParameter("city_email");
-		if(val != null)
-		    city_email = "@"+val;								
-		val = ctx.getInitParameter("legal_username");
-		if(val != null)
-		    legal_username = val;
-		val = ctx.getInitParameter("utility_username");
-		if(val != null)
-		    utility_username = val;
-		val = ctx.getInitParameter("gis_username");
-		if(val != null)
-		    gis_username = val;
-		val = ctx.getInitParameter("activeMail");
-		if(val != null && val.equals("true"))
-		    activeMail = true;								
+		    val = ctx.getInitParameter("url");
+		    if(val != null)
+			url = val;
+		    val = ctx.getInitParameter("addrUrl");
+		    if(val != null)
+			addrUrl = val;								
+		    val = ctx.getInitParameter("server_path");
+		    if(val != null)
+			server_path = val;
+		    val = ctx.getInitParameter("city_email");
+		    if(val != null)
+			city_email = "@"+val;								
+		    val = ctx.getInitParameter("legal_username");
+		    if(val != null)
+			legal_username = val;
+		    val = ctx.getInitParameter("utility_username");
+		    if(val != null)
+			utility_username = val;
+		    val = ctx.getInitParameter("gis_username");
+		    if(val != null)
+			gis_username = val;
+		    val = ctx.getInitParameter("activeMail");
+		    if(val != null && val.equals("true"))
+			activeMail = true;
+		    val = ctx.getInitParameter("email_host");
+		    if(val != null)
+			email_host = val;
 		}
 	    }catch(Exception ex){
 		System.out.println(ex);

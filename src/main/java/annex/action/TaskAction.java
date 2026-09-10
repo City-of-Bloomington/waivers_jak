@@ -135,7 +135,6 @@ public class TaskAction extends TopAction{
 					}
 				    }
 				}
-
 				if(activeMail){
 				    back = processEmails();
 
@@ -490,7 +489,8 @@ public class TaskAction extends TopAction{
 			" Other Waiver Info: "+waiver.getBasicInfo3()+"\n\n"+
 			" Thanks\n\n";
 		    if(!to.isEmpty()){
-			back = sendEmails(to, from, cc, subject, msg);
+			// System.err.println("legal sending email to "+to);
+			back = sendEmails(email_host, to, from, cc, subject, msg);
 		    }
 		}
 		else if(gg.getName().equals("Utilities")){
@@ -505,7 +505,9 @@ public class TaskAction extends TopAction{
 			" Other Waiver Info: "+waiver.getBasicInfo3()+"\n\n"+
 			" Thanks\n\n";
 		    if(!to.isEmpty()){
-			back = sendEmails(to, from, cc, subject, msg);
+			// System.err.println("Util sending email to "+to);
+			
+			back = sendEmails(email_host, to, from, cc, subject, msg);
 		    }
 		}
 		else if(gg.getName().equals("GIS")){
@@ -526,7 +528,8 @@ public class TaskAction extends TopAction{
 		    from = "donotreply@bloomington.in.gov";
 		    cc = null;
 		    if(!to.isEmpty()){
-			back = sendEmails(to, from, cc, subject, msg);
+			// System.err.println("Gis sending email to "+to);
+			back = sendEmails(email_host, to, from, cc, subject, msg);
 		    }
 		}
 		if(!to.isEmpty()){
@@ -539,14 +542,15 @@ public class TaskAction extends TopAction{
 	}
 	return back;
     }
-    String sendEmails(String to,
+    String sendEmails(String host,
+		      String to,
 		      String from,
 		      String cc,
 		      String subject,
 		      String msg){
 	String back = "";
 	if(to.equals("")) return msg;
-	EmailHandle mail = new EmailHandle(to, from, cc, subject, msg, debug);
+	EmailHandle mail = new EmailHandle(host, to, from, cc, subject, msg, debug);
 	if(activeMail){
 	    back = mail.send();
 	    EmailLog elog = new EmailLog(debug, task.getWaiver_id(), task.getTask_id(), to, from, cc, subject, msg, back);

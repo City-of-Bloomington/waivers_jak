@@ -29,7 +29,7 @@ public class EmailHandle{
     static String msgText = "This is a message body.\nHere's the second line.";
     static String to = "";
     static String from = "";
-    static String host = "smtp.bloomington.in.gov"; 
+    static String host = "smtp-relay.gmail.com"; 
     static boolean debug = true;
     static String subject = "Waiver service address go ahead notification";
     static String cc = null;
@@ -48,7 +48,8 @@ public class EmailHandle{
      * @param debug2 the debug flag true|false
      */
 		
-    public EmailHandle(String to2,
+    public EmailHandle(String host2,
+		       String to2,
 		       String from2,
 		       String cc2,
 		       String bcc2,
@@ -56,6 +57,8 @@ public class EmailHandle{
 		       String msg2,
 		       boolean debug2){
 
+	if(host2 != null)
+	    host = host2;
 	if(to2 != null && to2.equals("Bulk")){
 	    to = null;
 	}
@@ -69,13 +72,15 @@ public class EmailHandle{
 	debug = debug2;
 	if(subject2 != null) subject = subject2;
     }
-    public EmailHandle(String to2,
+    public EmailHandle(String host2,
+		       String to2,
 		       String from2,
 		       String cc2,											 
 		       String subject2,
 		       String msg2,
 		       boolean debug2){
-
+	if(host2 != null)
+	    host = host2;
 	if(to2 != null && to2.equals("Bulk")){
 	    to = null;
 	}
@@ -92,7 +97,8 @@ public class EmailHandle{
     //
     // another constructor
     //
-    public EmailHandle( String to2,
+    public EmailHandle( String host2,
+			String to2,
 			String from2,
 			String cc2,
 			String bcc2,
@@ -101,7 +107,8 @@ public class EmailHandle{
 			String file_name2,
 			String file_path2,
 			boolean debug2){
-
+	if(host2 != null)
+	    host = host2;	
 	if(to2 != null && to2.equals("Bulk")){
 	    to = null;
 	}
