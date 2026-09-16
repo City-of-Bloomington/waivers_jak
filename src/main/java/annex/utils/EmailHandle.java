@@ -1,10 +1,14 @@
 package annex.utils;
-import java.util.*;
 import java.io.*;
+import java.util.Properties;
+import java.util.Date;
+import javax.naming.*;
 import jakarta.mail.*;
 import jakarta.mail.Address;
 import jakarta.mail.internet.*;
 import jakarta.activation.*;
+import jakarta.mail.Transport;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import annex.list.*;
@@ -128,16 +132,20 @@ public class EmailHandle{
     public String send(){
 
 	if(from != null && !from.isEmpty() && to.indexOf(from) > -1){
-	    return "No email sent ";
+	   return "No email sent ";
 	}
 	String message = "";
 	logger.debug(" sending emails ");
+	System.err.println(" host "+host);
 	try {
 	    //
 	    // create some properties and get the default Session
 	    //
 	    Properties props = new Properties();
 	    props.put("mail.smtp.host", host);
+	    //props.put("mail.smtp.auth", "false");
+	    //props.put("mail.smtp.starttls.enable", "false");
+	    //props.put("mail.smtp.port", "587");
 	    if (debug)
 		props.put("mail.debug", "true");
 			
@@ -160,11 +168,13 @@ public class EmailHandle{
 		}
 		else{
 		    InternetAddress[] addresses = jakarta.mail.internet.InternetAddress.parse(cc);
+		    //InternetAddress[] addresses = javax.mail.internet.InternetAddress.parse(cc);
 		    msg.setRecipients(Message.RecipientType.CC, addresses);
 		}
 	    }
 	    if(bcc != null && !bcc.equals("")){
 		InternetAddress[] address = jakarta.mail.internet.InternetAddress.parse(bcc);
+		// InternetAddress[] address = javax.mail.internet.InternetAddress.parse(bcc);
 		msg.setRecipients(Message.RecipientType.BCC, address);
 	    }
 	    msg.setSubject(subject);
@@ -174,6 +184,7 @@ public class EmailHandle{
 	    // setText(text, charset)
 	    msg.setText(msgText);
 	    //
+	    System.err.println("sending ");
 	    Transport.send(msg);
 	} catch (MessagingException mex){
 
@@ -220,6 +231,7 @@ public class EmailHandle{
 	}
 	return message;
     }
+    /**
     public String sendWAttach(){
 		
 	String message = "";
@@ -320,4 +332,5 @@ public class EmailHandle{
 	}
 	return message;
     }
+    */
 }

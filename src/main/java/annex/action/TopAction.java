@@ -36,7 +36,8 @@ public abstract class TopAction // extends ActionSupport
     static String server_path="";
     static String city_email="", legal_username = "", utility_username="",
 	gis_username="";
-    static String email_host="";
+    static String email_host="smtp-relay.gmail.com";
+    //static String email_host="smtp.bloomington.in.gov";    
     static String LOGIN="login";
     static String INPUT="input";    
     static String SUCCESS="success";

@@ -457,11 +457,13 @@ public class TaskAction extends TopAction{
 	}
 	if(toBeNotifiedGroups != null){
 	    for(Group gg:toBeNotifiedGroups){
-		to="";cc=null;								
+		to="";cc=null;
+		
 		List<User> users = gg.getUsers();
 		for(User one:users){
 		    if(one.hasActiveMail() && one.isActive()){
 			String receiver = one.getUsername()+city_email;
+			
 			// we do not want to send email to himself
 			if(from.indexOf(receiver) > -1) continue;
 			if(to.equals("")){
@@ -551,7 +553,8 @@ public class TaskAction extends TopAction{
 	String back = "";
 	if(to.equals("")) return msg;
 	EmailHandle mail = new EmailHandle(host, to, from, cc, subject, msg, debug);
-	if(activeMail){
+	// if(activeMail){
+	if(true){
 	    back = mail.send();
 	    EmailLog elog = new EmailLog(debug, task.getWaiver_id(), task.getTask_id(), to, from, cc, subject, msg, back);
 	    back += elog.doSave();
