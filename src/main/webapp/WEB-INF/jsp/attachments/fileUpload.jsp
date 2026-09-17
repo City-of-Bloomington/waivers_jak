@@ -45,7 +45,7 @@
 	</tr>
 	<tr>
 	    <td>Document Type:</td>
-	    <td><s:select name="type" value="%{type}" list="#{'Application':'Application','Deed':'Deed','Recorded Waiver':'Recorded Waiver','Map':'Map','Other':'Other'}"  headerKey="-1" headerValue="Pick Document Type" id="attach_type_id" /></td>
+	    <td><s:select name="type" value="%{type}" list="#{'Application':'Application','Deed':'Deed','Recorded Waiver':'Recorded Waiver','Map':'Map','Approval letter':'Approval letter','State Business Entity Report':'State Susiness Entity Report','Other':'Other'}"  headerKey="-1" headerValue="Pick Document Type" id="attach_type_id" /></td>
 	</tr>		
 	<tr>
 	    <td>Notes:</td>

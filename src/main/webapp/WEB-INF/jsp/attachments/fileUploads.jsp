@@ -12,7 +12,7 @@
 	  <td align="center"><b>Type</b></td>		
 	  <td align="center"><b>Date</b></td>
 	  <td align="center"><b>Notes</b></td>
-	  <s:if test="#session.user.canDelete()">
+	  <s:if test="#session.canDelete != null">
 	      <td align="center"><b>Action</b></td>
 	  </s:if>
       </tr>
@@ -22,7 +22,7 @@
 	      <td><s:property value="type" /></td>				
 	      <td><s:property value="date" /></td>
 	      <td><s:property value="notes" /></td>
-	      <s:if test="#session.user.canDelete()">
+	      <s:if test="#session.canDelete != null">
 		  <td><a href="<s:property value='#application.url' />doUpload.action?id=<s:property value='id' />&action=Delete" onclick="return verifyDelete();">Delete File</a></td>
 	      </s:if>
 	  </tr>

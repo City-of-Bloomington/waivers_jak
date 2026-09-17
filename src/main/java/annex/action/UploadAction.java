@@ -44,7 +44,7 @@ public class UploadAction extends TopAction implements UploadedFilesAware{
     private String filename="";
     private String upload="";
     private List<FileUpload> uploads = null;
-    private String[] types = {"Application","Warranty Deed","Recorded Waiver","Map","Other"};
+    private String[] types = {"Application","Warranty Deed","Recorded Waiver","Map","Approval letter","State Business Entity Report","Other"};
     static private Map<String, String> mimeTypes = null;
     private Waiver waiver = null;
     private Task task = null;
@@ -356,6 +356,13 @@ public class UploadAction extends TopAction implements UploadedFilesAware{
     public void withServletContext(ServletContext ctx) {
         this.ctx = ctx;
     }
+    /**
+
+alter table attachments modify type enum('Application','Deed','Recorded Waiver','Map','Other','Approval Letter','State Business Entity Report');
+
+select row_number() over (order by id) as row_num, id from attachments;
+
+     */
 }
 
 

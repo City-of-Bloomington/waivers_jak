@@ -60,6 +60,10 @@ public class CallBackServlet extends TopServlet {
 		User user = CityClient.getInstance().endAuthentication(code, config);
 		if(user != null){
 		    request.getSession().setAttribute("user", user);
+		    if(user.canDelete())
+			request.getSession().setAttribute("canDelete", "true");
+		    if(user.isAdmin())
+			request.getSession().setAttribute("isAdmin", "true");
 		    String str ="<head><title></title><META HTTP-EQUIV=\""+
 			"refresh\" CONTENT=\"0; URL=" + url +
 			"welcome.action";

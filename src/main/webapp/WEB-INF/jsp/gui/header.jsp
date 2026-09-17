@@ -36,7 +36,9 @@
 		    <li><a href="<s:property value='#application.url'/>report.action">Reports</a></li>
 		    <li><a href="<s:property value='#application.url'/>statsReport.action">Stats Reports</a></li>
 		    <li><a href="<s:property value='#application.url'/>emailLog.action">Notification Logs</a></li>
-		    <li><a href="<s:property value='#application.url'/>settings.action">Settings</a></li>
+		    <s:if test="#session.isAdmin != null">		    
+			<li><a href="<s:property value='#application.url'/>settings.action">Settings</a></li>
+		    </s:if>
 		</ul>		    
 	    </div>
 	</s:if>
