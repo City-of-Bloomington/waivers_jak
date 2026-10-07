@@ -169,20 +169,22 @@
 	</s:if>
 	<s:if test="hasMoreTasks()">
 	    <s:iterator var="one" value="tasks">
-		<s:if test="canBeClaimedBy(#session.user)">
 		<li>
-			<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit">Next: <s:property value='alias' /> (<s:property value="group" />)</a>
-		</li>
+		<s:if test="canBeClaimedBy(#session.user)">
+		    <a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit">Next: <s:property value='alias' /> (<s:property value="group" />)</a>
 		</s:if>
 		<s:else>
-		    <li>
-			    <a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit" id="a_disabled"  disabled="disabled">Next: <s:property value='alias' /> (<s:property value="group" /> disabled)</a>
-		    </li>
+			<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Edit" id="a_disabled"  disabled="disabled">Next: <s:property value='alias' /> (<s:property value="group" /> disabled)</a>
 		</s:else>
+		<s:if test="canBeCompleted()">
+			Note: If no more actions is needed for this task click completed to move to next task
+		    <a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Completed" id="a_completed">Task Completed</a>
+		</s:if>
+		</li>
 	    </s:iterator>
 	</s:if>
 	<li>
-		<a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='id' />">Attachments</a> <br />
+	    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='id' />">Attachments</a> <br />
 	</li>
 	<li>
 	    Note: If you close this waiver no more changes can be made

@@ -24,7 +24,6 @@ public class WaiverAction extends TopAction{
     //
     Waiver waiver = null;
     List<Waiver> waivers = null;
-    List<EmailLog> emailLogs = null;
     String entity_id="", address_id="", waiver_num="";
     String waiversTitle = " Most recent Waivers";
     public String execute(){
@@ -390,22 +389,7 @@ public class WaiverAction extends TopAction{
 	return waiver.hasEntities();
     }
     public boolean hasEmailLogs(){
-	getWaiver();
-	if(!waiver.getId().equals("")){
-	    EmailLogList ell = new EmailLogList(debug, waiver.getId());
-	    String back = ell.find();
-	    if(back.equals("")){
-		List<EmailLog> logs = ell.getEmailLogs();
-		if(logs != null && logs.size() > 0){
-		    emailLogs = logs;
-		}
-	    }
-	    else{
-		logger.error(back);		
-	    }
-	    return emailLogs != null && emailLogs.size() > 0;
-	}
-	return false;
+	return waiver.hasEmailLogs();
     }
     @StrutsParameter(depth=3)    
     public List<Entity> getEntities(){
@@ -413,8 +397,7 @@ public class WaiverAction extends TopAction{
     }
     @StrutsParameter(depth=2)
     public List<EmailLog> getEmailLogs(){
-	logger.debug("email logs");		
-	return emailLogs;
+	return waiver.getEmailLogs();
     }		
     @Override  
     public void withSession(Map<String, Object> map) {  

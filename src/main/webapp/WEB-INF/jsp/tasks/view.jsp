@@ -61,7 +61,7 @@
 	</li>
     </s:if>    
 </ul>
-<s:if test="task.hasPart()">
+<s:if test="hasPart()">
     <s:if test="part_name == 'legal'">
 	<s:set var="waiver" value="%{waiver}" />
 	<s:include value="../waivers/legalViewPart.jsp" />
@@ -87,7 +87,7 @@
 	<li>
 	    <a href="<s:property value='#application.url' />doUpload.action?waiver_id=<s:property value='task.waiver_id' />&task_id=<s:property value='task_id' />">New Attachments</a>
 	</li>
-	<s:if test="task.isCompleted()">
+	<s:if test="isCompleted()">
 	    <s:if test="waiver.hasMoreTasks()">
 		<s:iterator var="one" value="waiver.tasks">
 		    <li>
@@ -97,7 +97,7 @@
 	    </s:if>
 	</s:if>
     <s:else>
-	<s:if test="task.canBeCompleted()">
+	<s:if test="canBeCompleted()">
 	    <li>
 		<a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Task+Completed">Task Completed </a>
 	    </li>
@@ -105,19 +105,19 @@
     </s:else>
     </ul>
 </s:if>
-<s:if test="waiver.hasCompletedTasks()" >
-    <s:set var="tasksTitle" value="'Completed Tasks'" />
-    <s:set var="tasks" value="%{completedTasks}" />
+<s:if test="waiver_hasCompletedTasks()" >
+    <s:set var="tasksTitle" value="'Waiver Completed Tasks'" />
+    <s:set var="tasks" value="%{waiverCompletedTasks}" />
     <%@  include file="tasks.jsp" %>			
 </s:if>
-<s:if test="task.waiver.hasUploads()">
+<s:if test="waiver_hasUploads()">
     <s:set var="attachmentsTitle" value="'Attachments'" />
-    <s:set var="uploads" value="%{uploads}" />
+    <s:set var="uploads" value="%{waiverUploads}" />
     <%@  include file="../attachments/fileUploads.jsp" %>			
 </s:if>
-<s:if test="hasEmailLogs()">
+<s:if test="waiver_hasEmailLogs()">
     <s:set var="logsTitle" value="'Email Logs'" />
-    <s:set var="emailLogs" value="%{emailLogs}" />
+    <s:set var="emailLogs" value="%{waiverEmailLogs}" />
     <%@  include file="../logs/emailLogs.jsp" %>				
 </s:if>
 <%@  include file="../gui/footer.jsp" %>

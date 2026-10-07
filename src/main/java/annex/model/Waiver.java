@@ -42,6 +42,7 @@ public class Waiver extends CommonInc implements java.io.Serializable{
     List<Entity> entities = null;
     List<FileUpload> uploads = null;
     List<Address> addresses = null;
+    List<EmailLog> emailLogs = null;
     String entity_id="", address_id=""; // for remove
     String add_addr_ids = ""; // string of address_ids
     String add_entity_ids = "";
@@ -681,6 +682,26 @@ public class Waiver extends CommonInc implements java.io.Serializable{
 	    }
 	}
 	return false;
+    }
+    public boolean hasEmailLogs(){
+	if(!id.isEmpty()){
+	    EmailLogList ell = new EmailLogList(debug, id);
+	    String back = ell.find();
+	    if(back.equals("")){
+		List<EmailLog> logs = ell.getEmailLogs();
+		if(logs != null && logs.size() > 0){
+		    emailLogs = logs;
+		}
+	    }
+	    else{
+		logger.error(back);		
+	    }
+	    return emailLogs != null && emailLogs.size() > 0;
+	}
+	return false;
+    }
+    public List<EmailLog> getEmailLogs(){
+	return emailLogs;
     }
     //
     // Expire date is only required when a waiver is recorded

@@ -410,6 +410,24 @@ public class TaskAction extends TopAction{
     public List<FileUpload> getUploads(){
 	return waiver.getUploads();
     }
+    public boolean waiver_hasCompletedTasks(){
+	return waiver.hasCompletedTasks();
+    }
+    public List<Task> getWaiverCompletedTasks(){
+	return waiver.getCompletedTasks();
+    }
+    public boolean waiver_hasUploads(){
+	return waiver.hasUploads();
+    }
+    public List<FileUpload> getWaiverUploads(){
+	return waiver.getUploads();
+    }
+    public boolean waiver_hasEmailLogs(){
+	return waiver.hasEmailLogs();
+    }
+    public List<EmailLog> getWaiverEmailLogs(){
+	return waiver.getEmailLogs();
+    }
     // most recent
     @StrutsParameter(depth=2)
     public List<Task> getTasks(){ 

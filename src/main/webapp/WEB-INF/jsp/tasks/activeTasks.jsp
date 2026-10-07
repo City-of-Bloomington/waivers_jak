@@ -27,6 +27,7 @@
 		<th align="center"><b>Start Date</b></th>
 		<th align="center"><b>Claimed By</b></th>
 		<th align="center"><b>Notes</b></th>
+		<th align="center"><b>Action</b></th>
 	    </tr>
 	</thead>
 	<tbody>
@@ -37,6 +38,14 @@
 		    <td><s:property value="start_date" /></td>				
 		    <td><s:property value="claimed_user" /></td>
 		    <td><s:property value="field2_value" /></td>
+		    <td>
+			<s:if test="canBeCompleted()">
+			    <a href="<s:property value='#application.url'/>task.action?task_id=<s:property value='task_id' />&action=Completed" id="a_completed">Task Completed</a>
+			</s:if>
+			<s:else>
+			    &nbsp;
+			</s:else>
+		    </td>
 		</tr>
 	    </s:iterator>
 	</tbody>
