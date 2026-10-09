@@ -150,8 +150,17 @@ public class TaskAction extends TopAction{
 		    }
 		}
 	    }
-	    ret = "view";
 	    addActionMessage("Completed Successfully");				
+	    waiver_id = waiver.getId();
+	    try{
+		HttpServletResponse res = ServletActionContext.getResponse();
+		String str = url+"waiver?id="+waiver_id+"&action=view";
+		res.sendRedirect(str);
+		return super.execute();
+	    }catch(Exception ex){
+		System.err.println(ex);
+	    }	
+	    ret = "view";
 	}
 	else if(action.equals("Edit")){
 	    System.err.println(" task_id "+task_id);
